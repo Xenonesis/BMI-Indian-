@@ -1,7 +1,7 @@
 
 # fitIN - BMI Calculator
 
-## Version 1.8 - January 7, 2025
+## Version 1.9 - January 7, 2025
 
 fitIN is an interactive BMI (Body Mass Index) calculator website designed for Indian users. It calculates BMI based on user input for height and weight, providing personalized health recommendations and progress tracking. The website includes a sleek, modern UI and is responsive on both desktop and mobile devices.
 

@@ -9,89 +9,141 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
-    }
-    .fade-in {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    @media screen and (max-width: 640px) {
-      .fade-in {
-        transform: translateY(5px);
-      }
-    }
-    .form-section {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      margin-bottom: 20px;
-    }
-    .header {
-      background-color: #3b82f6;
-      color: white;
-      text-align: center;
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    .footer {
-      background-color: #3b82f6;
-      color: white;
-      text-align: center;
-      padding: 15px;
-    }
-    .input-field {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      margin-bottom: 10px;
-      transition: all 0.3s ease;
-    }
-    .input-field:focus {
-      border-color: #3b82f6;
-      outline: none;
-    }
-    .button {
-      width: 100%;
-      padding: 15px;
-      background-color: #3b82f6;
-      color: white;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    .button:hover {
-      background-color: #2563eb;
-    }
-    .logo {
-      width: 50px;
-      height: 50px;
-      margin-bottom: 10px;
-    }
-    .tagline {
-      font-style: italic;
-      margin-top: 10px;
-      font-size: 18px;
-    }
-    .section-header {
-      font-size: 24px;
-      font-weight: bold;
-      margin-top: 30px;
-      text-align: center;
-    }
-    .content-text {
-      font-size: 16px;
-      margin: 10px 0;
-    }
-    .content-link {
-      color: #3b82f6;
-      text-decoration: none;
-    }
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  overflow-x: hidden; /* Ensure no horizontal scrollbar appears */
+}
+
+/* Fade-in animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.6s ease-in-out;
+}
+
+.fade-in-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive adjustment for smaller screens */
+@media screen and (max-width: 640px) {
+  .fade-in {
+    transform: translateY(5px);
+  }
+}
+
+/* Form Section */
+.form-section {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header */
+.header {
+  background-color: #3b82f6;
+  color: white;
+  text-align: center;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+.footer {
+  background-color: #3b82f6;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+
+/* Input field styles */
+.input-field {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.input-field:focus {
+  border-color: #3b82f6;
+  outline: none;
+}
+
+/* Button styles */
+.button {
+  width: 100%;
+  padding: 15px;
+  background-color: #3b82f6;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #2563eb;
+}
+
+/* Logo */
+.logo {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+/* Tagline */
+.tagline {
+  font-style: italic;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+/* Section Header */
+.section-header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 30px;
+  text-align: center;
+  color: #333;
+}
+
+/* Content text styles */
+.content-text {
+  font-size: 16px;
+  margin: 10px 0;
+  color: #666;
+}
+
+/* Content Link */
+.content-link {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.content-link:hover {
+  text-decoration: underline;
+}
+
   </style>
 </head>
 <body class="bg-gray-100">
@@ -297,42 +349,67 @@
   </section>
 
   <!-- Additional Features Section -->
-  <section class="form-section fade-in mt-8">
-    <h2 class="section-header text-2xl font-bold text-gray-800 mb-4">Additional Features</h2>
-    <p class="content-text text-gray-600">Track your progress, learn about BMI, and access personalized health tips.</p>
-  </section>
+<section class="form-section fade-in mt-8">
+  <h2 class="section-header text-2xl font-bold text-gray-800 mb-4">Additional Features</h2>
+  <p class="content-text text-gray-600">
+    - Track your progress over time to monitor changes in your BMI.<br>
+    - Access detailed information about BMI and its significance in maintaining overall health.<br>
+    - Receive personalized health tips tailored to your BMI category to help you make informed decisions about your fitness and wellness journey.
+  </p>
+  <p class="content-text text-gray-600 mt-4">
+    - Integrate your data with helpful insights to stay motivated and committed to your health goals.<br>
+    - Utilize interactive charts and visualizations for a better understanding of your BMI trends.<br>
+    - Leverage evidence-based advice and recommendations from trusted health sources to support your well-being.
+  </p>
+</section>
+
 
   <!-- Resources Section -->
-  <section class="form-section fade-in mt-8">
-    <h2 class="section-header text-2xl font-bold text-gray-800 mb-4">Resources</h2>
-    <ul class="content-text text-gray-600">
-      <li><a href="https://www.nhp.gov.in" target="_blank" class="content-link text-indigo-600 hover:underline">National Health Portal of India</a></li>
-      <li><a href="https://www.who.int" target="_blank" class="content-link text-indigo-600 hover:underline">World Health Organization</a></li>
-    </ul>
-  </section>
+<section class="form-section fade-in mt-8">
+  <h2 class="section-header text-2xl font-bold text-gray-800 mb-4">Resources</h2>
+  <ul class="content-text text-gray-600">
+    <li><a href="https://www.nhp.gov.in" target="_blank" class="content-link text-indigo-600 hover:underline">National Health Portal of India</a></li>
+    <li><a href="https://www.who.int" target="_blank" class="content-link text-indigo-600 hover:underline">World Health Organization</a></li>
+    <li><a href="https://www.cdc.gov" target="_blank" class="content-link text-indigo-600 hover:underline">Centers for Disease Control and Prevention (CDC)</a></li>
+    <li><a href="https://www.bmi-calculator.net" target="_blank" class="content-link text-indigo-600 hover:underline">BMI Calculator</a></li>
+    <li><a href="https://www.healthline.com/nutrition/bmi-scale" target="_blank" class="content-link text-indigo-600 hover:underline">Healthline - BMI Scale and Interpretation</a></li>
+  </ul>
+</section>
 
-  <!-- FAQ Section -->
-  <section class="form-section fade-in mt-8">
-    <h2 class="section-header text-2xl font-bold text-gray-800 mb-4">FAQs</h2>
-    <p class="content-text text-gray-600"><strong>What is BMI?</strong><br>BMI, or Body Mass Index, is a measure of body fat based on weight and height.</p>
-    <p class="content-text text-gray-600 mt-4"><strong>How is BMI calculated?</strong><br>BMI = weight (kg) / (height (m)²).</p>
-    <p class="content-text text-gray-600 mt-4"><strong>What are the BMI categories?</strong><br>
-      Underweight: BMI < 18.5<br>
-      Normal weight: 18.5 ≤ BMI < 24.9<br>
-      Overweight: 25 ≤ BMI < 29.9<br>
-      Obesity: BMI ≥ 30
-    </p>
-  </section>
+
+ <!-- FAQ Section -->
+<section class="form-section fade-in mt-8">
+  <h2 class="section-header text-2xl font-bold text-gray-800 mb-4">FAQs</h2>
+  
+  <p class="content-text text-gray-600"><strong>What is BMI?</strong><br>
+    BMI (Body Mass Index) is a simple calculation used to assess whether a person’s weight falls within a healthy range for their height. It is a common method for evaluating body fat levels.
+  </p>
+  
+  <p class="content-text text-gray-600 mt-4"><strong>How is BMI calculated?</strong><br>
+    BMI is calculated using the formula: 
+    <code>BMI = weight (kg) / (height (m)²)</code>.
+  </p>
+  
+  <p class="content-text text-gray-600 mt-4"><strong>What are the BMI categories?</strong><br>
+    - **Underweight**: BMI < 18.5<br>
+    - **Normal weight**: 18.5 ≤ BMI < 24.9<br>
+    - **Overweight**: 25 ≤ BMI < 29.9<br>
+    - **Obesity**: BMI ≥ 30
+  </p>
+</section>
+
 
   <!-- Version Update Section -->
-  <section class="form-section fade-in mt-8">
-    <h2 class="section-header text-2xl font-bold text-gray-800 mb-4">Version Update 1.8</h2>
-    <p class="content-text text-gray-600"><strong>Release Date:</strong> January 7, 2025</p>
-    <p class="content-text text-gray-600 mt-4"><strong>New Features:</strong><br>
-      - Added tracking for your progress.<br>
-      - Included personalized health tips.<br>
-      - Enhanced user interface for better experience.<br>
-    </p>
+<section class="form-section fade-in mt-8">
+  <h2 class="section-header text-2xl font-bold text-gray-800 mb-4">Version Update 1.9</h2>
+  <p class="content-text text-gray-600"><strong>Release Date:</strong> January 7, 2025</p>
+  <p class="content-text text-gray-600 mt-4"><strong>New Features:</strong><br>
+    - Added tracking for your progress, including BMI and health metrics.<br>
+    - Included personalized health tips based on BMI, age, and gender.<br>
+    - Enhanced user interface with more intuitive navigation and feedback.<br>
+  </p>
+</section>
+
   </section>
 </main>
 
@@ -369,122 +446,148 @@
 
   <!-- JavaScript -->
   <script>
-    // Add fade-in animation
-    document.querySelectorAll('.fade-in').forEach(function(el) {
-      el.classList.add('hidden');
-      anime({
-        targets: el,
-        opacity: [0, 1],
-        translateY: [10, 0],
-        duration: 1000,
-        easing: 'easeOutQuad',
-        complete: function() {
-          el.classList.remove('hidden');
-        }
-      });
-    });
-
-    // Handle form submission and BMI calculation
-    document.getElementById('bmi-form').addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      const name = document.getElementById('username').value;
-      const age = document.getElementById('age').value;
-      const gender = document.getElementById('gender').value;
-      const weight = document.getElementById('weight').value;
-      const height = document.getElementById('height').value;
-
-      const heightM = height / 100;
-      const bmi = (weight / (heightM * heightM)).toFixed(2);
-
-      let category = '';
-      if (bmi < 18.5) {
-        category = 'Underweight';
-      } else if (bmi >= 18.5 && bmi < 24.9) {
-        category = 'Normal weight';
-      } else if (bmi >= 25 && bmi < 29.9) {
-        category = 'Overweight';
-      } else {
-        category = 'Obesity';
-      }
-
-      document.getElementById('bmi-result').innerText = `Your BMI is ${bmi}`;
-      document.getElementById('bmi-category').innerText = `Category: ${category}`;
-
-      const recommendations = {
-        'Underweight': ['Increase calorie intake with healthy foods.', 'Consult a healthcare professional for advice.'],
-        'Normal weight': ['Maintain a balanced diet and regular exercise.', 'Keep up the great work!'],
-        'Overweight': ['Reduce calorie intake, exercise regularly.', 'Consult a healthcare professional for guidance.'],
-        'Obesity': ['Consult a healthcare professional for a personalized weight loss plan.', 'Adopt a healthy lifestyle with exercise and proper diet.']
-      };
-
-      const recommendationList = document.getElementById('recommendation-list');
-      recommendationList.innerHTML = '';
-      recommendations[category].forEach(rec => {
-        const li = document.createElement('li');
-        li.innerText = rec;
-        recommendationList.appendChild(li);
-      });
-
-      document.getElementById('result-section').classList.remove('hidden');
-      document.getElementById('result-section').scrollIntoView({ behavior: 'smooth' });
-
-      // PDF generation
-      document.getElementById('download-pdf').addEventListener('click', function() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-
-        const currentDate = new Date();
-        const formattedDate = currentDate.toLocaleDateString() + ' ' + currentDate.toLocaleTimeString();
-
-        doc.text('fitIN - BMI Report', 10, 10);
-        doc.text(`Name: ${name}`, 10, 20);
-        doc.text(`Age: ${age} years`, 10, 30);
-        doc.text(`Gender: ${gender}`, 10, 40);
-        doc.text(`Weight: ${weight} kg`, 10, 50);
-        doc.text(`Height: ${height} cm`, 10, 60);
-        doc.text(`BMI: ${bmi}`, 10, 70);
-        doc.text(`Category: ${category}`, 10, 80);
-        doc.text(`Date: ${formattedDate}`, 10, 90);
-
-        let yPosition = 100;
-        doc.text('Health Recommendations:', 10, yPosition);
-        yPosition += 10;
-        recommendations[category].forEach((rec, index) => {
-          doc.text(`${index + 1}. ${rec}`, 10, yPosition);
-          yPosition += 10;
-        });
-
-        doc.save('BMI_Report.pdf');
-      });
-    });
-
-    document.getElementById('about-link').addEventListener('click', function (event) {
-    event.preventDefault();
-    const aboutDropdown = document.getElementById('about-dropdown');
-    aboutDropdown.classList.toggle('hidden');
-  });
-
-  document.getElementById('contact-link').addEventListener('click', function (event) {
-    event.preventDefault();
-    const contactDropdown = document.getElementById('contact-dropdown');
-    contactDropdown.classList.toggle('hidden');
-  });
-
-  // Close dropdowns when clicking outside
-  document.addEventListener('click', function (event) {
-    const aboutDropdown = document.getElementById('about-dropdown');
-    const contactDropdown = document.getElementById('contact-dropdown');
-    const aboutLink = document.getElementById('about-link');
-    const contactLink = document.getElementById('contact-link');
-    
-    if (!aboutDropdown.contains(event.target) && !aboutLink.contains(event.target)) {
-      aboutDropdown.classList.add('hidden');
-    }
-    if (!contactDropdown.contains(event.target) && !contactLink.contains(event.target)) {
-      contactDropdown.classList.add('hidden');
+  // Add fade-in animation
+document.querySelectorAll('.fade-in').forEach(function(el) {
+  el.classList.add('hidden');
+  anime({
+    targets: el,
+    opacity: [0, 1],
+    translateY: [10, 0],
+    duration: 1000,
+    easing: 'easeOutQuad',
+    complete: function() {
+      el.classList.remove('hidden');
     }
   });
+});
+
+// Handle form submission and BMI calculation
+document.getElementById('bmi-form').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const name = document.getElementById('username').value;
+  const age = parseInt(document.getElementById('age').value, 10);
+  const gender = document.getElementById('gender').value;
+  const weight = parseFloat(document.getElementById('weight').value);
+  const height = parseFloat(document.getElementById('height').value);
+
+  const heightM = height / 100;
+  const bmi = (weight / (heightM * heightM)).toFixed(2);
+
+  let category = '';
+  if (bmi < 18.5) {
+    category = 'Underweight';
+  } else if (bmi >= 18.5 && bmi < 24.9) {
+    category = 'Normal weight';
+  } else if (bmi >= 25 && bmi < 29.9) {
+    category = 'Overweight';
+  } else {
+    category = 'Obesity';
+  }
+
+  document.getElementById('bmi-result').innerText = `Your BMI is ${bmi}`;
+  document.getElementById('bmi-category').innerText = `Category: ${category}`;
+
+  const recommendations = generatePersonalizedRecommendations(bmi, age, gender);
+
+  const recommendationList = document.getElementById('recommendation-list');
+  recommendationList.innerHTML = '';
+  recommendations.forEach(rec => {
+    const li = document.createElement('li');
+    li.innerText = rec;
+    recommendationList.appendChild(li);
+  });
+
+  document.getElementById('result-section').classList.remove('hidden');
+  document.getElementById('result-section').scrollIntoView({ behavior: 'smooth' });
+
+  // PDF generation
+  document.getElementById('download-pdf').addEventListener('click', function() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString() + ' ' + currentDate.toLocaleTimeString();
+
+    doc.text('fitIN - BMI Report', 10, 10);
+    doc.text(`Name: ${name}`, 10, 20);
+    doc.text(`Age: ${age} years`, 10, 30);
+    doc.text(`Gender: ${gender}`, 10, 40);
+    doc.text(`Weight: ${weight} kg`, 10, 50);
+    doc.text(`Height: ${height} cm`, 10, 60);
+    doc.text(`BMI: ${bmi}`, 10, 70);
+    doc.text(`Category: ${category}`, 10, 80);
+    doc.text(`Date: ${formattedDate}`, 10, 90);
+
+    let yPosition = 100;
+    doc.text('Health Recommendations:', 10, yPosition);
+    yPosition += 10;
+    recommendations.forEach((rec, index) => {
+      doc.text(`${index + 1}. ${rec}`, 10, yPosition);
+      yPosition += 10;
+    });
+
+    doc.save('BMI_Report.pdf');
+  });
+});
+
+// Dropdown Toggle with Click Outside to Close
+document.getElementById('about-link').addEventListener('click', function(event) {
+  event.preventDefault();
+  const aboutDropdown = document.getElementById('about-dropdown');
+  aboutDropdown.classList.toggle('hidden');
+});
+
+document.getElementById('contact-link').addEventListener('click', function(event) {
+  event.preventDefault();
+  const contactDropdown = document.getElementById('contact-dropdown');
+  contactDropdown.classList.toggle('hidden');
+});
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', function(event) {
+  const aboutDropdown = document.getElementById('about-dropdown');
+  const contactDropdown = document.getElementById('contact-dropdown');
+  const aboutLink = document.getElementById('about-link');
+  const contactLink = document.getElementById('contact-link');
+
+  if (!aboutDropdown.contains(event.target) && !aboutLink.contains(event.target)) {
+    aboutDropdown.classList.add('hidden');
+  }
+  if (!contactDropdown.contains(event.target) && !contactLink.contains(event.target)) {
+    contactDropdown.classList.add('hidden');
+  }
+});
+
+// Personalized recommendations generation based on AI-enhanced factors
+function generatePersonalizedRecommendations(bmi, age, gender) {
+  let recommendations = [];
+
+  if (bmi < 18.5) {
+    recommendations.push('Increase calorie intake with healthy foods.');
+    recommendations.push('Consult a healthcare professional for advice.');
+  } else if (bmi >= 18.5 && bmi < 24.9) {
+    recommendations.push('Maintain a balanced diet and regular exercise.');
+    recommendations.push('Keep up the great work!');
+  } else if (bmi >= 25 && bmi < 29.9) {
+    if (age >= 50) {
+      recommendations.push('Focus on moderate physical activity tailored to older age.');
+    } else {
+      recommendations.push('Engage in physical activity and consider caloric restriction.');
+    }
+    recommendations.push('Consult a healthcare professional for guidance.');
+  } else {
+    if (age >= 50 && gender === 'female') {
+      recommendations.push('Consider age-specific dietary adjustments and seek professional advice.');
+    } else {
+      recommendations.push('Seek a personalized weight loss plan from a healthcare professional.');
+    }
+    recommendations.push('Adopt a healthier lifestyle with exercise and proper diet.');
+  }
+
+  return recommendations;
+}
+
   </script>
 </body>
 </html>
