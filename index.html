@@ -3,13 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BMI Calculator - India</title>
+  <title>fitIN - BMI Calculator</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
     }
     .fade-in {
       opacity: 0;
@@ -20,34 +23,104 @@
         transform: translateY(5px);
       }
     }
+    .form-section {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .header {
+      background-color: #3b82f6;
+      color: white;
+      text-align: center;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .footer {
+      background-color: #3b82f6;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+    .input-field {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      transition: all 0.3s ease;
+    }
+    .input-field:focus {
+      border-color: #3b82f6;
+      outline: none;
+    }
+    .button {
+      width: 100%;
+      padding: 15px;
+      background-color: #3b82f6;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .button:hover {
+      background-color: #2563eb;
+    }
+    .logo {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 10px;
+    }
+    .tagline {
+      font-style: italic;
+      margin-top: 10px;
+      font-size: 18px;
+    }
+    .section-header {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 30px;
+      text-align: center;
+    }
+    .content-text {
+      font-size: 16px;
+      margin: 10px 0;
+    }
+    .content-link {
+      color: #3b82f6;
+      text-decoration: none;
+    }
   </style>
 </head>
-<body class="bg-gray-50 font-sans">
+<body class="bg-gray-100">
 
   <!-- Header -->
-  <header class="bg-blue-600 text-white text-center py-6 fade-in">
-    <h1 class="text-3xl font-bold">BMI Calculator</h1>
-    <p class="text-sm mt-2">Your gateway to a healthier lifestyle</p>
+  <header class="header fade-in">
+    <img src="logo.png" alt="fitIN Logo" class="logo">
+    <h1 class="text-4xl font-bold">fitIN BMI Calculator</h1>
+    <p class="tagline">Your Pathway to a Healthier You</p>
   </header>
 
   <!-- Main Content -->
-  <main class="max-w-2xl mx-auto p-6">
+  <main class="max-w-3xl mx-auto p-6">
     <!-- BMI Input Form -->
-    <section class="bg-white shadow-lg rounded-lg p-6 mb-6 fade-in">
-      <h2 class="text-xl font-semibold mb-4 text-center">Calculate Your BMI</h2>
+    <section class="form-section fade-in">
+      <h2 class="text-2xl font-semibold text-center mb-4">Enter Your Details</h2>
       <form id="bmi-form" class="space-y-6">
         <!-- User Details -->
         <div>
           <label for="username" class="block text-sm font-medium">Full Name</label>
-          <input type="text" id="username" class="w-full mt-1 p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Enter your name" required>
+          <input type="text" id="username" class="input-field" placeholder="Enter your name" required>
         </div>
         <div>
           <label for="age" class="block text-sm font-medium">Age</label>
-          <input type="number" id="age" class="w-full mt-1 p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Enter your age" required min="1">
+          <input type="number" id="age" class="input-field" placeholder="Enter your age" required min="1">
         </div>
         <div>
           <label for="gender" class="block text-sm font-medium">Gender</label>
-          <select id="gender" class="w-full mt-1 p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600" required>
+          <select id="gender" class="input-field" required>
             <option value="" disabled selected>Select Gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
@@ -56,19 +129,19 @@
         </div>
         <div>
           <label for="weight" class="block text-sm font-medium">Weight (kg)</label>
-          <input type="number" id="weight" class="w-full mt-1 p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Enter your weight" required min="1">
+          <input type="number" id="weight" class="input-field" placeholder="Enter your weight" required min="1">
         </div>
         <div>
           <label for="height" class="block text-sm font-medium">Height (cm)</label>
-          <input type="number" id="height" class="w-full mt-1 p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Enter your height" required min="1">
+          <input type="number" id="height" class="input-field" placeholder="Enter your height" required min="1">
         </div>
-        <button type="submit" class="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">Calculate BMI</button>
+        <button type="submit" class="button">Calculate BMI</button>
       </form>
     </section>
 
     <!-- BMI Result and Recommendations -->
-    <section id="result-section" class="hidden bg-white shadow-lg rounded-lg p-6 fade-in">
-      <h2 class="text-xl font-semibold mb-4 text-center">Your BMI Result</h2>
+    <section id="result-section" class="form-section hidden fade-in">
+      <h2 class="text-2xl font-semibold text-center mb-4">Your BMI Result</h2>
       <p id="bmi-result" class="text-lg font-medium text-center mb-2"></p>
       <p id="bmi-category" class="text-md text-center mb-4"></p>
 
@@ -79,113 +152,110 @@
       </div>
 
       <!-- PDF Download Button -->
-      <button id="download-pdf" class="w-full bg-green-600 text-white px-4 py-2 rounded mt-6 hover:bg-green-700 transition duration-300">Download BMI Report (PDF)</button>
+      <button id="download-pdf" class="button">Download BMI Report (PDF)</button>
     </section>
 
-    <!-- Additional Features -->
-    <section class="bg-white shadow-lg rounded-lg p-6 mt-6 fade-in">
-      <h2 class="text-xl font-semibold mb-4 text-center">Additional Features</h2>
-      <div class="text-sm space-y-4">
-        <p>Track your progress, learn about BMI, and access personalized health tips.</p>
-        <h3 class="text-md font-semibold">Resources</h3>
-        <ul class="list-disc pl-5">
-          <li><a href="https://www.nhp.gov.in/" class="text-blue-600 underline">National Health Portal of India</a></li>
-          <li><a href="https://www.who.int/" class="text-blue-600 underline">World Health Organization</a></li>
-        </ul>
-      </div>
+    <!-- Additional Features Section -->
+    <section class="form-section fade-in">
+      <h2 class="section-header">Additional Features</h2>
+      <p class="content-text">Track your progress, learn about BMI, and access personalized health tips.</p>
+    </section>
 
-      <!-- FAQs -->
-      <h3 class="text-md font-semibold mt-6">FAQs</h3>
-      <details class="mt-2">
-        <summary class="text-sm font-medium">What is BMI?</summary>
-        <p class="text-sm mt-2">BMI, or Body Mass Index, is a measure of body fat based on weight and height.</p>
-      </details>
-      <details class="mt-2">
-        <summary class="text-sm font-medium">How is BMI calculated?</summary>
-        <p class="text-sm mt-2">BMI = weight (kg) / (height (m)²).</p>
-      </details>
-      <details class="mt-2">
-        <summary class="text-sm font-medium">What are the BMI categories?</summary>
-        <p class="text-sm mt-2">Underweight: BMI < 18.5, Normal weight: 18.5 ≤ BMI < 24.9, Overweight: 25 ≤ BMI < 29.9, Obesity: BMI ≥ 30.</p>
-      </details>
+    <!-- Resources Section -->
+    <section class="form-section fade-in">
+      <h2 class="section-header">Resources</h2>
+      <ul class="content-text">
+        <li><a href="https://www.nhp.gov.in" target="_blank" class="content-link">National Health Portal of India</a></li>
+        <li><a href="https://www.who.int" target="_blank" class="content-link">World Health Organization</a></li>
+      </ul>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="form-section fade-in">
+      <h2 class="section-header">FAQs</h2>
+      <p class="content-text"><strong>What is BMI?</strong><br>BMI, or Body Mass Index, is a measure of body fat based on weight and height.</p>
+      <p class="content-text"><strong>How is BMI calculated?</strong><br>BMI = weight (kg) / (height (m)²).</p>
+      <p class="content-text"><strong>What are the BMI categories?</strong><br>
+        Underweight: BMI < 18.5<br>
+        Normal weight: 18.5 ≤ BMI < 24.9<br>
+        Overweight: 25 ≤ BMI < 29.9<br>
+        Obesity: BMI ≥ 30
+      </p>
+    </section>
+
+    <!-- Version Update Section -->
+    <section class="form-section fade-in">
+      <h2 class="section-header">Version Update 1.5</h2>
+      <p class="content-text"><strong>Release Date:</strong> January 6, 2025</p>
+      <p class="content-text"><strong>New Features:</strong><br>
+        - Added tracking for your progress.<br>
+        - Included personalized health tips.<br>
+        - Enhanced user interface for better experience.<br>
+      </p>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer class="bg-blue-600 text-white text-center py-6 fade-in">
-    <p>&copy; 2025 BMI Calculator India. All Rights Reserved.</p>
+  <footer class="footer">
+    <p>&copy; 2025 fitIN. All Rights Reserved.</p>
   </footer>
 
   <!-- JavaScript -->
   <script>
     // Add fade-in animation
-    document.querySelectorAll('.fade-in').forEach((element, index) => {
-      setTimeout(() => {
-        element.style.opacity = 1;
-        element.style.transform = 'translateY(0)';
-        element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-      }, index * 200);
+    document.querySelectorAll('.fade-in').forEach(function(el) {
+      el.classList.add('hidden');
+      anime({
+        targets: el,
+        opacity: [0, 1],
+        translateY: [10, 0],
+        duration: 1000,
+        easing: 'easeOutQuad',
+        complete: function() {
+          el.classList.remove('hidden');
+        }
+      });
     });
 
-    document.getElementById('bmi-form').addEventListener('submit', function(e) {
-      e.preventDefault();
+    // Handle form submission and BMI calculation
+    document.getElementById('bmi-form').addEventListener('submit', function(event) {
+      event.preventDefault();
 
       const name = document.getElementById('username').value;
-      const age = parseInt(document.getElementById('age').value);
+      const age = document.getElementById('age').value;
       const gender = document.getElementById('gender').value;
-      const weight = parseFloat(document.getElementById('weight').value);
-      const heightCm = parseFloat(document.getElementById('height').value);
+      const weight = document.getElementById('weight').value;
+      const height = document.getElementById('height').value;
 
-      if (isNaN(weight) || isNaN(heightCm) || isNaN(age) || weight <= 0 || heightCm <= 0 || age <= 0 || !gender) {
-        alert('Please enter valid details.');
-        return;
-      }
-
-      const heightM = heightCm / 100;
-      const bmi = (weight / (heightM ** 2)).toFixed(2);
+      const heightM = height / 100;
+      const bmi = (weight / (heightM * heightM)).toFixed(2);
 
       let category = '';
       if (bmi < 18.5) {
         category = 'Underweight';
-      } else if (bmi < 24.9) {
+      } else if (bmi >= 18.5 && bmi < 24.9) {
         category = 'Normal weight';
-      } else if (bmi < 29.9) {
+      } else if (bmi >= 25 && bmi < 29.9) {
         category = 'Overweight';
       } else {
         category = 'Obesity';
       }
 
-      const recommendations = {
-        'Underweight': [
-          'Increase calorie intake with nutritious foods.',
-          'Include protein-rich meals.',
-          'Exercise to build muscle mass.'
-        ],
-        'Normal weight': [
-          'Maintain your current lifestyle.',
-          'Ensure a balanced diet.',
-          'Exercise regularly.'
-        ],
-        'Overweight': [
-          'Adopt a calorie-deficit diet.',
-          'Increase physical activity.',
-          'Avoid sugary and fried foods.'
-        ],
-        'Obesity': [
-          'Consult a dietician for a personalized plan.',
-          'Engage in regular cardio workouts.',
-          'Focus on portion control and balanced meals.'
-        ]
-      };
-
-      document.getElementById('bmi-result').innerText = `Your BMI is: ${bmi}`;
+      document.getElementById('bmi-result').innerText = `Your BMI is ${bmi}`;
       document.getElementById('bmi-category').innerText = `Category: ${category}`;
+
+      const recommendations = {
+        'Underweight': ['Increase calorie intake with healthy foods.', 'Consult a healthcare professional for advice.'],
+        'Normal weight': ['Maintain a balanced diet and regular exercise.', 'Keep up the great work!'],
+        'Overweight': ['Reduce calorie intake, exercise regularly.', 'Consult a healthcare professional for guidance.'],
+        'Obesity': ['Consult a healthcare professional for a personalized weight loss plan.', 'Adopt a healthy lifestyle with exercise and proper diet.']
+      };
 
       const recommendationList = document.getElementById('recommendation-list');
       recommendationList.innerHTML = '';
-      recommendations[category].forEach(recommendation => {
+      recommendations[category].forEach(rec => {
         const li = document.createElement('li');
-        li.innerText = recommendation;
+        li.innerText = rec;
         recommendationList.appendChild(li);
       });
 
@@ -197,15 +267,20 @@
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
 
-        doc.text(`BMI Report for ${name}`, 10, 10);
-        doc.text(`Age: ${age} years`, 10, 20);
-        doc.text(`Gender: ${gender}`, 10, 30);
-        doc.text(`Weight: ${weight} kg`, 10, 40);
-        doc.text(`Height: ${heightCm} cm`, 10, 50);
-        doc.text(`BMI: ${bmi}`, 10, 60);
-        doc.text(`Category: ${category}`, 10, 70);
-        
-        let yPosition = 80;
+        const currentDate = new Date();
+        const formattedDate = currentDate.toLocaleDateString() + ' ' + currentDate.toLocaleTimeString();
+
+        doc.text('fitIN - BMI Report', 10, 10);
+        doc.text(`Name: ${name}`, 10, 20);
+        doc.text(`Age: ${age} years`, 10, 30);
+        doc.text(`Gender: ${gender}`, 10, 40);
+        doc.text(`Weight: ${weight} kg`, 10, 50);
+        doc.text(`Height: ${height} cm`, 10, 60);
+        doc.text(`BMI: ${bmi}`, 10, 70);
+        doc.text(`Category: ${category}`, 10, 80);
+        doc.text(`Date: ${formattedDate}`, 10, 90);
+
+        let yPosition = 100;
         doc.text('Health Recommendations:', 10, yPosition);
         yPosition += 10;
         recommendations[category].forEach((rec, index) => {
