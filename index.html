@@ -5,76 +5,79 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BMI Calculator - India</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+  </style>
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-gray-50 font-sans">
   <!-- Header -->
-  <header class="bg-blue-500 text-white text-center py-5">
-    <h1 class="text-3xl font-bold">BMI Calculator</h1>
-    <p class="text-sm">Designed for Indian Users</p>
+  <header class="bg-blue-600 text-white text-center py-4">
+    <h1 class="text-2xl font-bold">BMI Calculator</h1>
+    <p class="text-sm">Simplified Design for Better User Experience</p>
   </header>
 
   <!-- Main Content -->
-  <main class="max-w-2xl mx-auto p-5">
+  <main class="max-w-xl mx-auto p-4">
     <!-- BMI Input Form -->
-    <section class="bg-white shadow-md rounded-lg p-6 mb-8">
-      <h2 class="text-xl font-semibold mb-4">Calculate Your BMI</h2>
+    <section class="bg-white shadow-md rounded-lg p-6 mb-6">
+      <h2 class="text-lg font-semibold mb-3">Calculate Your BMI</h2>
       <form id="bmi-form" class="space-y-4">
         <div>
           <label for="weight" class="block text-sm font-medium">Weight (kg)</label>
-          <input type="number" id="weight" class="w-full mt-1 p-2 border rounded" placeholder="Enter your weight" required min="1">
+          <input type="number" id="weight" class="w-full mt-1 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Enter your weight" required min="1">
         </div>
         <div>
           <label for="height" class="block text-sm font-medium">Height (cm)</label>
-          <input type="number" id="height" class="w-full mt-1 p-2 border rounded" placeholder="Enter your height" required min="1">
+          <input type="number" id="height" class="w-full mt-1 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Enter your height" required min="1">
         </div>
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Calculate BMI</button>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Calculate BMI</button>
       </form>
     </section>
 
     <!-- BMI Result and Recommendations -->
     <section id="result-section" class="hidden bg-white shadow-md rounded-lg p-6">
-      <h2 class="text-xl font-semibold mb-4">Your BMI Result</h2>
-      <p id="bmi-result" class="text-lg font-medium"></p>
-      <p id="bmi-category" class="text-md"></p>
+      <h2 class="text-lg font-semibold mb-3">Your BMI Result</h2>
+      <p id="bmi-result" class="text-md font-medium mb-1"></p>
+      <p id="bmi-category" class="text-sm mb-3"></p>
 
       <!-- AI-based Recommendations -->
-      <div id="recommendations" class="mt-4">
-        <h3 class="text-lg font-semibold">Health Recommendations</h3>
-        <ul id="recommendation-list" class="list-disc pl-5 mt-2"></ul>
+      <div id="recommendations">
+        <h3 class="text-md font-semibold mb-2">Health Recommendations</h3>
+        <ul id="recommendation-list" class="list-disc pl-5 text-sm"></ul>
       </div>
     </section>
 
     <!-- Additional Features -->
-    <section class="bg-white shadow-md rounded-lg p-6 mt-8">
-      <h2 class="text-xl font-semibold mb-4">Why Maintain a Healthy BMI?</h2>
-      <p class="text-sm mb-4">Maintaining a healthy BMI is essential for reducing the risk of chronic diseases and improving overall well-being. Consult healthcare professionals for personalized guidance.</p>
-
-      <!-- Links to Resources -->
-      <h3 class="text-lg font-semibold">Resources</h3>
-      <ul class="list-disc pl-5">
-        <li><a href="https://www.nhp.gov.in/" class="text-blue-500 underline">National Health Portal of India</a></li>
-        <li><a href="https://www.who.int/" class="text-blue-500 underline">World Health Organization</a></li>
+    <section class="bg-white shadow-md rounded-lg p-6 mt-6">
+      <h2 class="text-lg font-semibold mb-3">Additional Features</h2>
+      <p class="text-sm mb-4">Track your progress, learn about BMI, and access health tips.</p>
+      <h3 class="text-md font-semibold mb-2">Resources</h3>
+      <ul class="list-disc pl-5 text-sm">
+        <li><a href="https://www.nhp.gov.in/" class="text-blue-600 underline">National Health Portal of India</a></li>
+        <li><a href="https://www.who.int/" class="text-blue-600 underline">World Health Organization</a></li>
       </ul>
 
       <!-- FAQs -->
-      <h3 class="text-lg font-semibold mt-4">FAQs</h3>
+      <h3 class="text-md font-semibold mt-4">FAQs</h3>
       <details class="mt-2">
         <summary class="text-sm font-medium">What is BMI?</summary>
-        <p class="text-sm mt-2">BMI, or Body Mass Index, is a measure of body fat based on weight and height.</p>
+        <p class="text-sm mt-1">BMI, or Body Mass Index, is a measure of body fat based on weight and height.</p>
       </details>
       <details class="mt-2">
         <summary class="text-sm font-medium">How is BMI calculated?</summary>
-        <p class="text-sm mt-2">BMI = weight (kg) / (height (m)²).</p>
+        <p class="text-sm mt-1">BMI = weight (kg) / (height (m)²).</p>
       </details>
       <details class="mt-2">
         <summary class="text-sm font-medium">What are the BMI categories?</summary>
-        <p class="text-sm mt-2">Underweight: BMI < 18.5, Normal weight: 18.5 ≤ BMI < 24.9, Overweight: 25 ≤ BMI < 29.9, Obesity: BMI ≥ 30.</p>
+        <p class="text-sm mt-1">Underweight: BMI < 18.5, Normal weight: 18.5 ≤ BMI < 24.9, Overweight: 25 ≤ BMI < 29.9, Obesity: BMI ≥ 30.</p>
       </details>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer class="bg-blue-500 text-white text-center py-4 mt-8">
+  <footer class="bg-blue-600 text-white text-center py-4 mt-8">
     <p>&copy; 2025 BMI Calculator India. All Rights Reserved.</p>
   </footer>
 
