@@ -97,47 +97,143 @@
 <body class="bg-gray-100">
 
   <!-- Header -->
-<header class="header bg-gradient-to-r from-blue-600 to-purple-500 shadow-lg py-4 px-6 flex items-center justify-between animate-fade-in">
-  <div class="flex items-center space-x-4">
-    <!-- Logo -->
-    <img src="logo.png" alt="fitIN Logo" class="logo h-12 w-12 rounded-full hover:scale-110 transform transition-all duration-300 ease-in-out">
-    <!-- Title -->
-    <div>
-      <h1 class="text-3xl font-bold text-white tracking-wide hover:text-gray-200 transition-all duration-300 ease-in-out">
-        fitIN BMI Calculator
-      </h1>
-      <p class="tagline text-sm text-gray-200 italic">Your Pathway to a Healthier You</p>
+<header class="bg-gradient-to-r from-blue-600 to-purple-500 shadow-lg py-4 px-6">
+  <div class="flex items-center justify-between">
+    <!-- Logo and Title -->
+    <div class="flex items-center space-x-4">
+      <!-- Logo -->
+      <img src="logo.png" alt="fitIN Logo" class="h-12 w-12 rounded-full hover:scale-110 transform transition-all duration-300 ease-in-out">
+      <!-- Title -->
+      <div>
+        <h1 class="text-2xl md:text-3xl font-bold text-white hover:text-gray-200 transition-all duration-300 ease-in-out">
+          fitIN BMI Calculator
+        </h1>
+        <p class="text-xs md:text-sm text-gray-200 italic">Your Pathway to a Healthier You</p>
+      </div>
+    </div>
+
+    <!-- Hamburger Icon -->
+    <button id="nav-toggle" class="md:hidden text-white hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-white">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+      </svg>
+    </button>
+
+    <!-- Navigation Links -->
+    <nav id="nav-menu" class="hidden md:flex items-center space-x-6">
+      <a href="index.html" class="text-white hover:text-gray-300 transition-all duration-300 ease-in-out">Home</a>
+
+      <!-- About Dropdown -->
+      <div class="relative group">
+        <button class="text-white hover:text-gray-300 transition-all duration-300 ease-in-out">About</button>
+        <ul class="absolute hidden group-hover:block bg-gray-800 text-white p-4 rounded shadow-lg space-y-2 mt-2 w-64">
+          <li>FitIN is a health and fitness app made by Aditya.</li>
+          <li>It focuses on BMI tracking, progress tracking, and personalized health tips.</li>
+        </ul>
+      </div>
+
+      <!-- Contact Dropdown -->
+      <div class="relative group">
+        <button class="text-white hover:text-gray-300 transition-all duration-300 ease-in-out">Contact</button>
+        <ul class="absolute hidden group-hover:block bg-gray-800 text-white p-4 rounded shadow-lg space-y-2 mt-2 w-64">
+          <li>
+            <a href="https://www.instagram.com/i__aditya7/profilecard/?igsh=c2JzeHl2a2J6NGU%3D" target="_blank" class="text-indigo-400 hover:text-indigo-200">Instagram</a>
+          </li>
+          <li>
+            Email: <a href="mailto:itisaddy7@gmail.com" class="text-indigo-400 hover:text-indigo-200">itisaddy7@gmail.com</a>
+          </li>
+        </ul>
+      </div>
+
+      <a href="#" class="text-white hover:text-gray-300 transition-all duration-300 ease-in-out">Support</a>
+    </nav>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+    <a href="index.html" class="block text-white hover:text-gray-300 transition-all duration-300 ease-in-out">Home</a>
+    <div class="space-y-2">
+      <button id="about-toggle" class="block text-white hover:text-gray-300 transition-all duration-300 ease-in-out">About</button>
+      <ul id="about-mobile" class="hidden bg-gray-800 text-white p-4 rounded shadow-lg space-y-2">
+        <li>FitIN is a health and fitness app made by Aditya.</li>
+        <li>It focuses on BMI tracking, progress tracking, and personalized health tips.</li>
+      </ul>
+    </div>
+    <div class="space-y-2">
+      <button id="contact-toggle" class="block text-white hover:text-gray-300 transition-all duration-300 ease-in-out">Contact</button>
+      <ul id="contact-mobile" class="hidden bg-gray-800 text-white p-4 rounded shadow-lg space-y-2">
+        <li>
+          <a href="https://www.instagram.com/i__aditya7/profilecard/?igsh=c2JzeHl2a2J6NGU%3D" target="_blank" class="text-indigo-400 hover:text-indigo-200">Instagram</a>
+        </li>
+        <li>
+          Email: <a href="mailto:itisaddy7@gmail.com" class="text-indigo-400 hover:text-indigo-200">itisaddy7@gmail.com</a>
+        </li>
+      </ul>
+    </div>
+    <a href="#" class="block text-white hover:text-gray-300 transition-all duration-300 ease-in-out">Support</a>
+  </div>
+</header>
+
+<!-- User Consent Modal -->
+<div id="consent-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm">
+    <h2 class="text-xl font-bold text-center mb-4">Privacy Policy and Consent</h2>
+    <p class="text-sm text-center mb-4">
+      We use cookies and collect personal data to provide a better user experience. 
+      By continuing to use our site, you agree to our <a href="/privacy-policy" class="text-indigo-500 hover:underline">Privacy Policy</a>.
+    </p>
+    <div class="flex justify-center space-x-4">
+      <button id="consent-accept" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Accept</button>
+      <button id="consent-decline" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400">Decline</button>
     </div>
   </div>
-  <!-- Navigation Links -->
-<nav class="flex space-x-6 relative">
-  <a href="index.html" class="text-white hover:text-gray-300 transition-all duration-300 ease-in-out">Home</a>
-  
-  <!-- About Dropdown -->
-  <div class="relative">
-    <a href="#" class="text-white hover:text-gray-300 transition-all duration-300 ease-in-out" id="about-link">About</a>
-    <ul id="about-dropdown" class="absolute hidden bg-gray-800 text-white p-4 rounded shadow-lg space-y-2 mt-2">
-      <li>FitIN is a health and fitness app made by Aditya.</li>
-      <li>It focuses on BMI tracking, progress tracking, and personalized health tips.</li>
-    </ul>
-  </div>
+</div>
 
-  <!-- Contact Dropdown -->
-  <div class="relative">
-    <a href="#" class="text-white hover:text-gray-300 transition-all duration-300 ease-in-out" id="contact-link">Contact</a>
-    <ul id="contact-dropdown" class="absolute hidden bg-gray-800 text-white p-4 rounded shadow-lg space-y-2 mt-2">
-      <li>
-        <a href="https://www.instagram.com/i__aditya7/profilecard/?igsh=c2JzeHl2a2J6NGU%3D" target="_blank" class="text-indigo-400 hover:text-indigo-200">Instagram</a>
-      </li>
-      <li>
-        Email: <a href="mailto:itisaddy7@gmail.com" class="text-indigo-400 hover:text-indigo-200">itisaddy7@gmail.com</a>
-      </li>
-    </ul>
-  </div>
+<!-- JavaScript -->
+<script>
+  // Consent modal toggle
+  document.addEventListener('DOMContentLoaded', function() {
+    const consentModal = document.getElementById('consent-modal');
+    const consentAccept = document.getElementById('consent-accept');
+    const consentDecline = document.getElementById('consent-decline');
 
-  <a href="#" class="text-white hover:text-gray-300 transition-all duration-300 ease-in-out">Support</a>
-</nav>
-</header>
+    // Show the consent modal if not accepted
+    if (!localStorage.getItem('consentAccepted')) {
+      consentModal.classList.remove('hidden');
+    }
+
+    consentAccept.addEventListener('click', function() {
+      localStorage.setItem('consentAccepted', 'true');
+      consentModal.classList.add('hidden');
+      // You can add code here to handle data collection and cookies
+    });
+
+    consentDecline.addEventListener('click', function() {
+      localStorage.setItem('consentAccepted', 'false');
+      consentModal.classList.add('hidden');
+      // Handle decline action if necessary
+    });
+  });
+
+  // Toggle Mobile Menu
+  document.getElementById('nav-toggle').addEventListener('click', function () {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
+  });
+
+  // Toggle About Dropdown in Mobile Menu
+  document.getElementById('about-toggle').addEventListener('click', function () {
+    const about = document.getElementById('about-mobile');
+    about.classList.toggle('hidden');
+  });
+
+  // Toggle Contact Dropdown in Mobile Menu
+  document.getElementById('contact-toggle').addEventListener('click', function () {
+    const contact = document.getElementById('contact-mobile');
+    contact.classList.toggle('hidden');
+  });
+</script>
+
 
 
   <!-- Main Content -->
@@ -230,7 +326,7 @@
 
   <!-- Version Update Section -->
   <section class="form-section fade-in mt-8">
-    <h2 class="section-header text-2xl font-bold text-gray-800 mb-4">Version Update 1.7</h2>
+    <h2 class="section-header text-2xl font-bold text-gray-800 mb-4">Version Update 1.8</h2>
     <p class="content-text text-gray-600"><strong>Release Date:</strong> January 7, 2025</p>
     <p class="content-text text-gray-600 mt-4"><strong>New Features:</strong><br>
       - Added tracking for your progress.<br>
