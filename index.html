@@ -6,6 +6,7 @@
   <title>BMI Calculator - India</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -35,6 +36,24 @@
     <section class="bg-white shadow-lg rounded-lg p-6 mb-6 fade-in">
       <h2 class="text-xl font-semibold mb-4 text-center">Calculate Your BMI</h2>
       <form id="bmi-form" class="space-y-6">
+        <!-- User Details -->
+        <div>
+          <label for="username" class="block text-sm font-medium">Full Name</label>
+          <input type="text" id="username" class="w-full mt-1 p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Enter your name" required>
+        </div>
+        <div>
+          <label for="age" class="block text-sm font-medium">Age</label>
+          <input type="number" id="age" class="w-full mt-1 p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Enter your age" required min="1">
+        </div>
+        <div>
+          <label for="gender" class="block text-sm font-medium">Gender</label>
+          <select id="gender" class="w-full mt-1 p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600" required>
+            <option value="" disabled selected>Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
         <div>
           <label for="weight" class="block text-sm font-medium">Weight (kg)</label>
           <input type="number" id="weight" class="w-full mt-1 p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Enter your weight" required min="1">
@@ -42,10 +61,6 @@
         <div>
           <label for="height" class="block text-sm font-medium">Height (cm)</label>
           <input type="number" id="height" class="w-full mt-1 p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Enter your height" required min="1">
-        </div>
-        <div>
-          <label for="age" class="block text-sm font-medium">Age</label>
-          <input type="number" id="age" class="w-full mt-1 p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Enter your age" required min="1">
         </div>
         <button type="submit" class="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">Calculate BMI</button>
       </form>
@@ -62,6 +77,9 @@
         <h3 class="text-md font-semibold mb-3">Health Recommendations</h3>
         <ul id="recommendation-list" class="list-disc pl-5 text-sm"></ul>
       </div>
+
+      <!-- PDF Download Button -->
+      <button id="download-pdf" class="w-full bg-green-600 text-white px-4 py-2 rounded mt-6 hover:bg-green-700 transition duration-300">Download BMI Report (PDF)</button>
     </section>
 
     <!-- Additional Features -->
@@ -112,12 +130,14 @@
     document.getElementById('bmi-form').addEventListener('submit', function(e) {
       e.preventDefault();
 
+      const name = document.getElementById('username').value;
+      const age = parseInt(document.getElementById('age').value);
+      const gender = document.getElementById('gender').value;
       const weight = parseFloat(document.getElementById('weight').value);
       const heightCm = parseFloat(document.getElementById('height').value);
-      const age = parseInt(document.getElementById('age').value);
 
-      if (isNaN(weight) || isNaN(heightCm) || isNaN(age) || weight <= 0 || heightCm <= 0 || age <= 0) {
-        alert('Please enter valid positive values for weight, height, and age.');
+      if (isNaN(weight) || isNaN(heightCm) || isNaN(age) || weight <= 0 || heightCm <= 0 || age <= 0 || !gender) {
+        alert('Please enter valid details.');
         return;
       }
 
@@ -171,6 +191,30 @@
 
       document.getElementById('result-section').classList.remove('hidden');
       document.getElementById('result-section').scrollIntoView({ behavior: 'smooth' });
+
+      // PDF generation
+      document.getElementById('download-pdf').addEventListener('click', function() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        doc.text(`BMI Report for ${name}`, 10, 10);
+        doc.text(`Age: ${age} years`, 10, 20);
+        doc.text(`Gender: ${gender}`, 10, 30);
+        doc.text(`Weight: ${weight} kg`, 10, 40);
+        doc.text(`Height: ${heightCm} cm`, 10, 50);
+        doc.text(`BMI: ${bmi}`, 10, 60);
+        doc.text(`Category: ${category}`, 10, 70);
+        
+        let yPosition = 80;
+        doc.text('Health Recommendations:', 10, yPosition);
+        yPosition += 10;
+        recommendations[category].forEach((rec, index) => {
+          doc.text(`${index + 1}. ${rec}`, 10, yPosition);
+          yPosition += 10;
+        });
+
+        doc.save('BMI_Report.pdf');
+      });
     });
   </script>
 </body>
