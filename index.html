@@ -97,29 +97,69 @@
 <body class="bg-gray-100">
 
   <!-- Header -->
-  <header class="header fade-in">
-    <img src="logo.png" alt="fitIN Logo" class="logo">
-    <h1 class="text-4xl font-bold">fitIN BMI Calculator</h1>
-    <p class="tagline">Your Pathway to a Healthier You</p>
-  </header>
+<header class="header bg-gradient-to-r from-blue-600 to-purple-500 shadow-lg py-4 px-6 flex items-center justify-between animate-fade-in">
+  <div class="flex items-center space-x-4">
+    <!-- Logo -->
+    <img src="logo.png" alt="fitIN Logo" class="logo h-12 w-12 rounded-full hover:scale-110 transform transition-all duration-300 ease-in-out">
+    <!-- Title -->
+    <div>
+      <h1 class="text-3xl font-bold text-white tracking-wide hover:text-gray-200 transition-all duration-300 ease-in-out">
+        fitIN BMI Calculator
+      </h1>
+      <p class="tagline text-sm text-gray-200 italic">Your Pathway to a Healthier You</p>
+    </div>
+  </div>
+  <!-- Navigation Links -->
+<nav class="flex space-x-6 relative">
+  <a href="index.html" class="text-white hover:text-gray-300 transition-all duration-300 ease-in-out">Home</a>
+  
+  <!-- About Dropdown -->
+  <div class="relative">
+    <a href="#" class="text-white hover:text-gray-300 transition-all duration-300 ease-in-out" id="about-link">About</a>
+    <ul id="about-dropdown" class="absolute hidden bg-gray-800 text-white p-4 rounded shadow-lg space-y-2 mt-2">
+      <li>FitIN is a health and fitness app made by Aditya.</li>
+      <li>It focuses on BMI tracking, progress tracking, and personalized health tips.</li>
+    </ul>
+  </div>
+
+  <!-- Contact Dropdown -->
+  <div class="relative">
+    <a href="#" class="text-white hover:text-gray-300 transition-all duration-300 ease-in-out" id="contact-link">Contact</a>
+    <ul id="contact-dropdown" class="absolute hidden bg-gray-800 text-white p-4 rounded shadow-lg space-y-2 mt-2">
+      <li>
+        <a href="https://www.instagram.com/i__aditya7/profilecard/?igsh=c2JzeHl2a2J6NGU%3D" target="_blank" class="text-indigo-400 hover:text-indigo-200">Instagram</a>
+      </li>
+      <li>
+        Email: <a href="mailto:itisaddy7@gmail.com" class="text-indigo-400 hover:text-indigo-200">itisaddy7@gmail.com</a>
+      </li>
+    </ul>
+  </div>
+
+  <a href="#" class="text-white hover:text-gray-300 transition-all duration-300 ease-in-out">Support</a>
+</nav>
+</header>
+
 
   <!-- Main Content -->
-  <main class="max-w-3xl mx-auto p-6">
-    <!-- BMI Input Form -->
-    <section class="form-section fade-in">
-      <h2 class="text-2xl font-semibold text-center mb-4">Enter Your Details</h2>
-      <form id="bmi-form" class="space-y-6">
-        <!-- User Details -->
-        <div>
-          <label for="username" class="block text-sm font-medium">Full Name</label>
+<main class="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg">
+  <!-- BMI Input Form -->
+  <section class="form-section fade-in">
+    <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Enter Your Details</h2>
+    <form id="bmi-form" class="space-y-6">
+      <!-- User Details -->
+      <div class="flex flex-col gap-4 md:flex-row">
+        <div class="w-full">
+          <label for="username" class="block text-sm font-medium text-gray-700">Full Name</label>
           <input type="text" id="username" class="input-field" placeholder="Enter your name" required>
         </div>
-        <div>
-          <label for="age" class="block text-sm font-medium">Age</label>
+        <div class="w-full">
+          <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
           <input type="number" id="age" class="input-field" placeholder="Enter your age" required min="1">
         </div>
-        <div>
-          <label for="gender" class="block text-sm font-medium">Gender</label>
+      </div>
+      <div class="flex flex-col gap-4 md:flex-row">
+        <div class="w-full">
+          <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
           <select id="gender" class="input-field" required>
             <option value="" disabled selected>Select Gender</option>
             <option value="Male">Male</option>
@@ -127,78 +167,109 @@
             <option value="Other">Other</option>
           </select>
         </div>
-        <div>
-          <label for="weight" class="block text-sm font-medium">Weight (kg)</label>
+        <div class="w-full">
+          <label for="weight" class="block text-sm font-medium text-gray-700">Weight (kg)</label>
           <input type="number" id="weight" class="input-field" placeholder="Enter your weight" required min="1">
         </div>
-        <div>
-          <label for="height" class="block text-sm font-medium">Height (cm)</label>
-          <input type="number" id="height" class="input-field" placeholder="Enter your height" required min="1">
-        </div>
-        <button type="submit" class="button">Calculate BMI</button>
-      </form>
-    </section>
-
-    <!-- BMI Result and Recommendations -->
-    <section id="result-section" class="form-section hidden fade-in">
-      <h2 class="text-2xl font-semibold text-center mb-4">Your BMI Result</h2>
-      <p id="bmi-result" class="text-lg font-medium text-center mb-2"></p>
-      <p id="bmi-category" class="text-md text-center mb-4"></p>
-
-      <!-- AI-based Recommendations -->
-      <div id="recommendations">
-        <h3 class="text-md font-semibold mb-3">Health Recommendations</h3>
-        <ul id="recommendation-list" class="list-disc pl-5 text-sm"></ul>
       </div>
+      <div>
+        <label for="height" class="block text-sm font-medium text-gray-700">Height (cm)</label>
+        <input type="number" id="height" class="input-field" placeholder="Enter your height" required min="1">
+      </div>
+      <button type="submit" class="button hover:scale-105 transform transition duration-300 bg-indigo-600 text-white px-6 py-3 rounded-md font-medium shadow-md hover:bg-indigo-700">
+        Calculate BMI
+      </button>
+    </form>
+  </section>
 
-      <!-- PDF Download Button -->
-      <button id="download-pdf" class="button">Download BMI Report (PDF)</button>
-    </section>
+  <!-- BMI Result and Recommendations -->
+  <section id="result-section" class="form-section hidden fade-in mt-8">
+    <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Your BMI Result</h2>
+    <p id="bmi-result" class="text-lg font-medium text-center mb-2 text-gray-600"></p>
+    <p id="bmi-category" class="text-md text-center mb-4 text-gray-600"></p>
 
-    <!-- Additional Features Section -->
-    <section class="form-section fade-in">
-      <h2 class="section-header">Additional Features</h2>
-      <p class="content-text">Track your progress, learn about BMI, and access personalized health tips.</p>
-    </section>
+    <!-- AI-based Recommendations -->
+    <div id="recommendations" class="bg-gray-50 p-4 rounded-lg shadow-md">
+      <h3 class="text-md font-semibold mb-3 text-gray-700">Health Recommendations</h3>
+      <ul id="recommendation-list" class="list-disc pl-5 text-sm text-gray-600"></ul>
+    </div>
 
-    <!-- Resources Section -->
-    <section class="form-section fade-in">
-      <h2 class="section-header">Resources</h2>
-      <ul class="content-text">
-        <li><a href="https://www.nhp.gov.in" target="_blank" class="content-link">National Health Portal of India</a></li>
-        <li><a href="https://www.who.int" target="_blank" class="content-link">World Health Organization</a></li>
-      </ul>
-    </section>
+    <!-- PDF Download Button -->
+    <button id="download-pdf" class="button bg-green-600 text-white px-6 py-3 rounded-md font-medium shadow-md hover:bg-green-700 transition transform hover:scale-105 mt-4">
+      Download BMI Report (PDF)
+    </button>
+  </section>
 
-    <!-- FAQ Section -->
-    <section class="form-section fade-in">
-      <h2 class="section-header">FAQs</h2>
-      <p class="content-text"><strong>What is BMI?</strong><br>BMI, or Body Mass Index, is a measure of body fat based on weight and height.</p>
-      <p class="content-text"><strong>How is BMI calculated?</strong><br>BMI = weight (kg) / (height (m)²).</p>
-      <p class="content-text"><strong>What are the BMI categories?</strong><br>
-        Underweight: BMI < 18.5<br>
-        Normal weight: 18.5 ≤ BMI < 24.9<br>
-        Overweight: 25 ≤ BMI < 29.9<br>
-        Obesity: BMI ≥ 30
-      </p>
-    </section>
+  <!-- Additional Features Section -->
+  <section class="form-section fade-in mt-8">
+    <h2 class="section-header text-2xl font-bold text-gray-800 mb-4">Additional Features</h2>
+    <p class="content-text text-gray-600">Track your progress, learn about BMI, and access personalized health tips.</p>
+  </section>
 
-    <!-- Version Update Section -->
-    <section class="form-section fade-in">
-      <h2 class="section-header">Version Update 1.6</h2>
-      <p class="content-text"><strong>Release Date:</strong> January 6, 2025</p>
-      <p class="content-text"><strong>New Features:</strong><br>
-        - Added tracking for your progress.<br>
-        - Included personalized health tips.<br>
-        - Enhanced user interface for better experience.<br>
-      </p>
-    </section>
-  </main>
+  <!-- Resources Section -->
+  <section class="form-section fade-in mt-8">
+    <h2 class="section-header text-2xl font-bold text-gray-800 mb-4">Resources</h2>
+    <ul class="content-text text-gray-600">
+      <li><a href="https://www.nhp.gov.in" target="_blank" class="content-link text-indigo-600 hover:underline">National Health Portal of India</a></li>
+      <li><a href="https://www.who.int" target="_blank" class="content-link text-indigo-600 hover:underline">World Health Organization</a></li>
+    </ul>
+  </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>&copy; 2025 fitIN. All Rights Reserved.</p>
-  </footer>
+  <!-- FAQ Section -->
+  <section class="form-section fade-in mt-8">
+    <h2 class="section-header text-2xl font-bold text-gray-800 mb-4">FAQs</h2>
+    <p class="content-text text-gray-600"><strong>What is BMI?</strong><br>BMI, or Body Mass Index, is a measure of body fat based on weight and height.</p>
+    <p class="content-text text-gray-600 mt-4"><strong>How is BMI calculated?</strong><br>BMI = weight (kg) / (height (m)²).</p>
+    <p class="content-text text-gray-600 mt-4"><strong>What are the BMI categories?</strong><br>
+      Underweight: BMI < 18.5<br>
+      Normal weight: 18.5 ≤ BMI < 24.9<br>
+      Overweight: 25 ≤ BMI < 29.9<br>
+      Obesity: BMI ≥ 30
+    </p>
+  </section>
+
+  <!-- Version Update Section -->
+  <section class="form-section fade-in mt-8">
+    <h2 class="section-header text-2xl font-bold text-gray-800 mb-4">Version Update 1.7</h2>
+    <p class="content-text text-gray-600"><strong>Release Date:</strong> January 7, 2025</p>
+    <p class="content-text text-gray-600 mt-4"><strong>New Features:</strong><br>
+      - Added tracking for your progress.<br>
+      - Included personalized health tips.<br>
+      - Enhanced user interface for better experience.<br>
+    </p>
+  </section>
+</main>
+
+ <!-- Footer -->
+<footer class="footer bg-blue-600 text-white py-6">
+  <div class="container mx-auto text-center">
+    <p class="mb-4">&copy; 2025 fitIN. All Rights Reserved.</p>
+    <div class="flex justify-center space-x-6">
+      <!-- Social Media Icons -->
+      <a href="https://github.com/Xenonesis" target="_blank" class="text-white hover:text-gray-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.303 3.438 9.8 8.207 11.387.6.11.793-.26.793-.577v-2.037c-3.338.726-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.087-.745.082-.729.082-.729 1.205.085 1.838 1.235 1.838 1.235 1.07 1.834 2.809 1.304 3.495.997.11-.774.419-1.305.762-1.605-2.665-.303-5.466-1.333-5.466-5.931 0-1.31.468-2.383 1.235-3.222-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.231.957-.266 1.985-.399 3.006-.404 1.021.005 2.05.138 3.006.404 2.292-1.553 3.3-1.231 3.3-1.231.652 1.653.241 2.873.118 3.176.768.839 1.235 1.912 1.235 3.222 0 4.609-2.804 5.625-5.475 5.922.43.372.823 1.106.823 2.229v3.305c0 .319.192.692.8.575C20.565 21.8 24 17.303 24 12c0-6.63-5.37-12-12-12z" />
+        </svg>
+      </a>
+      <a href="https://twitter.com" target="_blank" class="text-white hover:text-gray-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M24 4.557a9.943 9.943 0 01-2.828.775 4.932 4.932 0 002.165-2.724 9.864 9.864 0 01-3.127 1.195 4.921 4.921 0 00-8.384 4.482 13.975 13.975 0 01-10.141-5.144 4.908 4.908 0 001.523 6.557A4.914 4.914 0 01.96 9.86v.063a4.926 4.926 0 003.946 4.827 4.957 4.957 0 01-2.213.084 4.93 4.93 0 004.604 3.417 9.867 9.867 0 01-7.29 2.034A13.894 13.894 0 007.548 20c9.058 0 14.01-7.513 14.01-14.034 0-.213-.005-.425-.015-.636A10.012 10.012 0 0024 4.557z" />
+        </svg>
+      </a>
+      <a href="https://facebook.com" target="_blank" class="text-white hover:text-gray-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M22.676 0H1.324C.593 0 0 .593 0 1.324v21.352C0 23.407.593 24 1.324 24h11.5v-9.294H9.847v-3.622h2.977v-2.676c0-2.94 1.794-4.538 4.412-4.538 1.253 0 2.332.093 2.646.135v3.068l-1.816.001c-1.426 0-1.7.677-1.7 1.669v2.341h3.394l-.442 3.622h-2.952V24h5.787c.731 0 1.324-.593 1.324-1.324V1.324C24 .593 23.407 0 22.676 0z" />
+        </svg>
+      </a>
+      <a href="https://linkedin.com" target="_blank" class="text-white hover:text-gray-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M22.23 0H1.77C.79 0 0 .774 0 1.729V22.27C0 23.226.79 24 1.77 24h20.46C23.21 24 24 23.226 24 22.271V1.729C24 .774 23.21 0 22.23 0zM7.12 20.452H3.764V9.108H7.12v11.344zM5.442 7.732c-1.07 0-1.932-.869-1.932-1.938 0-1.071.868-1.938 1.933-1.938 1.068 0 1.93.868 1.93 1.938 0 1.07-.861 1.938-1.93 1.938zm14.928 12.72h-3.351v-5.497c0-1.311-.023-3.004-1.831-3.004-1.833 0-2.113 1.43-2.113 2.907v5.594H9.8V9.108h3.222v1.548h.045c.448-.844 1.54-1.733 3.164-1.733 3.384 0 4.008 2.226 4.008 5.119v6.41z" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
 
   <!-- JavaScript -->
   <script>
@@ -291,6 +362,33 @@
         doc.save('BMI_Report.pdf');
       });
     });
+
+    document.getElementById('about-link').addEventListener('click', function (event) {
+    event.preventDefault();
+    const aboutDropdown = document.getElementById('about-dropdown');
+    aboutDropdown.classList.toggle('hidden');
+  });
+
+  document.getElementById('contact-link').addEventListener('click', function (event) {
+    event.preventDefault();
+    const contactDropdown = document.getElementById('contact-dropdown');
+    contactDropdown.classList.toggle('hidden');
+  });
+
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', function (event) {
+    const aboutDropdown = document.getElementById('about-dropdown');
+    const contactDropdown = document.getElementById('contact-dropdown');
+    const aboutLink = document.getElementById('about-link');
+    const contactLink = document.getElementById('contact-link');
+    
+    if (!aboutDropdown.contains(event.target) && !aboutLink.contains(event.target)) {
+      aboutDropdown.classList.add('hidden');
+    }
+    if (!contactDropdown.contains(event.target) && !contactLink.contains(event.target)) {
+      contactDropdown.classList.add('hidden');
+    }
+  });
   </script>
 </body>
 </html>
