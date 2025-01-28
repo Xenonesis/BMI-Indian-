@@ -1,18 +1,36 @@
 
 # fitIN - BMI Calculator
 
-## Version 1.9 - January 7, 2025
+## Version 1.9 - January 28, 2025
 
-fitIN is an interactive BMI (Body Mass Index) calculator website designed for Indian users. It calculates BMI based on user input for height and weight, providing personalized health recommendations and progress tracking. The website includes a sleek, modern UI and is responsive on both desktop and mobile devices.
+fitIN is an interactive BMI (Body Mass Index) calculator website designed for Indian users. It calculates BMI based on user input for height and weight, providing personalized health recommendations and progress tracking. The website features a sleek, modern UI and is fully responsive on desktop and mobile devices.
+
+## New in Version 
+
+- Enhanced UI/UX: Improved interface with dark mode support.
+
+- BMI Insights: Added charts and graphs for visualizing BMI trends.
+
+- Localization: Support for Hindi and English languages.
+
+- User Authentication: Secure login and registration for saving user data.
+
+- Additional Metrics: Includes body fat percentage and waist-to-hip ratio calculators.
 
 ### Features
-- **BMI Calculation**: User can input height (in cm) and weight (in kg) to calculate their BMI.
-- **Personalized Health Recommendations**: Based on BMI category (Underweight, Normal weight, Overweight, Obesity).
-- **PDF Report Generation**: Download personalized BMI report as a PDF.
-- **Progress Tracking**: Users can track their BMI progress over time.
-- **Health Resources**: Links to trusted health portals and organizations like WHO and NHP.
-- **FAQs Section**: Explains BMI, calculation methods, and category details.
-- **Version History**: Track new features and updates, with a detailed version log.
+- BMI Calculation: Input height (in cm) and weight (in kg) to calculate BMI.
+
+- Personalized Health Recommendations: Tailored advice based on BMI category (Underweight, Normal weight, Overweight, Obesity).
+
+- PDF Report Generation: Download personalized BMI and health reports.
+
+- Progress Tracking: Track BMI and additional metrics over time with visual insights.
+
+- Health Resources: Links to trusted health portals like WHO and NHP.
+
+- FAQs Section: Covers BMI concepts, calculation methods, and category details.
+
+- Multi-language Support: Switch between Hindi and English.
 
 ### Technologies Used
 - **Frontend**: HTML, CSS (TailwindCSS), JavaScript (Anime.js for animations, jsPDF for PDF generation).
