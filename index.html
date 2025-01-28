@@ -144,6 +144,32 @@
   text-decoration: underline;
 }
 
+/* Enhanced popup and icons */
+#close-popup {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+#minimize-popup-btn,
+#close-popup-btn {
+  transition: transform 0.3s ease;
+}
+
+#minimize-popup-btn:hover,
+#close-popup-btn:hover {
+  transform: scale(1.05);
+}
+
+#countdown-timer {
+  font-weight: bold;
+  color: red;
+}
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'); /* Font Awesome icons */
+
+
   </style>
 </head>
 <body class="bg-gray-100">
@@ -240,6 +266,40 @@
     </div>
   </div>
 </div>
+
+<!-- Enhanced Popup HTML -->
+<div id="greeting-popup" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 transition-all duration-500 transform scale-95">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md relative">
+    <button id="close-popup" class="absolute top-2 right-2 text-xl font-bold text-gray-600 hover:text-gray-800">X</button>
+    <h2 id="greeting-message" class="text-2xl font-semibold text-center mb-4"></h2>
+    <p class="text-sm text-center mb-4">
+      Welcome to <strong>fitIN</strong>, your ultimate fitness companion! Stay on track and reach your fitness goals.
+    </p>
+    
+    <!-- Social Media Icons -->
+    <div class="flex justify-center space-x-6 mb-4">
+      <a href="https://github.com/Xenonesis" target="_blank" class="text-gray-800 hover:text-indigo-500 transition duration-300 ease-in-out">
+        <i class="fab fa-github fa-lg"></i>
+      </a>
+      <a href="https://www.instagram.com/i__aditya7/" target="_blank" class="text-gray-800 hover:text-indigo-500 transition duration-300 ease-in-out">
+        <i class="fab fa-instagram fa-lg"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/itisaddy/" target="_blank" class="text-gray-800 hover:text-indigo-500 transition duration-300 ease-in-out">
+        <i class="fab fa-linkedin fa-lg"></i>
+      </a>
+    </div>
+
+    <!-- Countdown Timer -->
+    <div id="timer" class="text-center text-gray-600 mb-4">This popup will close in <span id="countdown-timer">10</span> seconds</div>
+
+    <div class="flex justify-center space-x-4">
+      <button id="close-popup-btn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">Close</button>
+      <button id="minimize-popup-btn" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400 transition duration-300">Minimize</button>
+    </div>
+  </div>
+</div>
+
+
   <!-- Main Content -->
 <main class="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg">
   <!-- BMI Input Form -->
@@ -395,5 +455,6 @@
   </div>
 </footer>
 <script src="script.js"></script>
+<script src="popup.js"></script>
 </body>
 </html>
