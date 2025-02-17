@@ -276,33 +276,93 @@
 </div>
 
 <!-- Enhanced Popup HTML -->
-<div id="greeting-popup" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 transition-all duration-500 transform scale-95">
-  <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md relative">
-    <button id="close-popup" class="absolute top-2 right-2 text-xl font-bold text-gray-600 hover:text-gray-800">X</button>
-    <h2 id="greeting-message" class="text-2xl font-semibold text-center mb-4"></h2>
-    <p class="text-sm text-center mb-4">
-      Welcome to <strong>fitIN</strong>, your ultimate fitness companion! Stay on track and reach your fitness goals.
-    </p>
-    
-    <!-- Social Media Icons -->
-    <div class="flex justify-center space-x-6 mb-4">
-      <a href="https://github.com/Xenonesis" target="_blank" rel="noopener noreferrer" class="text-gray-800 hover:text-indigo-500 transition duration-300 ease-in-out">
-        <i class="fab fa-github fa-lg"></i>
-      </a>
-      <a href="https://www.instagram.com/i__aditya7/" target="_blank" rel="noopener noreferrer" class="text-gray-800 hover:text-indigo-500 transition duration-300 ease-in-out">
-        <i class="fab fa-instagram fa-lg"></i>
-      </a>
-      <a href="https://www.linkedin.com/in/itisaddy/" target="_blank" rel="noopener noreferrer" class="text-gray-800 hover:text-indigo-500 transition duration-300 ease-in-out">
-        <i class="fab fa-linkedin fa-lg"></i>
-      </a>
+<div id="greeting-popup" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 transition-all duration-500">
+  <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md relative transform transition-all duration-500 scale-95 hover:scale-100">
+    <!-- Popup Header with Gradient -->
+    <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-t-2xl p-6 relative">
+      <button id="close-popup" class="absolute top-4 right-4 text-white hover:text-gray-200 transition-colors">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      <h2 id="greeting-message" class="text-2xl font-bold text-white text-center"></h2>
     </div>
 
-    <!-- Countdown Timer -->
-    <div id="timer" class="text-center text-gray-600 mb-4">This popup will close in <span id="countdown-timer">10</span> seconds</div>
+    <!-- Popup Content -->
+    <div class="p-6">
+      <!-- Welcome Message -->
+      <div class="text-center mb-6">
+        <div class="inline-block p-3 bg-blue-100 rounded-full mb-4">
+          <svg class="h-12 w-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <p class="text-gray-600">
+          Welcome to <span class="font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">fitIN</span>, 
+          your ultimate fitness companion!
+        </p>
+        <p class="text-sm text-gray-500 mt-2">
+          Stay on track and reach your fitness goals with personalized recommendations.
+        </p>
+      </div>
 
-    <div class="flex justify-center space-x-4">
-      <button id="close-popup-btn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">Close</button>
-      <button id="minimize-popup-btn" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400 transition duration-300">Minimize</button>
+      <!-- Features List -->
+      <div class="space-y-3 mb-6">
+        <div class="flex items-center space-x-3 text-gray-600">
+          <svg class="h-5 w-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          <span>Calculate BMI instantly</span>
+        </div>
+        <div class="flex items-center space-x-3 text-gray-600">
+          <svg class="h-5 w-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          <span>Get personalized health tips</span>
+        </div>
+        <div class="flex items-center space-x-3 text-gray-600">
+          <svg class="h-5 w-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          <span>Track your progress</span>
+        </div>
+      </div>
+
+      <!-- Social Media Links -->
+      <div class="flex justify-center space-x-6 mb-6">
+        <a href="https://github.com/Xenonesis" target="_blank" rel="noopener noreferrer" 
+           class="text-gray-600 hover:text-gray-800 transform hover:scale-110 transition-all duration-300">
+          <i class="fab fa-github fa-2x"></i>
+        </a>
+        <a href="https://www.instagram.com/i__aditya7/" target="_blank" rel="noopener noreferrer"
+           class="text-pink-400 hover:text-pink-600 transform hover:scale-110 transition-all duration-300">
+          <i class="fab fa-instagram fa-2x"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/itisaddy/" target="_blank" rel="noopener noreferrer"
+           class="text-blue-400 hover:text-blue-600 transform hover:scale-110 transition-all duration-300">
+          <i class="fab fa-linkedin fa-2x"></i>
+        </a>
+      </div>
+
+      <!-- Timer -->
+      <div class="text-center text-sm text-gray-500 mb-4">
+        This popup will close in <span id="countdown-timer" class="font-bold text-blue-600">10</span> seconds
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex space-x-4">
+        <button id="close-popup-btn" 
+                class="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg font-semibold 
+                       transform hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg">
+          Get Started
+        </button>
+        <button id="minimize-popup-btn"
+                class="flex-1 bg-gray-100 text-gray-700 px-6 py-2 rounded-lg font-semibold
+                       transform hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg">
+          Minimize
+        </button>
+      </div>
     </div>
   </div>
 </div>
