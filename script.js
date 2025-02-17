@@ -52,181 +52,55 @@ window.addEventListener('scroll', handleScroll);
 window.addEventListener('resize', handleScroll);
 document.addEventListener('DOMContentLoaded', handleScroll);
 
-// Add this function to create a visual BMI scale
-function createBMIScale(bmi) {
-    const scale = document.createElement('div');
-    scale.className = 'w-full h-4 bg-gray-200 rounded-full mt-4 relative';
-    
-    // Create the indicator
-    const indicator = document.createElement('div');
-    indicator.className = 'absolute w-4 h-6 -mt-1 transform -translate-x-1/2 transition-all duration-500';
-    indicator.style.left = `${Math.min(Math.max((bmi - 15) * 4, 0), 100)}%`;
-    
-    // Add the pointer triangle
-    indicator.innerHTML = `
-        <svg class="w-4 h-4 text-blue-600" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2L2 22h20L12 2z"/>
-        </svg>
-    `;
-    
-    // Add scale markers
-    const markers = [
-        { value: 18.5, label: 'Underweight', color: 'bg-blue-300' },
-        { value: 24.9, label: 'Normal', color: 'bg-green-300' },
-        { value: 29.9, label: 'Overweight', color: 'bg-yellow-300' },
-        { value: 35, label: 'Obese', color: 'bg-red-300' }
-    ];
-    
-    markers.forEach((marker, index) => {
-        const section = document.createElement('div');
-        const width = index === markers.length - 1 ? '100%' : `${(marker.value - 15) * 4}%`;
-        section.className = `absolute h-full ${marker.color} rounded-full`;
-        section.style.width = width;
-        section.style.left = index === 0 ? '0' : `${(markers[index - 1].value - 15) * 4}%`;
-        scale.appendChild(section);
-    });
-    
-    scale.appendChild(indicator);
-    return scale;
-}
-
-// Update the BMI result display
-function updateBMIResult(bmi, category) {
-    const resultDiv = document.querySelector('.text-center');
-    resultDiv.innerHTML = '';
-    
-    // Add BMI number with animation
-    const bmiNumber = document.createElement('p');
-    bmiNumber.className = 'text-5xl font-bold text-blue-600 mb-2 transform scale-0';
-    bmiNumber.textContent = bmi;
-    resultDiv.appendChild(bmiNumber);
-    
-    // Animate the number
-    setTimeout(() => {
-        bmiNumber.style.transition = 'transform 0.5s ease-out';
-        bmiNumber.style.transform = 'scale(1)';
-    }, 100);
-    
-    // Add category with fade in
-    const categoryText = document.createElement('p');
-    categoryText.className = 'text-xl text-gray-600 opacity-0';
-    categoryText.textContent = `Category: ${category}`;
-    resultDiv.appendChild(categoryText);
-    
-    // Add BMI scale
-    const scale = createBMIScale(parseFloat(bmi));
-    resultDiv.appendChild(scale);
-    
-    // Fade in category
-    setTimeout(() => {
-        categoryText.style.transition = 'opacity 0.5s ease-out';
-        categoryText.style.opacity = '1';
-    }, 300);
-}
-
-// Add loading state function
-function setLoadingState(isLoading) {
-    const submitButton = document.querySelector('button[type="submit"]');
-    const originalText = 'Calculate BMI';
-    
-    if (isLoading) {
-        submitButton.disabled = true;
-        submitButton.innerHTML = `
-            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-            </svg>
-            Calculating...
-        `;
-    } else {
-        submitButton.disabled = false;
-        submitButton.textContent = originalText;
-    }
-}
-
-// Update form submission to include loading state
+// Handle form submission and BMI calculation
 document.getElementById('bmi-form').addEventListener('submit', async function(event) {
     event.preventDefault();
-    setLoadingState(true);
-    
-    try {
-        // Get form values
-        const name = document.getElementById('username').value;
-        const age = parseInt(document.getElementById('age').value, 10);
-        const gender = document.getElementById('gender').value;
-        const weight = parseFloat(document.getElementById('weight').value);
-        const height = parseFloat(document.getElementById('height').value);
 
-        // Validate inputs
-        if (isNaN(age) || isNaN(weight) || isNaN(height)) {
-            alert('Please enter valid numerical values for age, weight, and height.');
-            return;
-        }
+    // Get form values
+    const name = document.getElementById('username').value;
+    const age = parseInt(document.getElementById('age').value, 10);
+    const gender = document.getElementById('gender').value;
+    const weight = parseFloat(document.getElementById('weight').value);
+    const height = parseFloat(document.getElementById('height').value);
 
-        // Calculate BMI
-        const heightM = height / 100;
-        const bmi = (weight / (heightM * heightM)).toFixed(2);
-
-        // Determine BMI category
-        let category = '';
-        if (bmi < 18.5) {
-            category = 'Underweight';
-        } else if (bmi >= 18.5 && bmi < 24.9) {
-            category = 'Normal weight';
-        } else if (bmi >= 25 && bmi < 29.9) {
-            category = 'Overweight';
-        } else {
-            category = 'Obesity';
-        }
-
-        // Update results with animation
-        const resultSection = document.getElementById('result-section');
-        resultSection.classList.remove('hidden');
-        resultSection.style.opacity = '0';
-        resultSection.style.transform = 'translateY(20px)';
-        
-        // Animate section appearance
-        setTimeout(() => {
-            resultSection.style.transition = 'all 0.5s ease-out';
-            resultSection.style.opacity = '1';
-            resultSection.style.transform = 'translateY(0)';
-            updateBMIResult(bmi, category);
-        }, 100);
-
-        // Generate and display recommendations
-        const recommendations = getRecommendations(bmi, age, gender);
-        displayRecommendations(recommendations);
-
-        // Scroll to results
-        resultSection.scrollIntoView({ behavior: 'smooth' });
-
-        // Setup PDF download
-        setupPDFDownload(name, age, gender, weight, height, bmi, category, recommendations);
-
-        // Add success feedback
-        const successMessage = document.createElement('div');
-        successMessage.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-500';
-        successMessage.textContent = 'BMI calculated successfully!';
-        document.body.appendChild(successMessage);
-        
-        // Show and hide success message
-        setTimeout(() => {
-            successMessage.style.transform = 'translate-y-0)';
-            successMessage.style.opacity = '1';
-        }, 100);
-        
-        setTimeout(() => {
-            successMessage.style.opacity = '0';
-            setTimeout(() => successMessage.remove(), 500);
-        }, 3000);
-        
-    } catch (error) {
-        console.error('Error calculating BMI:', error);
-        // Show error message
-        alert('There was an error calculating your BMI. Please try again.');
-    } finally {
-        setLoadingState(false);
+    // Validate inputs
+    if (isNaN(age) || isNaN(weight) || isNaN(height)) {
+        alert('Please enter valid numerical values for age, weight, and height.');
+        return;
     }
+
+    // Calculate BMI
+    const heightM = height / 100;
+    const bmi = (weight / (heightM * heightM)).toFixed(2);
+
+    // Determine BMI category
+    let category = '';
+    if (bmi < 18.5) {
+        category = 'Underweight';
+    } else if (bmi >= 18.5 && bmi < 24.9) {
+        category = 'Normal weight';
+    } else if (bmi >= 25 && bmi < 29.9) {
+        category = 'Overweight';
+    } else {
+        category = 'Obesity';
+    }
+
+    // Update results
+    const resultSection = document.getElementById('result-section');
+    resultSection.classList.remove('hidden');
+    
+    document.getElementById('bmi-result').innerText = `Your BMI is ${bmi}`;
+    document.getElementById('bmi-category').innerText = `Category: ${category}`;
+
+    // Generate and display recommendations
+    const recommendations = getRecommendations(bmi, age, gender);
+    displayRecommendations(recommendations);
+
+    // Scroll to results
+    resultSection.scrollIntoView({ behavior: 'smooth' });
+
+    // Setup PDF download
+    setupPDFDownload(name, age, gender, weight, height, bmi, category, recommendations);
 });
 
 // Function to get recommendations based on BMI, age, and gender
@@ -374,46 +248,22 @@ function animateRecommendations() {
     });
 }
 
-// Enhance recommendations with icons
-function getRecommendationIcon(recommendation) {
-    const icons = {
-        'increase': '🔼',
-        'decrease': '🔽',
-        'maintain': '⚖️',
-        'exercise': '🏃‍♂️',
-        'food': '��',
-        'consult': '👨‍⚕️',
-        'track': '📊',
-        'vitamin': '💊',
-        'strength': '💪',
-        'water': '💧'
-    };
-    
-    const keyword = Object.keys(icons).find(key => 
-        recommendation.toLowerCase().includes(key)
-    );
-    
-    return icons[keyword] || '•';
-}
-
-// Update the displayRecommendations function
+// Update the recommendations display to include animation
 function displayRecommendations(recommendations) {
     const recommendationList = document.getElementById('recommendation-list');
     recommendationList.innerHTML = '';
-    
     recommendations.forEach(rec => {
         const li = document.createElement('li');
-        li.className = 'flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-100 transition-all duration-300';
+        li.className = 'flex items-start space-x-2 p-2 rounded-lg hover:bg-gray-100 transition-all duration-300';
         
-        const icon = document.createElement('span');
-        icon.className = 'text-xl';
-        icon.textContent = getRecommendationIcon(rec);
+        const bullet = document.createElement('span');
+        bullet.className = 'text-blue-500 font-bold';
+        bullet.textContent = '•';
         
         const text = document.createElement('span');
-        text.className = 'text-gray-700';
         text.textContent = rec;
         
-        li.appendChild(icon);
+        li.appendChild(bullet);
         li.appendChild(text);
         recommendationList.appendChild(li);
     });

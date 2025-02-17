@@ -7,6 +7,17 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  
+  <!-- Add these Font Awesome links -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script src="https://kit.fontawesome.com/YOUR_KIT_CODE.js" crossorigin="anonymous"></script>
+
   <style>
     body {
   font-family: 'Arial', sans-serif;
@@ -167,9 +178,6 @@
   color: red;
 }
 
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'); /* Font Awesome icons */
-
-
   </style>
 </head>
 <body class="bg-gray-100">
@@ -301,178 +309,332 @@
 
 
   <!-- Main Content -->
-<main class="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg">
-  <!-- BMI Input Form -->
-  <section class="form-section fade-in bg-white rounded-lg shadow-xl p-8 transform hover:scale-[1.01] transition-all duration-300">
-    <h2 class="text-3xl font-bold text-center mb-8 text-gray-800 bg-gradient-to-r from-blue-600 to-purple-500 bg-clip-text text-transparent">Calculate Your BMI</h2>
-    
-    <form id="bmi-form" class="space-y-6">
-      <!-- User Details with enhanced styling -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="form-group">
-          <label for="username" class="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
-          <input type="text" id="username" 
-                 class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
-                 placeholder="Enter your name" required>
-        </div>
-        
-        <div class="form-group">
-          <label for="age" class="block text-sm font-semibold text-gray-700 mb-2">Age</label>
-          <input type="number" id="age" 
-                 class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
-                 placeholder="Enter your age" required min="1">
-        </div>
-        
-        <div class="form-group">
-          <label for="gender" class="block text-sm font-semibold text-gray-700 mb-2">Gender</label>
-          <select id="gender" 
-                  class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
-                  required>
-            <option value="" disabled selected>Select Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-        
-        <div class="form-group">
-          <label for="weight" class="block text-sm font-semibold text-gray-700 mb-2">Weight (kg)</label>
-          <input type="number" id="weight" 
-                 class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
-                 placeholder="Enter your weight" required min="1" step="0.1">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="height" class="block text-sm font-semibold text-gray-700 mb-2">Height (cm)</label>
-        <input type="number" id="height" 
-               class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
-               placeholder="Enter your height" required min="1" step="0.1">
-      </div>
-
-      <button type="submit" 
-              class="w-full bg-gradient-to-r from-blue-600 to-purple-500 text-white py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300">
-        Calculate BMI
-      </button>
-    </form>
+<main class="max-w-5xl mx-auto p-6">
+  <!-- Hero Section -->
+  <section class="mb-12 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+      Calculate Your BMI
+    </h1>
+    <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+      Get personalized health insights and recommendations based on your Body Mass Index
+    </p>
   </section>
 
-  <!-- Results Section with enhanced styling -->
-  <section id="result-section" class="hidden fade-in mt-8 bg-white rounded-lg shadow-xl p-8">
-    <h2 class="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-blue-600 to-purple-500 bg-clip-text text-transparent">Your BMI Result</h2>
-    
-    <div class="flex flex-col items-center space-y-4">
-      <div class="text-center">
-        <p id="bmi-result" class="text-4xl font-bold text-blue-600 mb-2"></p>
-        <p id="bmi-category" class="text-xl text-gray-600"></p>
+  <!-- Two Column Layout for Form and Info -->
+  <div class="grid md:grid-cols-2 gap-8">
+    <!-- Left Column - BMI Calculator -->
+    <section class="form-section fade-in bg-white rounded-2xl shadow-xl p-8 transform hover:scale-[1.01] transition-all duration-300">
+      <form id="bmi-form" class="space-y-6">
+        <div class="space-y-6">
+          <!-- Name Input with Icon -->
+          <div class="form-group relative">
+            <label for="username" class="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </span>
+              <input type="text" id="username" 
+                     class="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
+                     placeholder="Enter your name" required>
+            </div>
+          </div>
+
+          <!-- Age and Gender Grid -->
+          <div class="grid grid-cols-2 gap-4">
+            <div class="form-group relative">
+              <label for="age" class="block text-sm font-semibold text-gray-700 mb-2">Age</label>
+              <div class="relative">
+                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </span>
+                <input type="number" id="age" 
+                       class="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
+                       placeholder="Age" required min="1">
+              </div>
+            </div>
+
+            <div class="form-group relative">
+              <label for="gender" class="block text-sm font-semibold text-gray-700 mb-2">Gender</label>
+              <select id="gender" 
+                      class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 bg-white"
+                      required>
+                <option value="" disabled selected>Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Weight and Height with Units -->
+          <div class="grid grid-cols-2 gap-4">
+            <div class="form-group relative">
+              <label for="weight" class="block text-sm font-semibold text-gray-700 mb-2">Weight</label>
+              <div class="relative">
+                <input type="number" id="weight" 
+                       class="w-full pr-16 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
+                       placeholder="Weight" required min="1" step="0.1">
+                <span class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500">
+                  kg
+                </span>
+              </div>
+            </div>
+
+            <div class="form-group relative">
+              <label for="height" class="block text-sm font-semibold text-gray-700 mb-2">Height</label>
+              <div class="relative">
+                <input type="number" id="height" 
+                       class="w-full pr-16 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
+                       placeholder="Height" required min="1" step="0.1">
+                <span class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500">
+                  cm
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" 
+                class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 flex items-center justify-center space-x-2">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10H9m3-5h3m-6 0h0" />
+          </svg>
+          <span>Calculate BMI</span>
+        </button>
+      </form>
+    </section>
+
+    <!-- Right Column - Results Section -->
+    <section id="result-section" class="hidden fade-in bg-white rounded-2xl shadow-xl p-8">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">Your BMI Result</h2>
+        <div class="inline-block rounded-full bg-gradient-to-r from-blue-100 to-purple-100 p-8">
+          <p id="bmi-result" class="text-4xl font-bold text-blue-600 mb-2"></p>
+          <p id="bmi-category" class="text-xl text-gray-600"></p>
+        </div>
       </div>
 
-      <div class="w-full bg-gray-50 rounded-lg p-6 mt-6">
-        <h3 class="text-xl font-semibold text-gray-800 mb-4">Health Recommendations</h3>
+      <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+          <svg class="h-6 w-6 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          Health Recommendations
+        </h3>
         <ul id="recommendation-list" class="space-y-3 text-gray-600"></ul>
       </div>
 
       <button id="download-pdf" 
-              class="mt-6 bg-green-600 text-white px-8 py-3 rounded-lg font-semibold shadow-lg hover:bg-green-700 transform hover:scale-[1.02] transition-all duration-300 flex items-center space-x-2">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+              class="mt-6 bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 flex items-center justify-center w-full space-x-2">
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
         </svg>
         <span>Download BMI Report</span>
       </button>
+    </section>
+  </div>
+
+  <!-- Add this section before the BMI Categories Card -->
+  <section class="mt-12 bg-white rounded-2xl shadow-xl p-8">
+    <h2 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">Understanding BMI</h2>
+    
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- What is BMI -->
+      <div class="space-y-4">
+        <h3 class="text-xl font-semibold text-gray-800">What is BMI?</h3>
+        <p class="text-gray-600">
+          Body Mass Index (BMI) is a simple measurement using your height and weight to work out if your weight is healthy. It's used by healthcare professionals to assess if someone is at risk of health issues related to their weight.
+        </p>
+        <div class="bg-blue-50 p-4 rounded-lg">
+          <p class="text-blue-800 font-medium">BMI Formula:</p>
+          <p class="text-blue-600">BMI = weight (kg) / height² (m)</p>
+        </div>
+      </div>
+
+      <!-- BMI Limitations -->
+      <div class="space-y-4">
+        <h3 class="text-xl font-semibold text-gray-800">Limitations of BMI</h3>
+        <ul class="list-disc list-inside text-gray-600 space-y-2">
+          <li>Doesn't account for muscle mass</li>
+          <li>May not be suitable for athletes</li>
+          <li>Different considerations for elderly</li>
+          <li>Varies across ethnic groups</li>
+        </ul>
+        <p class="text-sm text-gray-500 italic">
+          Always consult healthcare professionals for personalized advice.
+        </p>
+      </div>
     </div>
   </section>
 
-  <!-- Additional Features Section -->
-<section class="form-section fade-in mt-8">
-  <h2 class="section-header text-2xl font-bold text-gray-800 mb-4">Additional Features</h2>
-  <p class="content-text text-gray-600">
-    - Track your progress over time to monitor changes in your BMI.<br>
-    - Access detailed information about BMI and its significance in maintaining overall health.<br>
-    - Receive personalized health tips tailored to your BMI category to help you make informed decisions about your fitness and wellness journey.
-  </p>
-  <p class="content-text text-gray-600 mt-4">
-    - Integrate your data with helpful insights to stay motivated and committed to your health goals.<br>
-    - Utilize interactive charts and visualizations for a better understanding of your BMI trends.<br>
-    - Leverage evidence-based advice and recommendations from trusted health sources to support your well-being.
-  </p>
-</section>
+  <!-- Health Tips Section -->
+  <section class="mt-8 bg-white rounded-2xl shadow-xl p-8">
+    <h2 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">Health Tips</h2>
+    
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="p-4 bg-green-50 rounded-lg border border-green-200">
+        <svg class="h-8 w-8 text-green-600 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+        </svg>
+        <h3 class="font-semibold text-green-800 mb-2">Balanced Diet</h3>
+        <p class="text-green-700">Include a variety of fruits, vegetables, whole grains, and lean proteins in your diet.</p>
+      </div>
 
+      <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
+        <svg class="h-8 w-8 text-blue-600 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        </svg>
+        <h3 class="font-semibold text-blue-800 mb-2">Regular Exercise</h3>
+        <p class="text-blue-700">Aim for at least 150 minutes of moderate physical activity per week.</p>
+      </div>
 
-  <!-- Resources Section -->
-<section class="form-section fade-in mt-8">
-  <h2 class="section-header text-2xl font-bold text-gray-800 mb-4">Resources</h2>
-  <ul class="content-text text-gray-600">
-    <li><a href="https://www.nhp.gov.in" target="_blank" rel="noopener noreferrer" class="content-link text-indigo-600 hover:underline">National Health Portal of India</a></li>
-    <li><a href="https://www.who.int" target="_blank" rel="noopener noreferrer" class="content-link text-indigo-600 hover:underline">World Health Organization</a></li>
-    <li><a href="https://www.cdc.gov" target="_blank" rel="noopener noreferrer" class="content-link text-indigo-600 hover:underline">Centers for Disease Control and Prevention (CDC)</a></li>
-    <li><a href="https://www.bmi-calculator.net" target="_blank" rel="noopener noreferrer" class="content-link text-indigo-600 hover:underline">BMI Calculator</a></li>
-    <li><a href="https://www.healthline.com/nutrition/bmi-scale" target="_blank" rel="noopener noreferrer" class="content-link text-indigo-600 hover:underline">Healthline - BMI Scale and Interpretation</a></li>
-  </ul>
-</section>
+      <div class="p-4 bg-purple-50 rounded-lg border border-purple-200">
+        <svg class="h-8 w-8 text-purple-600 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <h3 class="font-semibold text-purple-800 mb-2">Healthy Lifestyle</h3>
+        <p class="text-purple-700">Get adequate sleep, manage stress, and stay hydrated.</p>
+      </div>
+    </div>
+  </section>
 
-
- <!-- FAQ Section -->
-<section class="form-section fade-in mt-8">
-  <h2 class="section-header text-2xl font-bold text-gray-800 mb-4">FAQs</h2>
-  
-  <p class="content-text text-gray-600"><strong>What is BMI?</strong><br>
-    BMI (Body Mass Index) is a simple calculation used to assess whether a person's weight falls within a healthy range for their height. It is a common method for evaluating body fat levels.
-  </p>
-  
-  <p class="content-text text-gray-600 mt-4"><strong>How is BMI calculated?</strong><br>
-    BMI is calculated using the formula: 
-    <code>BMI = weight (kg) / (height (m)²)</code>.
-  </p>
-  
-  <p class="content-text text-gray-600 mt-4"><strong>What are the BMI categories?</strong><br>
-    - **Underweight**: BMI < 18.5<br>
-    - **Normal weight**: 18.5 ≤ BMI < 24.9<br>
-    - **Overweight**: 25 ≤ BMI < 29.9<br>
-    - **Obesity**: BMI ≥ 30
-  </p>
-</section>
-
-
-  <!-- Version Update Section -->
-<section class="form-section fade-in mt-8">
-  <h2 class="section-header text-2xl font-bold text-gray-800 mb-4">Version Update 2.5</h2>
-  <p class="content-text text-gray-600"><strong>Release Date:</strong> February 17, 2025</p>
-  <p class="content-text text-gray-600 mt-4"><strong>New Features:</strong><br>
-    - Added tracking for your progress, including BMI and health metrics.<br>
-    - Included personalized health tips based on BMI, age, and gender.<br>
-    - Enhanced user interface with more intuitive navigation and feedback.<br>
-  </p>
-</section>
-
+  <!-- BMI Categories Card -->
+  <section class="mt-12 bg-white rounded-2xl shadow-xl p-8">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">BMI Categories</h2>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div class="p-4 rounded-lg bg-blue-50 border border-blue-200">
+        <h3 class="font-semibold text-blue-800">Underweight</h3>
+        <p class="text-blue-600">BMI < 18.5</p>
+      </div>
+      <div class="p-4 rounded-lg bg-green-50 border border-green-200">
+        <h3 class="font-semibold text-green-800">Normal Weight</h3>
+        <p class="text-green-600">BMI 18.5-24.9</p>
+      </div>
+      <div class="p-4 rounded-lg bg-yellow-50 border border-yellow-200">
+        <h3 class="font-semibold text-yellow-800">Overweight</h3>
+        <p class="text-yellow-600">BMI 25-29.9</p>
+      </div>
+      <div class="p-4 rounded-lg bg-red-50 border border-red-200">
+        <h3 class="font-semibold text-red-800">Obesity</h3>
+        <p class="text-red-600">BMI ≥ 30</p>
+      </div>
+    </div>
   </section>
 </main>
 
- <!-- Footer -->
-<footer class="footer bg-blue-600 text-white py-6">
-  <div class="container mx-auto text-center">
-    <p class="mb-4">&copy; 2025 fitIN. All Rights Reserved.</p>
-    <div class="flex justify-center space-x-6">
-      <!-- Social Media Icons -->
-      <a href="https://github.com/Xenonesis" target="_blank" rel="noopener noreferrer" class="text-white hover:text-gray-300">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.303 3.438 9.8 8.207 11.387.6.11.793-.26.793-.577v-2.037c-3.338.726-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.087-.745.082-.729.082-.729 1.205.085 1.838 1.235 1.838 1.235 1.07 1.834 2.809 1.304 3.495.997.11-.774.419-1.305.762-1.605-2.665-.303-5.466-1.333-5.466-5.931 0-1.31.468-2.383 1.235-3.222-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.231.957-.266 1.985-.399 3.006-.404 1.021.005 2.05.138 3.006.404 2.292-1.553 3.3-1.231 3.3-1.231.652 1.653.241 2.873.118 3.176.768.839 1.235 1.912 1.235 3.222 0 4.609-2.804 5.625-5.475 5.922.43.372.823 1.106.823 2.229v3.305c0 .319.192.692.8.575C20.565 21.8 24 17.303 24 12c0-6.63-5.37-12-12-12z" />
-        </svg>
-      </a>
-      <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="text-white hover:text-gray-300">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M24 4.557a9.943 9.943 0 01-2.828.775 4.932 4.932 0 002.165-2.724 9.864 9.864 0 01-3.127 1.195 4.921 4.921 0 00-8.384 4.482 13.975 13.975 0 01-10.141-5.144 4.908 4.908 0 001.523 6.557A4.914 4.914 0 01.96 9.86v.063a4.926 4.926 0 003.946 4.827 4.957 4.957 0 01-2.213.084 4.93 4.93 0 004.604 3.417 9.867 9.867 0 01-7.29 2.034A13.894 13.894 0 007.548 20c9.058 0 14.01-7.513 14.01-14.034 0-.213-.005-.425-.015-.636A10.012 10.012 0 0024 4.557z" />
-        </svg>
-      </a>
-      <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="text-white hover:text-gray-300">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M22.676 0H1.324C.593 0 0 .593 0 1.324v21.352C0 23.407.593 24 1.324 24h11.5v-9.294H9.847v-3.622h2.977v-2.676c0-2.94 1.794-4.538 4.412-4.538 1.253 0 2.332.093 2.646.135v3.068l-1.816.001c-1.426 0-1.7.677-1.7 1.669v2.341h3.394l-.442 3.622h-2.952V24h5.787c.731 0 1.324-.593 1.324-1.324V1.324C24 .593 23.407 0 22.676 0zM7.12 20.452H3.764V9.108H7.12v11.344zM5.442 7.732c-1.07 0-1.932-.869-1.932-1.938 0-1.071.868-1.938 1.933-1.938 1.068 0 1.93.868 1.93 1.938 0 1.07-.861 1.938-1.93 1.938zm14.928 12.72h-3.351v-5.497c0-1.311-.023-3.004-1.831-3.004-1.833 0-2.113 1.43-2.113 2.907v5.594H9.8V9.108h3.222v1.548h.045c.448-.844 1.54-1.733 3.164-1.733 3.384 0 4.008 2.226 4.008 5.119v6.41z" />
-        </svg>
-      </a>
-      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="text-white hover:text-gray-300">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M22.23 0H1.77C.79 0 0 .774 0 1.729V22.27C0 23.226.79 24 1.77 24h20.46C23.21 24 24 23.226 24 22.271V1.729C24 .774 23.21 0 22.23 0zM7.12 20.452H3.764V9.108H7.12v11.344zM5.442 7.732c-1.07 0-1.932-.869-1.932-1.938 0-1.071.868-1.938 1.933-1.938 1.068 0 1.93.868 1.93 1.938 0 1.07-.861 1.938-1.93 1.938zm14.928 12.72h-3.351v-5.497c0-1.311-.023-3.004-1.831-3.004-1.833 0-2.113 1.43-2.113 2.907v5.594H9.8V9.108h3.222v1.548h.045c.448-.844 1.54-1.733 3.164-1.733 3.384 0 4.008 2.226 4.008 5.119v6.41z" />
-        </svg>
-      </a>
+<!-- Enhanced Footer -->
+<footer class="mt-12 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+  <div class="max-w-7xl mx-auto px-4 py-12">
+    <div class="grid md:grid-cols-4 gap-8">
+      <!-- About Section -->
+      <div class="space-y-4">
+        <h3 class="text-xl font-bold">About fitIN</h3>
+        <p class="text-gray-200">
+          Your trusted companion for health and fitness tracking. We help you maintain a healthy lifestyle through personalized recommendations.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="space-y-4">
+        <h3 class="text-xl font-bold">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-gray-200 hover:text-white transition-colors">Home</a></li>
+          <li><a href="#" class="text-gray-200 hover:text-white transition-colors">About Us</a></li>
+          <li><a href="#" class="text-gray-200 hover:text-white transition-colors">Privacy Policy</a></li>
+          <li><a href="#" class="text-gray-200 hover:text-white transition-colors">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="space-y-4">
+        <h3 class="text-xl font-bold">Contact Us</h3>
+        <ul class="space-y-2">
+          <li class="flex items-center space-x-2">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            <a href="mailto:itisaddy7@gmail.com" class="text-gray-200 hover:text-white transition-colors">itisaddy7@gmail.com</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Social Links -->
+      <div class="space-y-4">
+        <h3 class="text-xl font-bold">Follow Us</h3>
+        <div class="flex space-x-6">
+          <!-- GitHub -->
+          <a href="https://github.com/Xenonesis" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="text-white hover:text-gray-200 transform hover:scale-110 transition-all duration-300">
+            <i class="fab fa-github fa-2x"></i>
+          </a>
+          
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/i__aditya7/" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="text-white hover:text-pink-300 transform hover:scale-110 transition-all duration-300">
+            <i class="fab fa-instagram fa-2x"></i>
+          </a>
+          
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/itisaddy/" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="text-white hover:text-blue-300 transform hover:scale-110 transition-all duration-300">
+            <i class="fab fa-linkedin fa-2x"></i>
+          </a>
+          
+          <!-- Twitter -->
+          <a href="https://twitter.com" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="text-white hover:text-blue-400 transform hover:scale-110 transition-all duration-300">
+            <i class="fab fa-twitter fa-2x"></i>
+          </a>
+          
+          <!-- YouTube -->
+          <a href="https://youtube.com" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="text-white hover:text-red-400 transform hover:scale-110 transition-all duration-300">
+            <i class="fab fa-youtube fa-2x"></i>
+          </a>
+        </div>
+        
+        <!-- Add social stats -->
+        <div class="grid grid-cols-3 gap-4 mt-4 text-center">
+          <div class="bg-white bg-opacity-10 rounded-lg p-2">
+            <p class="text-sm text-gray-200">Followers</p>
+            <p class="text-lg font-bold">10.5K</p>
+          </div>
+          <div class="bg-white bg-opacity-10 rounded-lg p-2">
+            <p class="text-sm text-gray-200">Following</p>
+            <p class="text-lg font-bold">8.2K</p>
+          </div>
+          <div class="bg-white bg-opacity-10 rounded-lg p-2">
+            <p class="text-sm text-gray-200">Posts</p>
+            <p class="text-lg font-bold">1.2K</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="mt-8 pt-8 border-t border-gray-300">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-200">&copy; 2025 fitIN. All Rights Reserved.</p>
+        <div class="flex space-x-4 mt-4 md:mt-0">
+          <a href="#" class="text-gray-200 hover:text-white transition-colors">Privacy Policy</a>
+          <span class="text-gray-400">|</span>
+          <a href="#" class="text-gray-200 hover:text-white transition-colors">Terms of Service</a>
+        </div>
+      </div>
     </div>
   </div>
 </footer>
