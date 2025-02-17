@@ -7,59 +7,34 @@ document.addEventListener('DOMContentLoaded', function() {
     const closePopupButton = document.getElementById('close-popup-btn');
     const countdownTimer = document.getElementById('countdown-timer');
     let countdownInterval;
+    let isPopupMinimized = false;
 
     // Check if the user has visited before
     const isFirstVisit = !localStorage.getItem('hasVisited');
+    const lastPopupTime = localStorage.getItem('lastPopupTime');
+    const currentTime = Date.now();
 
-    if (isFirstVisit) {
+    // Only show popup if it's first visit or it's been more than 1 hour since last popup
+    if (isFirstVisit || !lastPopupTime || (currentTime - parseInt(lastPopupTime)) > 3600000) {
+        showPopup();
+        localStorage.setItem('lastPopupTime', currentTime.toString());
+    }
+
+    function showPopup() {
+        if (isPopupMinimized) return;
+
         localStorage.setItem('hasVisited', 'true');
-        greetingMessage.innerText = 'Welcome to fitIN!';
-    } else {
-        greetingMessage.innerText = 'Welcome back to fitIN!';
-    }
+        greetingMessage.innerText = isFirstVisit ? 'Welcome to fitIN!' : 'Welcome back to fitIN!';
 
-    // Display the popup with animation
-    popup.classList.remove('hidden');
-    popup.classList.add('scale-100');
-
-    // Function to close the popup
-    function closePopup() {
-        popup.classList.add('scale-95');
-        setTimeout(() => popup.classList.add('hidden'), 300); // Add delay for the animation
-        clearInterval(countdownInterval); // Stop the countdown when closed
-    }
-
-    // Function to minimize the popup
-    function minimizePopup() {
-        popup.classList.add('scale-95');
-        setTimeout(() => popup.classList.add('hidden'), 300); // Hide with animation
-    }
-
-    // Countdown timer (closes popup automatically after 10 seconds)
-    let timer = 10;
-    countdownTimer.innerText = timer;
-
-    countdownInterval = setInterval(function() {
-        timer--;
-        countdownTimer.innerText = timer;
-
-        if (timer <= 0) {
-            closePopup();
-        }
-    }, 1000); // Decrease timer every second
-
-    // Event listeners for popup actions
-    closePopupButton.addEventListener('click', closePopup);
-    minimizeButton.addEventListener('click', minimizePopup);
-
-    // Show the popup every 100 seconds (100000 milliseconds)
-    setInterval(function() {
         popup.classList.remove('hidden');
         popup.classList.add('scale-100');
-        timer = 10; // Reset timer for next show
+        startCountdown();
+    }
+
+    function startCountdown() {
+        let timer = 10;
         countdownTimer.innerText = timer;
 
-        // Restart countdown
         clearInterval(countdownInterval);
         countdownInterval = setInterval(function() {
             timer--;
@@ -69,5 +44,38 @@ document.addEventListener('DOMContentLoaded', function() {
                 closePopup();
             }
         }, 1000);
-    }, 100000); // 100 seconds
+    }
+
+    function closePopup() {
+        popup.classList.add('scale-95');
+        setTimeout(() => {
+            popup.classList.add('hidden');
+            isPopupMinimized = false;
+        }, 300);
+        clearInterval(countdownInterval);
+    }
+
+    function minimizePopup() {
+        popup.classList.add('scale-95');
+        setTimeout(() => {
+            popup.classList.add('hidden');
+            isPopupMinimized = true;
+        }, 300);
+        clearInterval(countdownInterval);
+    }
+
+    closePopupButton.addEventListener('click', closePopup);
+    minimizeButton.addEventListener('click', minimizePopup);
+    closeButton.addEventListener('click', closePopup);
+
+    // Show popup every hour if not minimized
+    setInterval(function() {
+        const currentTime = Date.now();
+        const lastPopupTime = parseInt(localStorage.getItem('lastPopupTime'));
+
+        if (!isPopupMinimized && (!lastPopupTime || (currentTime - lastPopupTime) > 3600000)) {
+            showPopup();
+            localStorage.setItem('lastPopupTime', currentTime.toString());
+        }
+    }, 3600000); // Check every hour
 });
