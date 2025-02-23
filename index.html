@@ -18,6 +18,9 @@
 
   <script src="https://kit.fontawesome.com/YOUR_KIT_CODE.js" crossorigin="anonymous"></script>
 
+  <!-- Link new stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
   <style>
     body {
   font-family: 'Arial', sans-serif;
@@ -383,7 +386,7 @@
   <!-- Two Column Layout for Form and Info -->
   <div class="grid md:grid-cols-2 gap-8">
     <!-- Left Column - BMI Calculator -->
-    <section class="form-section fade-in bg-white rounded-2xl shadow-xl p-8 transform hover:scale-[1.01] transition-all duration-300">
+    <section class="form-section fade-in bg-white rounded-2xl shadow-xl p-8 transform hover:scale-[1.01] transition-all duration-300 animate-on-scroll">
       <form id="bmi-form" class="space-y-6">
         <div class="space-y-6">
           <!-- Name Input with Icon -->
@@ -458,6 +461,58 @@
           </div>
         </div>
 
+        <!-- Insert period tracking form section before the submit button in BMI form -->
+        <div id="period-tracking" class="hidden mt-6 p-6 bg-pink-50 rounded-lg">
+            <h3 class="text-lg font-semibold text-pink-800 mb-4">Period Tracking</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Last Period Date</label>
+                    <input type="date" id="last-period" class="mt-1 block w-full rounded-md border-gray-300 focus:border-pink-500 focus:ring-pink-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Cycle Length</label>
+                    <select id="cycle-length" class="mt-1 block w-full rounded-md border-gray-300 focus:border-pink-500 focus:ring-pink-500">
+                        <option value="28">28 days (Average)</option>
+                        <option value="21">21 days (Short)</option>
+                        <option value="35">35 days (Long)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mt-4">
+                <label class="block text-sm font-medium text-gray-700">Cycle Regularity</label>
+                <select id="cycle-regularity" class="mt-1 block w-full rounded-md border-gray-300 focus:border-pink-500 focus:ring-pink-500">
+                    <option value="regular">Regular (±1-2 days)</option>
+                    <option value="somewhat">Somewhat Regular (±3-5 days)</option>
+                    <option value="irregular">Irregular (>5 days variation)</option>
+                </select>
+            </div>
+            <div class="mt-4">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Common Symptoms</label>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" name="period-symptoms" value="cramps" class="rounded border-pink-300 text-pink-600 focus:ring-pink-500">
+                        <span class="ml-2">Cramps</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" name="period-symptoms" value="headache" class="rounded border-pink-300 text-pink-600 focus:ring-pink-500">
+                        <span class="ml-2">Headache</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" name="period-symptoms" value="bloating" class="rounded border-pink-300 text-pink-600 focus:ring-pink-500">
+                        <span class="ml-2">Bloating</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" name="period-symptoms" value="fatigue" class="rounded border-pink-300 text-pink-600 focus:ring-pink-500">
+                        <span class="ml-2">Fatigue</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" name="period-symptoms" value="moodSwings" class="rounded border-pink-300 text-pink-600 focus:ring-pink-500">
+                        <span class="ml-2">Mood Swings</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
         <button type="submit" 
                 class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 flex items-center justify-center space-x-2">
           <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -471,10 +526,18 @@
     <!-- Right Column - Results Section -->
     <section id="result-section" class="hidden fade-in bg-white rounded-2xl shadow-xl p-8">
       <div class="text-center mb-8">
-        <h2 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">Your BMI Result</h2>
-        <div class="inline-block rounded-full bg-gradient-to-r from-blue-100 to-purple-100 p-8">
-          <p id="bmi-result" class="text-4xl font-bold text-blue-600 mb-2"></p>
-          <p id="bmi-category" class="text-xl text-gray-600"></p>
+        <h2 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">Your Results</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- BMI Result -->
+          <div class="inline-block rounded-full bg-gradient-to-r from-blue-100 to-purple-100 p-8">
+            <p id="bmi-result" class="text-4xl font-bold text-blue-600 mb-2"></p>
+            <p id="bmi-category" class="text-xl text-gray-600"></p>
+          </div>
+          <!-- Biological Age Result -->
+          <div class="inline-block rounded-full bg-gradient-to-r from-green-100 to-teal-100 p-8">
+            <p id="biological-age" class="text-4xl font-bold text-green-600 mb-2"></p>
+            <p class="text-xl text-gray-600">Biological Age</p>
+          </div>
         </div>
       </div>
 
@@ -497,6 +560,20 @@
       </button>
     </section>
   </div>
+
+  <!-- Add this section after the BMI results section -->
+<div id="period-predictions" class="hidden mt-8 bg-pink-50 rounded-xl p-6">
+    <div class="text-center mb-6">
+        <h3 class="text-2xl font-bold text-pink-800">Period Predictions</h3>
+        <p class="text-gray-600">Based on your last period date and cycle length</p>
+    </div>
+    <div id="period-timeline" class="space-y-4">
+        <!-- Predictions will be inserted here -->
+    </div>
+    <p class="mt-4 text-sm text-gray-500 italic">
+        * Predictions are estimates based on your cycle information. Actual dates may vary.
+    </p>
+</div>
 
   <!-- Add this section before the BMI Categories Card -->
   <section class="mt-12 bg-white rounded-2xl shadow-xl p-8">
@@ -562,6 +639,28 @@
     </div>
   </section>
 
+  <!-- Add an explanation section for biological age -->
+  <section class="mt-8 bg-white rounded-2xl shadow-xl p-8">
+    <h2 class="text-2xl font-bold bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent mb-6">Understanding Biological Age</h2>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="space-y-4">
+        <h3 class="text-xl font-semibold text-gray-800">What is Biological Age?</h3>
+        <p class="text-gray-600">
+          Biological age is an estimate of how well your body is functioning compared to your chronological age. It takes into account various factors including BMI, lifestyle, and other health metrics.
+        </p>
+      </div>
+      <div class="space-y-4">
+        <h3 class="text-xl font-semibold text-gray-800">Factors Affecting Biological Age</h3>
+        <ul class="list-disc list-inside text-gray-600 space-y-2">
+          <li>BMI and body composition</li>
+          <li>Physical activity level</li>
+          <li>Dietary habits</li>
+          <li>Lifestyle choices</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <!-- BMI Categories Card -->
   <section class="mt-12 bg-white rounded-2xl shadow-xl p-8">
     <h2 class="text-2xl font-bold text-gray-800 mb-6">BMI Categories</h2>
@@ -584,6 +683,16 @@
       </div>
     </div>
   </section>
+
+  <!-- Add section to display period predictions -->
+  <div id="period-predictions" class="hidden mt-8">
+    <h3 class="text-xl font-bold text-pink-800 mb-4">Period & Fertility Predictions</h3>
+    <div id="period-timeline" class="space-y-4"></div>
+    <div class="mt-6 bg-pink-50 rounded-lg p-6">
+        <h4 class="text-lg font-semibold text-pink-800 mb-3">Symptom Management Tips</h4>
+        <ul id="symptom-recommendations" class="space-y-2"></ul>
+    </div>
+  </div>
 </main>
 
 <!-- Enhanced Footer -->
@@ -700,5 +809,6 @@
 </footer>
 <script src="script.js"></script>
 <script src="popup.js"></script>
+<script src="period-tracker.js"></script>
 </body>
 </html>

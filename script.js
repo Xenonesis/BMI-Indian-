@@ -52,9 +52,17 @@ window.addEventListener('scroll', handleScroll);
 window.addEventListener('resize', handleScroll);
 document.addEventListener('DOMContentLoaded', handleScroll);
 
+// Show/hide period tracking form based on gender selection
+document.getElementById('gender').addEventListener('change', function() {
+    const periodSection = document.getElementById('period-tracking');
+    periodSection.classList.toggle('hidden', this.value.toLowerCase() !== 'female');
+});
+
 // Handle form submission and BMI calculation
 document.getElementById('bmi-form').addEventListener('submit', async function(event) {
     event.preventDefault();
+    showLoading();
+    await new Promise(resolve => setTimeout(resolve, 800)); // artificial delay
 
     // Get form values
     const name = document.getElementById('username').value;
@@ -85,12 +93,16 @@ document.getElementById('bmi-form').addEventListener('submit', async function(ev
         category = 'Obesity';
     }
 
+    // Predict biological age
+    const biologicalAge = predictBiologicalAge(parseFloat(bmi), age, gender, weight, height);
+
     // Update results
     const resultSection = document.getElementById('result-section');
     resultSection.classList.remove('hidden');
     
     document.getElementById('bmi-result').innerText = `Your BMI is ${bmi}`;
     document.getElementById('bmi-category').innerText = `Category: ${category}`;
+    document.getElementById('biological-age').innerText = `Estimated Biological Age: ${biologicalAge} years`;
 
     // Generate and display recommendations
     const recommendations = getRecommendations(bmi, age, gender);
@@ -100,7 +112,27 @@ document.getElementById('bmi-form').addEventListener('submit', async function(ev
     resultSection.scrollIntoView({ behavior: 'smooth' });
 
     // Setup PDF download
-    setupPDFDownload(name, age, gender, weight, height, bmi, category, recommendations);
+    setupPDFDownload(name, age, gender, weight, height, bmi, category, recommendations, biologicalAge);
+
+    if (gender.toLowerCase() === 'female') {
+        try {
+            const lastPeriod = document.getElementById('last-period').value;
+            if (!lastPeriod) throw new Error('Please enter your last period date');
+            const cycleLength = parseInt(document.getElementById('cycle-length').value);
+            const cycleRegularity = document.getElementById('cycle-regularity').value;
+            const symptoms = Array.from(document.querySelectorAll('input[name="period-symptoms"]:checked'))
+                                  .map(cb => cb.value);
+            const tracker = new PeriodTracker();
+            const predictions = tracker.predictNextPeriods(lastPeriod, cycleLength, cycleRegularity);
+            const recs = tracker.getSymptomRecommendations(symptoms);
+            displayPeriodPredictions(predictions, recs);
+            document.getElementById('period-predictions').classList.remove('hidden');
+        } catch(e) {
+            alert(`Period Tracking Error: ${e.message}`);
+        }
+    }
+
+    hideLoading();
 });
 
 // Function to get recommendations based on BMI, age, and gender
@@ -143,8 +175,43 @@ function getRecommendations(bmi, age, gender) {
     return recommendations;
 }
 
+// Function to predict biological age based on BMI, age, gender, weight, and height
+function predictBiologicalAge(bmi, age, gender, weight, height) {
+    // Simple predictive model based on BMI deviation from normal range
+    const normalBMIMiddle = 21.7; // Middle of normal BMI range
+    const bmiDeviation = Math.abs(bmi - normalBMIMiddle);
+    
+    // Base biological age starts from chronological age
+    let biologicalAge = age;
+    
+    // Adjust based on BMI deviation
+    if (bmi < 18.5) {
+        biologicalAge += bmiDeviation * 0.5;
+    } else if (bmi > 25) {
+        biologicalAge += bmiDeviation * 0.7;
+    }
+    
+    // Gender-specific adjustments
+    if (gender.toLowerCase() === 'female') {
+        biologicalAge *= 0.95; // Slightly lower biological age for females
+    }
+    
+    // Height-weight ratio impact
+    const heightInMeters = height / 100;
+    const hwRatio = weight / heightInMeters;
+    if (hwRatio > 100) {
+        biologicalAge += 2;
+    }
+    
+    // Add some controlled randomness to simulate ML prediction variance
+    const variance = Math.random() * 2 - 1; // Random value between -1 and 1
+    biologicalAge += variance;
+    
+    return Math.round(biologicalAge * 10) / 10; // Round to 1 decimal place
+}
+
 // Function to setup PDF download
-function setupPDFDownload(name, age, gender, weight, height, bmi, category, recommendations) {
+function setupPDFDownload(name, age, gender, weight, height, bmi, category, recommendations, biologicalAge) {
     document.getElementById('download-pdf').addEventListener('click', function() {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
@@ -159,6 +226,7 @@ function setupPDFDownload(name, age, gender, weight, height, bmi, category, reco
             `Date: ${currentDate}`,
             `Name: ${name}`,
             `Age: ${age} years`,
+            `Estimated Biological Age: ${biologicalAge} years`,
             `Gender: ${gender}`,
             `Weight: ${weight} kg`,
             `Height: ${height} cm`,
@@ -270,3 +338,120 @@ function displayRecommendations(recommendations) {
     
     animateRecommendations();
 }
+
+function displayPeriodPredictions(predictions, recommendations) {
+    const timeline = document.getElementById('period-timeline');
+    timeline.innerHTML = '';
+    predictions.forEach(pred => {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-lg shadow-lg p-6 space-y-4 transform transition-all duration-300 hover:scale-[1.02]';
+        const periodRange = new PeriodTracker().formatDateRange(pred.periodStart, pred.periodEnd);
+        const fertileRange = new PeriodTracker().formatDateRange(pred.fertility.start, pred.fertility.end);
+        const ovulation = pred.ovulation.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        card.innerHTML = `
+            <div class="flex justify-between">
+                <div>
+                    <h4 class="font-semibold text-gray-800">Cycle ${pred.cycleNumber}</h4>
+                    <p class="text-pink-600">Period: ${periodRange}</p>
+                    <p class="text-green-600">Fertility: ${fertileRange}</p>
+                    <p class="text-purple-600">Ovulation: ${ovulation}</p>
+                </div>
+                <div class="text-right">
+                    <div class="font-bold text-lg ${pred.certainty>=85?'text-green-600':pred.certainty>=75?'text-yellow-600':'text-red-600'}">
+                        ${pred.certainty}% certain
+                    </div>
+                    <div class="w-24 h-2 bg-gray-200 rounded-full mt-2">
+                        <div class="h-full rounded-full ${pred.certainty>=85?'bg-green-600':pred.certainty>=75?'bg-yellow-600':'bg-red-600'}"
+                             style="width:${pred.certainty}%"></div>
+                    </div>
+                </div>
+            </div>
+        `;
+        timeline.appendChild(card);
+    });
+    // Display recommendations
+    document.getElementById('symptom-recommendations').innerHTML =
+      recommendations.map(rec => `<li class="flex items-center space-x-3">
+            <svg class="h-5 w-5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg><span>${rec}</span></li>`).join('');
+}
+
+// Add this function to handle period predictions display
+function displayUpcomingPeriods(predictions) {
+    const timeline = document.getElementById('period-timeline');
+    timeline.innerHTML = '<h4 class="text-xl font-bold text-pink-700 mb-4">Your Next 3 Periods</h4>';
+    
+    predictions.forEach((pred) => {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-lg shadow p-4 mb-4 border-l-4 border-pink-500';
+        const startDate = pred.periodStart.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        
+        card.innerHTML = `
+            <div class="flex justify-between items-center">
+                <div>
+                    <h5 class="font-semibold text-gray-800">Period ${pred.cycleNumber}</h5>
+                    <p class="text-pink-600">Starts: ${startDate}</p>
+                </div>
+                <div class="text-right">
+                    <span class="text-sm text-gray-600">Certainty:</span>
+                    <div class="text-lg font-bold ${pred.certainty >= 85 ? 'text-green-600' : 
+                                                   pred.certainty >= 75 ? 'text-yellow-600' : 
+                                                   'text-red-600'}">
+                        ${pred.certainty}%
+                    </div>
+                </div>
+            </div>
+        `;
+        timeline.appendChild(card);
+    });
+}
+
+// Enhance form inputs with floating labels and tooltips
+document.querySelectorAll('.input-group .form-input').forEach(input => {
+    input.addEventListener('focus', () => {
+        input.parentElement.classList.add('focused');
+    });
+    input.addEventListener('blur', () => {
+        input.parentElement.classList.remove('focused');
+    });
+});
+
+// Add loading state feedback
+function showLoading() {
+    document.querySelectorAll('.result-value').forEach(el => {
+        el.classList.add('loading'); // Define loading style in CSS if needed
+    });
+}
+function hideLoading() {
+    document.querySelectorAll('.result-value').forEach(el => {
+        el.classList.remove('loading');
+    });
+}
+
+// Intersection Observer for scroll animations
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('animate-in');
+    });
+}, { threshold: 0.1 });
+document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+// Responsive navigation (touch targets)
+const initResponsiveNav = () => {
+    const viewportWidth = window.innerWidth;
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+        if (viewportWidth < 768) {
+            link.style.padding = '1rem';
+        } else {
+            link.style.padding = '';
+        }
+    });
+};
+window.addEventListener('resize', initResponsiveNav);
+initResponsiveNav();
