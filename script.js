@@ -119,6 +119,9 @@ document.getElementById('bmi-form').addEventListener('submit', async function(ev
     // Predict biological age
     const biologicalAge = predictBiologicalAge(parseFloat(bmi), age, gender, weight, height);
 
+    // Update the results with the new function
+    updateResults(bmi, category, biologicalAge, age);
+
     // Update results
     const resultSection = document.getElementById('result-section');
     resultSection.classList.remove('hidden');
@@ -399,6 +402,80 @@ function displayPeriodPredictions(predictions, recommendations) {
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
             </svg><span>${rec}</span></li>`).join('');
 }
+
+// Add this function to handle result updates
+function updateResults(bmi, category, biologicalAge, chronologicalAge) {
+    // Animate BMI value
+    const bmiResult = document.getElementById('bmi-result');
+    const startBMI = 0;
+    const duration = 1500;
+    
+    anime({
+        targets: bmiResult,
+        innerHTML: [startBMI, parseFloat(bmi)],
+        round: 100,
+        easing: 'easeInOutQuart',
+        duration: duration,
+        begin: () => {
+            bmiResult.classList.add('animate');
+            bmiResult.innerHTML = '0.00';
+        }
+    });
+
+    // Update BMI category with appropriate color
+    const bmiCategory = document.getElementById('bmi-category');
+    bmiCategory.className = 'category-badge result-value';
+    bmiCategory.classList.add(getCategoryClass(category));
+    setTimeout(() => {
+        bmiCategory.classList.add('animate');
+        bmiCategory.textContent = category;
+    }, 200);
+
+    // Update biological age
+    const bioAge = document.getElementById('biological-age');
+    const chronoAge = document.getElementById('chronological-age');
+    const bioAgeValue = document.getElementById('bio-age');
+    
+    anime({
+        targets: bioAge,
+        innerHTML: [0, biologicalAge],
+        round: 1,
+        easing: 'easeInOutQuart',
+        duration: duration,
+        begin: () => {
+            document.querySelector('.biological-age-indicator').classList.add('animate');
+        }
+    });
+
+    chronoAge.textContent = `${chronologicalAge} years`;
+    bioAgeValue.textContent = `${biologicalAge} years`;
+
+    // Animate recommendations
+    setTimeout(animateRecommendations, duration);
+}
+
+function getCategoryClass(category) {
+    switch(category.toLowerCase()) {
+        case 'underweight': return 'underweight';
+        case 'normal weight': return 'normal';
+        case 'overweight': return 'overweight';
+        case 'obesity': return 'obese';
+        default: return '';
+    }
+}
+
+// Add share functionality
+document.getElementById('share-results').addEventListener('click', function() {
+    if (navigator.share) {
+        navigator.share({
+            title: 'My BMI Results',
+            text: `My BMI is ${document.getElementById('bmi-result').textContent} (${document.getElementById('bmi-category').textContent}). Calculate yours at fitIN!`,
+            url: window.location.href
+        }).catch(console.error);
+    } else {
+        alert('Sharing is not available on your device');
+    }
+});
 
 // Add this function to handle period predictions display
 function displayUpcomingPeriods(predictions) {

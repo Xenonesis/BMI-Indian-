@@ -553,40 +553,81 @@
 
     <!-- Right Column - Results Section -->
     <section id="result-section" class="hidden fade-in bg-white rounded-2xl shadow-xl p-8">
-      <div class="text-center mb-8">
-        <h2 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">Your Results</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- BMI Result -->
-          <div class="inline-block rounded-full bg-gradient-to-r from-blue-100 to-purple-100 p-8">
-            <p id="bmi-result" class="text-4xl font-bold text-blue-600 mb-2"></p>
-            <p id="bmi-category" class="text-xl text-gray-600"></p>
-          </div>
-          <!-- Biological Age Result -->
-          <div class="inline-block rounded-full bg-gradient-to-r from-green-100 to-teal-100 p-8">
-            <p id="biological-age" class="text-4xl font-bold text-green-600 mb-2"></p>
-            <p class="text-xl text-gray-600">Biological Age</p>
-          </div>
+  <div class="text-center mb-8">
+    <h2 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
+      Your Health Profile
+    </h2>
+    
+    <!-- BMI Result Card -->
+    <div class="result-card rounded-2xl p-6 mb-6">
+      <div class="flex items-center justify-center space-x-4">
+        <div class="result-chart">
+          <!-- Circle progress will be inserted here by JS -->
+        </div>
+        <div class="text-left">
+          <p id="bmi-result" class="text-4xl font-bold text-blue-600 mb-2 result-value"></p>
+          <div id="bmi-category" class="category-badge result-value"></div>
         </div>
       </div>
-
-      <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6">
-        <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-          <svg class="h-6 w-6 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-          </svg>
-          Health Recommendations
-        </h3>
-        <ul id="recommendation-list" class="space-y-3 text-gray-600"></ul>
+      <div class="mt-4 text-gray-600 text-sm">
+        Your BMI indicates your weight status and potential health risks
       </div>
+    </div>
+    
+    <!-- Biological Age Card -->
+    <div class="biological-age-indicator result-value">
+      <h3 class="text-xl font-semibold text-gray-800 mb-4">Biological Age Analysis</h3>
+      <div class="text-center">
+        <p id="biological-age" class="text-4xl font-bold text-green-600 mb-2"></p>
+        <div class="age-comparison text-sm">
+          <span class="text-gray-600">Chronological Age:</span>
+          <span id="chronological-age" class="font-semibold"></span>
+        </div>
+        <div class="age-comparison text-sm">
+          <span class="text-gray-600">Biological Age:</span>
+          <span id="bio-age" class="font-semibold"></span>
+        </div>
+      </div>
+    </div>
+  </div>
 
-      <button id="download-pdf" 
-              class="mt-6 bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 flex items-center justify-center w-full space-x-2">
-        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-        </svg>
-        <span>Download BMI Report</span>
-      </button>
-    </section>
+  <!-- Health Recommendations -->
+  <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6 mt-6">
+    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+      <svg class="h-6 w-6 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+              d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+      Personalized Health Insights
+    </h3>
+    <ul id="recommendation-list" class="space-y-3"></ul>
+  </div>
+  
+  <!-- Action Buttons -->
+  <div class="grid grid-cols-2 gap-4 mt-6">
+    <button id="download-pdf" 
+            class="bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-3 rounded-lg 
+                   font-semibold shadow-lg hover:shadow-xl transform hover:scale-[1.02] 
+                   transition-all duration-300 flex items-center justify-center space-x-2">
+      <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+              d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      </svg>
+      <span>Download Report</span>
+    </button>
+    <button id="share-results" 
+            class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg 
+                   font-semibold shadow-lg hover:shadow-xl transform hover:scale-[1.02] 
+                   transition-all duration-300 flex items-center justify-center space-x-2">
+      <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+              d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+      </svg>
+      <span>Share Results</span>
+    </button>
+  </div>
+</section>
+
   </div>
 
   <!-- Add this section after the BMI results section -->
@@ -643,7 +684,7 @@
     <div class="grid md:grid-cols-3 gap-6">
       <div class="p-4 bg-green-50 rounded-lg border border-green-200">
         <svg class="h-8 w-8 text-green-600 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
         </svg>
         <h3 class="font-semibold text-green-800 mb-2">Balanced Diet</h3>
         <p class="text-green-700">Include a variety of fruits, vegetables, whole grains, and lean proteins in your diet.</p>
