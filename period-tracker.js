@@ -73,6 +73,17 @@ class PeriodTracker {
         return symptoms.reduce((acc, s) => recs[s] ? acc.concat(recs[s]) : acc, []);
     }
 
+    getDeficiencyTips(symptoms) {
+        const deficiencyTips = {
+            cramps: 'Consider increasing magnesium intake through foods like nuts, seeds, and leafy greens.',
+            headache: 'Ensure adequate hydration and consider magnesium supplements.',
+            bloating: 'Reduce intake of salty foods and carbonated drinks.',
+            fatigue: 'Check iron levels and consider iron-rich foods or supplements.',
+            moodSwings: 'Maintain a balanced diet and consider B vitamins for mood regulation.'
+        };
+        return symptoms.map(s => deficiencyTips[s]).filter(Boolean);
+    }
+
     formatDateRange(start, end) {
         const options = { month: 'short', day: 'numeric' };
         return `${start.toLocaleDateString('en-US', options)} - ${end.toLocaleDateString('en-US', options)}`;

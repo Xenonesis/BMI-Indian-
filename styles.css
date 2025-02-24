@@ -18,6 +18,12 @@ body {
   to { transform: translateY(0); opacity: 1; }
 }
 
+@keyframes pulseScale {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
 /* Floating Labels & Tooltips */
 .floating-label {
   position: absolute;
@@ -89,4 +95,102 @@ body {
 /* Intersection Observer animated class */
 .animate-in {
   animation: slideInUp 0.6s ease forwards;
+}
+
+/* Health Chart Container */
+.chart-container {
+  position: relative;
+  width: 200px;
+  margin: 0 auto;
+}
+
+/* Recommendation Cards */
+.recommendation-card {
+  background: white;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.recommendation-header {
+  padding: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.recommendation-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.recommendation-content.expanded {
+  max-height: 500px;
+}
+
+/* Tooltip Theme */
+.tippy-box[data-theme~='custom'] {
+  background-color: #1f2937;
+  color: white;
+}
+
+.tippy-box[data-theme~='custom'][data-placement^='top'] > .tippy-arrow::before {
+  border-top-color: #1f2937;
+}
+
+/* Pulse Animation */
+.pulse-animation {
+  animation: pulseScale 2s infinite;
+}
+
+/* Transitions */
+.smooth-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Interactive Elements */
+.interactive-element {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.interactive-element:hover {
+  transform: scale(1.05);
+}
+
+/* Health Score Ring */
+.health-score-ring {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+
+.score-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* Notification */
+.notification {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.notification.hide {
+  transform: translateY(1rem);
+  opacity: 0;
 }

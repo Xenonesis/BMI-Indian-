@@ -58,6 +58,20 @@ document.getElementById('gender').addEventListener('change', function() {
     periodSection.classList.toggle('hidden', this.value.toLowerCase() !== 'female');
 });
 
+// Add height unit toggle handlers
+document.querySelectorAll('input[name="height-unit"]').forEach(radio => {
+  radio.addEventListener('change', () => {
+    const isFeetInches = radio.value === 'ft_in';
+    document.getElementById('height-cm-group').classList.toggle('hidden', isFeetInches);
+    document.getElementById('height-ftin-group').classList.toggle('hidden', !isFeetInches);
+    
+    // Toggle required attributes
+    document.getElementById('height-cm').required = !isFeetInches;
+    document.getElementById('height-feet').required = isFeetInches;
+    document.getElementById('height-inches').required = isFeetInches;
+  });
+});
+
 // Handle form submission and BMI calculation
 document.getElementById('bmi-form').addEventListener('submit', async function(event) {
     event.preventDefault();
@@ -69,7 +83,16 @@ document.getElementById('bmi-form').addEventListener('submit', async function(ev
     const age = parseInt(document.getElementById('age').value, 10);
     const gender = document.getElementById('gender').value;
     const weight = parseFloat(document.getElementById('weight').value);
-    const height = parseFloat(document.getElementById('height').value);
+    
+    // Get height based on selected unit
+    let height;
+    if (document.querySelector('input[name="height-unit"]:checked').value === 'ft_in') {
+        const feet = parseFloat(document.getElementById('height-feet').value) || 0;
+        const inches = parseFloat(document.getElementById('height-inches').value) || 0;
+        height = ((feet * 12) + inches) * 2.54; // Convert to cm
+    } else {
+        height = parseFloat(document.getElementById('height-cm').value);
+    }
 
     // Validate inputs
     if (isNaN(age) || isNaN(weight) || isNaN(height)) {
