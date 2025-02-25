@@ -194,3 +194,50 @@ body {
   transform: translateY(1rem);
   opacity: 0;
 }
+
+/* Quick Tips Navigation Buttons */
+.prev-tip,
+.next-tip {
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.prev-tip:hover,
+.next-tip:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.prev-tip.active,
+.next-tip.active {
+    transform: scale(0.95);
+}
+
+/* Quick Tips Slider */
+.quick-tips-slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.quick-tips-container {
+    position: relative;
+    overflow: hidden;
+    padding: 0 2rem;
+}
+
+/* Progress Dots */
+.progress-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.indicator {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator:hover {
+    transform: scale(1.2);
+}
