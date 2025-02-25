@@ -1000,23 +1000,44 @@
   </div>
 
   <!-- Quick Tips Carousel -->
-  <div class="mt-8 p-4 bg-gray-50 rounded-xl">
-    <div class="flex items-center justify-between mb-4">
-      <h4 class="text-lg font-semibold text-gray-800">Quick Health Tips</h4>
-      <div class="flex space-x-2">
-        <button class="prev-tip p-2 rounded-full bg-white shadow hover:bg-gray-100 transition-colors">
-          <i class="fas fa-chevron-left text-gray-600"></i>
-        </button>
-        <button class="next-tip p-2 rounded-full bg-white shadow hover:bg-gray-100 transition-colors">
-          <i class="fas fa-chevron-right text-gray-600"></i>
-        </button>
-      </div>
+  <section class="mt-8 p-4 bg-gray-50 rounded-xl animate-in" data-animation="fadeInUp">
+  <div class="flex items-center justify-between mb-4">
+    <h4 class="text-lg font-semibold text-gray-800">Quick Health Tips</h4>
+    <div class="flex space-x-2">
+      <button class="prev-tip p-2 rounded-full bg-white shadow hover:bg-gray-100 transition-colors">
+        <i class="fas fa-chevron-left text-gray-600"></i>
+      </button>
+      <button class="next-tip p-2 rounded-full bg-white shadow hover:bg-gray-100 transition-colors">
+        <i class="fas fa-chevron-right text-gray-600"></i>
+      </button>
     </div>
-    <div class="quick-tips-container overflow-hidden">
-      <div class="quick-tips-slider flex transition-transform duration-300">
-        <!-- Tips will be inserted here by JavaScript -->
+  </div>
+  <div class="quick-tips-container overflow-hidden">
+    <div class="quick-tips-slider flex transition-transform duration-500">
+      <!-- Example Tip Card -->
+      <div class="flex-shrink-0 w-full p-4">
+        <div class="bg-white rounded-xl p-6 shadow-md transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
+          <div class="flex items-center space-x-3 mb-2">
+            <i class="fas fa-glass-water text-blue-500 text-2xl"></i>
+            <h5 class="font-bold text-gray-800">Hydration</h5>
+          </div>
+          <p class="text-sm text-gray-600">
+            Drink a glass of water before meals to aid digestion and control cravings.
+          </p>
+        </div>
       </div>
+      <!-- ...existing tip cards (populated by JS or similar)... -->
     </div>
+  </div>
+  <!-- Progress Indicators -->
+  <div class="flex justify-center space-x-2 mt-4">
+    <!-- These indicator dots will be updated by JS as the carousel advances -->
+    <span class="indicator w-3 h-3 bg-gray-300 rounded-full transition-all duration-300"></span>
+    <span class="indicator w-3 h-3 bg-gray-300 rounded-full transition-all duration-300"></span>
+    <span class="indicator w-3 h-3 bg-gray-300 rounded-full transition-all duration-300"></span>
+  </div>
+</section>
+
   </div>
 </section>
 

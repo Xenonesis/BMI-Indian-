@@ -24,13 +24,6 @@ body {
   100% { transform: scale(1); }
 }
 
-/* Gradient Animation */
-@keyframes gradient-x {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
 /* Floating Labels & Tooltips */
 .floating-label {
   position: absolute;
@@ -200,66 +193,4 @@ body {
 .notification.hide {
   transform: translateY(1rem);
   opacity: 0;
-}
-
-/* Gradient Animation */
-@keyframes gradient-x {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.animate-gradient-x {
-  background-size: 200% 200%;
-  animation: gradient-x 15s ease infinite;
-}
-
-/* Card Hover Effects */
-.hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.hover-lift:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-/* Icon Rotation Animation */
-.icon-rotate {
-  transition: transform 0.5s ease;
-}
-
-.icon-rotate:hover {
-  transform: rotate(360deg);
-}
-
-/* Smooth Scale Animation */
-.scale-hover {
-  transition: transform 0.3s ease;
-}
-
-.scale-hover:hover {
-  transform: scale(1.05);
-}
-
-/* List Item Hover Effect */
-.list-hover {
-  transition: all 0.3s ease;
-}
-
-.list-hover:hover {
-  transform: translateX(10px);
-  background: rgba(255, 255, 255, 0.8);
-}
-
-/* Card Background Animation */
-.card-bg-animate {
-  background-size: 400% 400%;
-  animation: gradient-shift 15s ease infinite;
-}
-
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
