@@ -308,3 +308,36 @@ body {
 .biological-age-section .tips-card p {
   color: #4a5568;
 }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .biological-age-section {
+    padding: 1.5rem;
+  }
+
+  .biological-age-section h2 {
+    font-size: 1.75rem;
+  }
+
+  .biological-age-section h3 {
+    font-size: 1.125rem;
+  }
+
+  .biological-age-section .tips-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .biological-age-section {
+    padding: 1rem;
+  }
+
+  .biological-age-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .biological-age-section h3 {
+    font-size: 1rem;
+  }
+}
