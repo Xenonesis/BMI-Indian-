@@ -387,7 +387,7 @@ function displayPeriodPredictions(predictions, recommendations) {
                         ${pred.certainty}% certain
                     </div>
                     <div class="w-24 h-2 bg-gray-200 rounded-full mt-2">
-                        <div class="h-full rounded-full ${pred.certainty>=85?'bg-green-600':pred.certainty>=75?'bg-yellow-600':'bg-red-600'}"
+                        <div class="h-full rounded-full ${pred.certainty>=85?'bg-green-600':pred.certainty>=75?'bg-yellow-600':'text-red-600'}"
                              style="width:${pred.certainty}%"></div>
                     </div>
                 </div>
@@ -555,3 +555,51 @@ const initResponsiveNav = () => {
 };
 window.addEventListener('resize', initResponsiveNav);
 initResponsiveNav();
+
+// Quick Tips Carousel
+const quickTips = [
+  { icon: 'fa-glass-water', text: 'Drink water before meals to help with portion control' },
+  { icon: 'fa-stairs', text: 'Take the stairs instead of the elevator when possible' },
+  { icon: 'fa-apple-whole', text: 'Keep healthy snacks readily available' },
+  { icon: 'fa-bed', text: 'Aim for consistent bedtime and wake-up times' },
+  { icon: 'fa-person-walking', text: 'Take short walks during work breaks' }
+];
+
+const tipSlider = document.querySelector('.quick-tips-slider');
+const prevTip = document.querySelector('.prev-tip');
+const nextTip = document.querySelector('.next-tip');
+let currentTip = 0;
+
+// Populate tips
+quickTips.forEach(tip => {
+  const tipElement = document.createElement('div');
+  tipElement.className = 'flex-shrink-0 w-full p-4';
+  tipElement.innerHTML = `
+    <div class="flex items-center space-x-3 bg-white p-4 rounded-lg shadow-sm">
+      <i class="fas ${tip.icon} text-blue-500"></i>
+      <p class="text-gray-700">${tip.text}</p>
+    </div>
+  `;
+  tipSlider.appendChild(tipElement);
+});
+
+// Tip navigation
+function updateTipPosition() {
+  tipSlider.style.transform = `translateX(-${currentTip * 100}%)`;
+}
+
+prevTip.addEventListener('click', () => {
+  currentTip = Math.max(currentTip - 1, 0);
+  updateTipPosition();
+});
+
+nextTip.addEventListener('click', () => {
+  currentTip = Math.min(currentTip + 1, quickTips.length - 1);
+  updateTipPosition();
+});
+
+// Auto-advance tips
+setInterval(() => {
+  currentTip = (currentTip + 1) % quickTips.length;
+  updateTipPosition();
+}, 5000);

@@ -713,68 +713,312 @@
 </div>
 
   <!-- Add this section before the BMI Categories Card -->
-  <section class="mt-12 bg-white rounded-2xl shadow-xl p-8">
-    <h2 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">Understanding BMI</h2>
+  <section class="mt-12 bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-8 transform hover:scale-[1.01] transition-all duration-500">
+  <!-- Section Header with Animated Background -->
+  <div class="text-center mb-12 relative overflow-hidden">
+    <!-- Animated background gradient -->
+    <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 animate-gradient-x"></div>
     
-    <div class="grid md:grid-cols-2 gap-8">
-      <!-- What is BMI -->
-      <div class="space-y-4">
-        <h3 class="text-xl font-semibold text-gray-800">What is BMI?</h3>
-        <p class="text-gray-600">
-          Body Mass Index (BMI) is a simple measurement using your height and weight to work out if your weight is healthy. It's used by healthcare professionals to assess if someone is at risk of health issues related to their weight.
-        </p>
-        <div class="bg-blue-50 p-4 rounded-lg">
-          <p class="text-blue-800 font-medium">BMI Formula:</p>
-          <p class="text-blue-600">BMI = weight (kg) / height² (m)</p>
+    <div class="relative">
+      <span class="inline-block text-sm font-semibold text-blue-600 tracking-wider mb-2 bg-blue-100 px-3 py-1 rounded-full animate-pulse">
+        Essential Knowledge
+      </span>
+      <h2 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+        Understanding BMI
+      </h2>
+      <div class="flex items-center justify-center mt-4 space-x-2 text-gray-600">
+        <span class="inline-block w-12 h-0.5 bg-gradient-to-r from-blue-500 to-transparent"></span>
+        <p class="text-sm md:text-base">Learn about Body Mass Index and its significance</p>
+        <span class="inline-block w-12 h-0.5 bg-gradient-to-l from-blue-500 to-transparent"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Content Grid -->
+  <div class="grid md:grid-cols-2 gap-8">
+    <!-- Left Column -->
+    <div class="space-y-6 transform transition-all duration-500">
+      <!-- What is BMI Card -->
+      <div class="group bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 hover:shadow-xl transition-all duration-500 hover:scale-[1.02]">
+        <div class="flex items-start space-x-4">
+          <div class="bg-white p-4 rounded-xl shadow-md group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+            <i class="fas fa-calculator text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-2xl"></i>
+          </div>
+          <div class="space-y-3 transform transition-all duration-500">
+            <h3 class="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              What is BMI?
+            </h3>
+            <p class="text-gray-600 leading-relaxed group-hover:text-gray-800 transition-colors duration-300">
+              Body Mass Index (BMI) is a numerical value derived from your weight and height. Healthcare professionals use it to quickly assess whether someone is underweight, normal weight, overweight, or obese.
+            </p>
+          </div>
         </div>
       </div>
 
-      <!-- BMI Limitations -->
-      <div class="space-y-4">
-        <h3 class="text-xl font-semibold text-gray-800">Limitations of BMI</h3>
-        <ul class="list-disc list-inside text-gray-600 space-y-2">
-          <li>Doesn't account for muscle mass</li>
-          <li>May not be suitable for athletes</li>
-          <li>Different considerations for elderly</li>
-          <li>Varies across ethnic groups</li>
-        </ul>
-        <p class="text-sm text-gray-500 italic">
-          Always consult healthcare professionals for personalized advice.
+      <!-- Interactive Formula Card -->
+      <div class="relative group bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-500">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-2xl transform scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-bottom"></div>
+        <div class="relative">
+          <h4 class="text-lg font-semibold text-blue-800 mb-4 flex items-center">
+            <i class="fas fa-square-root-alt mr-2 animate-bounce"></i>
+            BMI Formula
+          </h4>
+          <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-xl text-center transform transition-all duration-500 hover:scale-[1.02]">
+            <div class="inline-block">
+              <div class="text-2xl font-mono font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
+                BMI = weight (kg) / height² (m)
+              </div>
+              <div class="flex items-center justify-center space-x-4 text-sm text-gray-600">
+                <span class="flex items-center hover:text-blue-600 transition-colors duration-300">
+                  <i class="fas fa-weight-scale mr-1"></i>
+                  Weight in kilograms
+                </span>
+                <span class="flex items-center hover:text-purple-600 transition-colors duration-300">
+                  <i class="fas fa-ruler-vertical mr-1"></i>
+                  Height in meters
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="space-y-6">
+      <!-- Limitations Card with Hover Effects -->
+      <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 transform transition-all duration-500 hover:scale-[1.02] hover:shadow-xl">
+        <div class="flex items-start space-x-4">
+          <div class="bg-white p-4 rounded-xl shadow-md transform transition-all duration-500 hover:rotate-12">
+            <i class="fas fa-exclamation-circle text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-2xl"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+              BMI Limitations
+            </h3>
+            <ul class="space-y-3">
+              <li class="flex items-center space-x-3 bg-white/50 p-3 rounded-lg transform transition-all duration-300 hover:translate-x-2 hover:shadow-md">
+                <i class="fas fa-dumbbell text-blue-500"></i>
+                <span class="text-gray-600">Doesn't distinguish muscle from fat</span>
+              </li>
+              <li class="flex items-center space-x-3 bg-white/50 p-3 rounded-lg transform transition-all duration-300 hover:translate-x-2 hover:shadow-md">
+                <i class="fas fa-running text-green-500"></i>
+                <span class="text-gray-600">May misclassify athletes</span>
+              </li>
+              <li class="flex items-center space-x-3 bg-white/50 p-3 rounded-lg transform transition-all duration-300 hover:translate-x-2 hover:shadow-md">
+                <i class="fas fa-user-clock text-yellow-500"></i>
+                <span class="text-gray-600">Different considerations for elderly</span>
+              </li>
+              <li class="flex items-center space-x-3 bg-white/50 p-3 rounded-lg transform transition-all duration-300 hover:translate-x-2 hover:shadow-md">
+                <i class="fas fa-globe-asia text-purple-500"></i>
+                <span class="text-gray-600">Varies across ethnic groups</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Medical Advice Note with Animation -->
+      <div class="relative overflow-hidden bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-6 border border-yellow-100 group">
+        <div class="absolute inset-0 bg-gradient-to-r from-yellow-500/5 to-orange-500/5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+        <div class="relative flex items-start space-x-4">
+          <div class="bg-white p-4 rounded-xl shadow-md group-hover:scale-110 transition-transform duration-500">
+            <i class="fas fa-stethoscope text-yellow-600 text-2xl group-hover:text-yellow-500 transition-colors duration-300"></i>
+          </div>
+          <div class="space-y-2">
+            <h4 class="font-semibold text-yellow-800">Medical Advice</h4>
+            <p class="text-gray-700 group-hover:text-gray-900 transition-colors duration-300">
+              Always consult healthcare professionals for personalized advice. BMI is one of many health indicators and should not be used as the sole measure of health.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Health Tips Section -->
+  <section class="mt-8 bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-8">
+  <!-- Section Header -->
+  <div class="text-center mb-8">
+    <span class="inline-block text-sm font-semibold text-blue-600 tracking-wider mb-2 bg-blue-100 px-3 py-1 rounded-full">
+      Expert Advice
+    </span>
+    <h2 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+      Health & Wellness Tips
+    </h2>
+    <p class="text-gray-600 max-w-2xl mx-auto">
+      Comprehensive guidance for maintaining a healthy lifestyle and achieving your fitness goals
+    </p>
+  </div>
+
+  <!-- Tips Grid -->
+  <div class="grid md:grid-cols-3 gap-6">
+    <!-- Diet Card -->
+    <div class="group bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
+      <div class="bg-white rounded-xl p-4 shadow-md inline-block group-hover:scale-110 transition-transform duration-300">
+        <i class="fas fa-utensils text-2xl text-green-600"></i>
+      </div>
+      <h3 class="font-semibold text-green-800 text-xl mt-4 mb-3">Balanced Diet</h3>
+      <ul class="space-y-2 text-green-700">
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-check text-green-500"></i>
+          <span>Include diverse fruits and vegetables</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-check text-green-500"></i>
+          <span>Choose whole grains over refined</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-check text-green-500"></i>
+          <span>Incorporate lean proteins</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-check text-green-500"></i>
+          <span>Monitor portion sizes</span>
+        </li>
+      </ul>
+      <div class="mt-4 pt-4 border-t border-green-100">
+        <p class="text-sm text-green-600 italic">
+          Recommended: 5 portions of fruits/vegetables daily
         </p>
       </div>
     </div>
-  </section>
 
-  <!-- Health Tips Section -->
-  <section class="mt-8 bg-white rounded-2xl shadow-xl p-8">
-    <h2 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">Health Tips</h2>
-    
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="p-4 bg-green-50 rounded-lg border border-green-200">
-        <svg class="h-8 w-8 text-green-600 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
-        </svg>
-        <h3 class="font-semibold text-green-800 mb-2">Balanced Diet</h3>
-        <p class="text-green-700">Include a variety of fruits, vegetables, whole grains, and lean proteins in your diet.</p>
+    <!-- Exercise Card -->
+    <div class="group bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-6 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
+      <div class="bg-white rounded-xl p-4 shadow-md inline-block group-hover:scale-110 transition-transform duration-300">
+        <i class="fas fa-running text-2xl text-blue-600"></i>
       </div>
-
-      <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
-        <svg class="h-8 w-8 text-blue-600 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-        </svg>
-        <h3 class="font-semibold text-blue-800 mb-2">Regular Exercise</h3>
-        <p class="text-blue-700">Aim for at least 150 minutes of moderate physical activity per week.</p>
-      </div>
-
-      <div class="p-4 bg-purple-50 rounded-lg border border-purple-200">
-        <svg class="h-8 w-8 text-purple-600 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-        <h3 class="font-semibold text-purple-800 mb-2">Healthy Lifestyle</h3>
-        <p class="text-purple-700">Get adequate sleep, manage stress, and stay hydrated.</p>
+      <h3 class="font-semibold text-blue-800 text-xl mt-4 mb-3">Physical Activity</h3>
+      <ul class="space-y-2 text-blue-700">
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-check text-blue-500"></i>
+          <span>150 minutes moderate activity/week</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-check text-blue-500"></i>
+          <span>Mix cardio and strength training</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-check text-blue-500"></i>
+          <span>Include flexibility exercises</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-check text-blue-500"></i>
+          <span>Take regular movement breaks</span>
+        </li>
+      </ul>
+      <div class="mt-4 pt-4 border-t border-blue-100">
+        <p class="text-sm text-blue-600 italic">
+          Aim for: 10,000 steps daily
+        </p>
       </div>
     </div>
-  </section>
+
+    <!-- Lifestyle Card -->
+    <div class="group bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl p-6 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
+      <div class="bg-white rounded-xl p-4 shadow-md inline-block group-hover:scale-110 transition-transform duration-300">
+        <i class="fas fa-heart text-2xl text-purple-600"></i>
+      </div>
+      <h3 class="font-semibold text-purple-800 text-xl mt-4 mb-3">Healthy Lifestyle</h3>
+      <ul class="space-y-2 text-purple-700">
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-check text-purple-500"></i>
+          <span>7-9 hours of quality sleep</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-check text-purple-500"></i>
+          <span>Stay hydrated (8 glasses/day)</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-check text-purple-500"></i>
+          <span>Practice stress management</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-check text-purple-500"></i>
+          <span>Maintain work-life balance</span>
+        </li>
+      </ul>
+      <div class="mt-4 pt-4 border-t border-purple-100">
+        <p class="text-sm text-purple-600 italic">
+          Practice: Daily meditation/mindfulness
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Additional Tips -->
+  <div class="mt-8 grid md:grid-cols-2 gap-6">
+    <!-- Mental Wellness -->
+    <div class="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-6">
+      <div class="flex items-center space-x-3 mb-4">
+        <div class="bg-white p-3 rounded-xl shadow-md">
+          <i class="fas fa-brain text-yellow-600 text-xl"></i>
+        </div>
+        <h4 class="text-lg font-semibold text-yellow-800">Mental Wellness</h4>
+      </div>
+      <ul class="space-y-2 text-yellow-700">
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-star text-yellow-500 text-sm"></i>
+          <span>Practice mindfulness meditation</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-star text-yellow-500 text-sm"></i>
+          <span>Maintain social connections</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-star text-yellow-500 text-sm"></i>
+          <span>Set realistic goals</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Sleep Hygiene -->
+    <div class="bg-gradient-to-r from-teal-50 to-green-50 rounded-2xl p-6">
+      <div class="flex items-center space-x-3 mb-4">
+        <div class="bg-white p-3 rounded-xl shadow-md">
+          <i class="fas fa-moon text-teal-600 text-xl"></i>
+        </div>
+        <h4 class="text-lg font-semibold text-teal-800">Sleep Hygiene</h4>
+      </div>
+      <ul class="space-y-2 text-teal-700">
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-star text-teal-500 text-sm"></i>
+          <span>Maintain consistent sleep schedule</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-star text-teal-500 text-sm"></i>
+          <span>Create a relaxing bedtime routine</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-star text-teal-500 text-sm"></i>
+          <span>Limit screen time before bed</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Quick Tips Carousel -->
+  <div class="mt-8 p-4 bg-gray-50 rounded-xl">
+    <div class="flex items-center justify-between mb-4">
+      <h4 class="text-lg font-semibold text-gray-800">Quick Health Tips</h4>
+      <div class="flex space-x-2">
+        <button class="prev-tip p-2 rounded-full bg-white shadow hover:bg-gray-100 transition-colors">
+          <i class="fas fa-chevron-left text-gray-600"></i>
+        </button>
+        <button class="next-tip p-2 rounded-full bg-white shadow hover:bg-gray-100 transition-colors">
+          <i class="fas fa-chevron-right text-gray-600"></i>
+        </button>
+      </div>
+    </div>
+    <div class="quick-tips-container overflow-hidden">
+      <div class="quick-tips-slider flex transition-transform duration-300">
+        <!-- Tips will be inserted here by JavaScript -->
+      </div>
+    </div>
+  </div>
+</section>
 
   <!-- Add an explanation section for biological age -->
   <section class="mt-8 bg-white rounded-2xl shadow-xl p-8">
