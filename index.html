@@ -434,83 +434,101 @@
   <!-- Two Column Layout for Form and Info -->
   <div class="grid md:grid-cols-2 gap-8">
     <!-- Left Column - BMI Calculator -->
-    <section class="form-section fade-in bg-white rounded-2xl shadow-xl p-8 transform hover:scale-[1.01] transition-all duration-300 animate-on-scroll">
+    <section class="form-section bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-8">
+      <!-- Form Header -->
+      <div class="text-center mb-8">
+        <span class="inline-block text-sm font-semibold text-blue-600 tracking-wider mb-2 bg-blue-100 px-3 py-1 rounded-full animate-float">
+          Quick & Easy BMI Calculator
+        </span>
+        <h3 class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          Calculate Your BMI
+        </h3>
+        <p class="text-gray-600 text-sm mt-2">Get instant insights about your body mass index</p>
+      </div>
+
       <form id="bmi-form" class="space-y-6">
-        <div class="space-y-6">
-          <!-- Name Input with Icon -->
-          <div class="form-group relative">
-            <label for="username" class="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
+        <!-- Personal Info Card -->
+        <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6 space-y-6">
+          <div class="form-group transform transition-all duration-300 hover:scale-[1.01]">
             <div class="relative">
-              <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
-                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-              </span>
               <input type="text" id="username" 
-                     class="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
+                     class="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 
+                            bg-white/50 backdrop-blur-md transition-all duration-300"
                      placeholder="Enter your name" required>
+              <i class="fas fa-user absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
             </div>
           </div>
 
-          <!-- Age and Gender Grid -->
           <div class="grid grid-cols-2 gap-4">
-            <div class="form-group relative">
-              <label for="age" class="block text-sm font-semibold text-gray-700 mb-2">Age</label>
+            <div class="form-group transform transition-all duration-300 hover:scale-[1.01]">
               <div class="relative">
-                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
-                  <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                </span>
                 <input type="number" id="age" 
-                       class="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
+                       class="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 
+                              bg-white/50 backdrop-blur-md transition-all duration-300"
                        placeholder="Age" required min="1">
+                <i class="fas fa-birthday-cake absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
               </div>
             </div>
 
-            <div class="form-group relative">
-              <label for="gender" class="block text-sm font-semibold text-gray-700 mb-2">Gender</label>
-              <select id="gender" 
-                      class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 bg-white"
-                      required>
-                <option value="" disabled selected>Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-              </select>
+            <div class="form-group transform transition-all duration-300 hover:scale-[1.01]">
+              <div class="relative">
+                <select id="gender" 
+                        class="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 
+                               bg-white/50 backdrop-blur-md transition-all duration-300 appearance-none"
+                        required>
+                  <option value="" disabled selected>Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+                <i class="fas fa-venus-mars absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Measurements Card -->
+        <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6 space-y-6">
+          <h4 class="text-lg font-semibold text-gray-800 flex items-center">
+            <i class="fas fa-ruler-combined mr-2 text-blue-500"></i>
+            Body Measurements
+          </h4>
+
+          <div class="form-group transform transition-all duration-300 hover:scale-[1.01]">
+            <div class="relative">
+              <input type="number" id="weight" 
+                     class="w-full pl-12 pr-16 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 
+                            bg-white/50 backdrop-blur-md transition-all duration-300"
+                     placeholder="Weight" required min="1" step="0.1">
+              <i class="fas fa-weight absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500">kg</span>
             </div>
           </div>
 
-          <!-- Weight and Height with Units -->
-          <div class="grid grid-cols-2 gap-4">
-            <div class="form-group relative">
-              <label for="weight" class="block text-sm font-semibold text-gray-700 mb-2">Weight</label>
-              <div class="relative">
-                <input type="number" id="weight" 
-                       class="w-full pr-16 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
-                       placeholder="Weight" required min="1" step="0.1">
-                <span class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500">
-                  kg
+          <div class="space-y-4">
+            <div class="flex justify-center space-x-4">
+              <label class="relative">
+                <input type="radio" name="height-unit" value="cm" checked class="hidden peer">
+                <span class="block px-4 py-2 rounded-lg cursor-pointer bg-white/50 hover:bg-white
+                           peer-checked:bg-gradient-to-r peer-checked:from-blue-500 peer-checked:to-purple-500 
+                           peer-checked:text-white transition-all duration-300">
+                  <i class="fas fa-ruler-vertical mr-2"></i>
+                  Centimeters
                 </span>
-              </div>
+              </label>
+              <label class="relative">
+                <input type="radio" name="height-unit" value="ft_in" class="hidden peer">
+                <span class="block px-4 py-2 rounded-lg cursor-pointer bg-white/50 hover:bg-white
+                           peer-checked:bg-gradient-to-r peer-checked:from-blue-500 peer-checked:to-purple-500 
+                           peer-checked:text-white transition-all duration-300">
+                  <i class="fas fa-ruler mr-2"></i>
+                  Feet & Inches
+                </span>
+              </label>
             </div>
 
-            <!-- Replace the existing height input section with this -->
-<div class="form-group">
-  <label class="block text-sm font-semibold text-gray-700 mb-2">Height</label>
-  <div class="mb-3">
-    <label class="inline-flex items-center mr-4">
-      <input type="radio" name="height-unit" value="cm" checked class="text-blue-600">
-      <span class="ml-2">Centimeters</span>
-    </label>
-    <label class="inline-flex items-center">
-      <input type="radio" name="height-unit" value="ft_in" class="text-blue-600">
-      <span class="ml-2">Feet & Inches</span>
-    </label>
-  </div>
-  
-  <!-- CM input -->
-  <div id="height-cm-group" class="relative">
+            <!-- Height inputs remain unchanged -->
+            <div id="height-cm-group" class="relative">
     <input type="number" id="height-cm" 
            class="w-full pr-16 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
            placeholder="Height in cm" required>
@@ -532,8 +550,6 @@
       <span class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500">in</span>
     </div>
   </div>
-</div>
-
           </div>
         </div>
 
@@ -590,11 +606,15 @@
         </div>
 
         <button type="submit" 
-                class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 flex items-center justify-center space-x-2">
-          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10H9m3-5h3m-6 0h0" />
-          </svg>
-          <span>Calculate BMI</span>
+                class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-xl 
+                       font-semibold shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all 
+                       duration-300 relative overflow-hidden group">
+          <div class="absolute inset-0 bg-white/20 transform -translate-x-full group-hover:translate-x-full 
+                      transition-transform duration-700 ease-out"></div>
+          <span class="relative flex items-center justify-center space-x-2">
+            <i class="fas fa-calculator"></i>
+            <span>Calculate BMI</span>
+          </span>
         </button>
       </form>
     </section>
