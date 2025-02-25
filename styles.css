@@ -24,6 +24,30 @@ body {
   100% { transform: scale(1); }
 }
 
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+
 /* Floating Labels & Tooltips */
 .floating-label {
   position: absolute;
@@ -269,4 +293,58 @@ input:invalid {
         font-size: 1rem;
         padding: 0.7rem;
     }
+}
+
+/* Hero Section Animations */
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-title {
+  animation: slideIn 1s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+  opacity: 0;
+}
+
+/* Feature Cards */
+.feature-card {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.feature-card:hover i {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+/* Enhance Form Section */
+.form-section {
+  background: linear-gradient(145deg, #ffffff, #f5f7fa);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.form-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  animation: bounce 2s infinite;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .feature-card {
+    margin-bottom: 1rem;
+  }
+  
+  .animate-title {
+    font-size: 2.5rem;
+  }
 }

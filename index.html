@@ -374,14 +374,62 @@
   <!-- Main Content -->
 <main class="max-w-5xl mx-auto p-6">
   <!-- Hero Section -->
-  <section class="mb-12 text-center">
-    <h1 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+  <section class="mb-12 relative overflow-hidden">
+  <!-- Background Pattern -->
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 transform -skew-y-6"></div>
+  </div>
+  
+  <div class="relative z-10 text-center py-16 px-4">
+    <div class="animate-float">
+      <span class="inline-block text-sm font-semibold text-blue-600 tracking-wider mb-2 bg-blue-100 px-3 py-1 rounded-full">
+        Quick & Easy BMI Calculator
+      </span>
+    </div>
+    
+    <h1 class="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-title">
       Calculate Your BMI
     </h1>
-    <p class="text-gray-600 text-lg max-w-2xl mx-auto">
-      Get personalized health insights and recommendations based on your Body Mass Index
-    </p>
-  </section>
+    
+    <div class="max-w-3xl mx-auto">
+      <p class="text-gray-600 text-lg md:text-xl mb-8 animate-fade-in">
+        Get instant insights about your body mass index and personalized health recommendations
+      </p>
+      
+      <!-- Feature Highlights -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="feature-card bg-white p-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+          <div class="text-blue-500 mb-2">
+            <i class="fas fa-calculator text-2xl"></i>
+          </div>
+          <h3 class="font-semibold text-gray-800">Instant Results</h3>
+          <p class="text-sm text-gray-600">Get your BMI calculated instantly</p>
+        </div>
+        
+        <div class="feature-card bg-white p-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+          <div class="text-purple-500 mb-2">
+            <i class="fas fa-chart-line text-2xl"></i>
+          </div>
+          <h3 class="font-semibold text-gray-800">Track Progress</h3>
+          <p class="text-sm text-gray-600">Monitor your health journey</p>
+        </div>
+        
+        <div class="feature-card bg-white p-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+          <div class="text-green-500 mb-2">
+            <i class="fas fa-heartbeat text-2xl"></i>
+          </div>
+          <h3 class="font-semibold text-gray-800">Health Insights</h3>
+          <p class="text-sm text-gray-600">Get personalized recommendations</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <i class="fas fa-chevron-down text-blue-500"></i>
+    </div>
+  </div>
+</section>
 
   <!-- Two Column Layout for Form and Info -->
   <div class="grid md:grid-cols-2 gap-8">
