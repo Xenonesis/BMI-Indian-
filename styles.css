@@ -241,3 +241,70 @@ body {
 .indicator:hover {
     transform: scale(1.2);
 }
+
+/* Biological Age Section */
+.biological-age-section {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.biological-age-section h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  background: linear-gradient(to right, #38b2ac, #319795);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.biological-age-section h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.biological-age-section p {
+  color: #4a5568;
+}
+
+.biological-age-section ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+.biological-age-section ul li {
+  color: #4a5568;
+}
+
+.biological-age-section .tips-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.biological-age-section .tips-card {
+  background: linear-gradient(to bottom right, #f0fff4, #c6f6d5);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.biological-age-section .tips-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.biological-age-section .tips-card i {
+  font-size: 2rem;
+  color: #38a169;
+}
+
+.biological-age-section .tips-card h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2f855a;
+}
+
+.biological-age-section .tips-card p {
+  color: #4a5568;
+}
