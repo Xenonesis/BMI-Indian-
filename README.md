@@ -3,7 +3,7 @@
 ## Live Demo
 [https://bmi2025.netlify.app/](https://bmi2025.netlify.app/)
 
-## Version 2.8 - March 21, 2025
+## Version 3.9 - March 21, 2025
 
 fitIN is a comprehensive health monitoring application with an advanced BMI (Body Mass Index) calculator designed specifically for Indian users. The application features a modern, responsive interface and provides personalized health insights based on user metrics.
 

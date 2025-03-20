@@ -66,6 +66,7 @@ body {
 
 .navbar.scrolled {
   background: rgba(255,255,255,0.95);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 
@@ -368,4 +369,166 @@ footer .footer-links a:hover {
   footer .footer-links {
     margin-top: 0;
   }
+}
+
+/* Enhanced Footer Styles */
+.bg-grid-pattern {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Footer Responsive Adjustments */
+@media (max-width: 768px) {
+  footer .grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  footer .flex {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  footer .space-x-4 > * + * {
+    margin-top: 1rem;
+    margin-left: 0;
+  }
+  
+  footer .social-links {
+    justify-content: center;
+  }
+}
+
+/* Newsletter Form Styles */
+.newsletter-input {
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.newsletter-input:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Footer Link Hover Effects */
+.footer-link {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.footer-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: white;
+  transition: width 0.3s ease;
+}
+
+.footer-link:hover::after {
+  width: 100%;
+}
+
+/* Social Icons Animation */
+.social-icon {
+  transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: translateY(-3px) scale(1.1);
+}
+
+/* Privacy Policy Dropdown styles */
+.privacy-dropdown {
+  position: relative;
+  z-index: 50;
+}
+
+.privacy-dropdown-content {
+  min-width: 300px;
+  transform-origin: bottom left;
+  -webkit-backdrop-filter: blur(8px); /* Safari support */
+  backdrop-filter: blur(8px);
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.privacy-dropdown ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.privacy-dropdown li {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(209, 213, 219, 0.2);
+  transition: background-color 0.2s ease;
+}
+
+.privacy-dropdown li:last-child {
+  border-bottom: none;
+}
+
+.privacy-dropdown li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.privacy-dropdown-button:focus-visible + .privacy-dropdown-content,
+.privacy-dropdown-content:focus-within {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.privacy-dropdown-content {
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+}
+
+/* Enhanced dropdown animations */
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.privacy-dropdown-content.show {
+  animation: dropdownFadeIn 0.2s ease-out forwards;
 }
