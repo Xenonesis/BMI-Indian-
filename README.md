@@ -3,11 +3,21 @@
 ## Live link
 [https://bmi2025.netlify.app/](https://bmi2025.netlify.app/)
 
-## Version 2.8 - February 23, 2025
+## Version 2.8 - March 21, 2025
 
 fitIN is an interactive BMI (Body Mass Index) calculator website designed for Indian users. It calculates BMI based on user input for height and weight, providing personalized health recommendations and progress tracking. The website features a sleek, modern UI and is fully responsive on desktop and mobile devices.
 
-## New in Version 2.7
+## New in Version 2.8
+
+- **Health Profile Integration**: Added comprehensive health profile tracking
+- **Period Tracking Feature**: Integrated menstrual cycle tracking functionality
+- **Enhanced BMI Analysis**: More detailed BMI category analysis with health tips
+- **Biological Age Calculator**: New feature to estimate biological age based on health metrics
+- **Improved Height Units**: Added support for feet/inches and centimeters
+- **Enhanced Mobile Experience**: Further optimization for mobile devices
+- **Performance Improvements**: Faster loading times and smoother animations
+
+## Previous Features (Version 2.7)
 
 - **Enhanced UI/UX**: Improved interface with dark mode support.
 - **BMI Insights**: Added charts and graphs for visualizing BMI trends.
@@ -23,20 +33,24 @@ fitIN is an interactive BMI (Body Mass Index) calculator website designed for In
 - **Intersection Observer for Scroll Animations**: Smooth reveal animations as you scroll.
 
 ### Features
-- **BMI Calculation**: Input height (in cm) and weight (in kg) to calculate BMI.
-- **Personalized Health Recommendations**: Tailored advice based on BMI category (Underweight, Normal weight, Overweight, Obesity).
-- **PDF Report Generation**: Download personalized BMI and health reports.
-- **Progress Tracking**: Track BMI and additional metrics over time with visual insights.
-- **Health Resources**: Links to trusted health portals like WHO and NHP.
-- **FAQs Section**: Covers BMI concepts, calculation methods, and category details.
-- **Multi-language Support**: Switch between Hindi and English.
+- **BMI Calculation**: Input height (in cm/ft-in) and weight (in kg) to calculate BMI
+- **Health Profile System**: Comprehensive health tracking and analytics
+- **Period Tracking**: Menstrual cycle monitoring and predictions
+- **Biological Age Assessment**: Calculate your biological age based on health metrics
+- **Personalized Health Recommendations**: Tailored advice based on BMI category
+- **PDF Report Generation**: Download personalized BMI and health reports
+- **Progress Tracking**: Track BMI and additional metrics over time
+- **Health Resources**: Links to trusted health portals
+- **FAQs Section**: Comprehensive health and BMI information
+- **Multi-language Support**: Switch between Hindi and English
 
 ### Technologies Used
-- **Frontend**: HTML, CSS (TailwindCSS), JavaScript (Anime.js for animations, jsPDF for PDF generation).
-- **Responsive Design**: TailwindCSS for mobile-first design.
-- **JavaScript Libraries**:
-  - `jsPDF`: For generating PDF reports.
-  - `anime.js`: For adding smooth animations.
+- **Frontend**: HTML, CSS (TailwindCSS), JavaScript
+- **Libraries**:
+  - `jsPDF`: For generating PDF reports
+  - `anime.js`: For smooth animations
+  - `Chart.js`: For health metrics visualization
+  - `Day.js`: For date handling in period tracking
 
 ### How to Use
 1. Open the BMI Calculator in your browser.
