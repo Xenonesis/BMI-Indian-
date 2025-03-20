@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>fitIN - BMI Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  
+  <!-- Add these Font Awesome links -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script src="https://kit.fontawesome.com/YOUR_KIT_CODE.js" crossorigin="anonymous"></script>
+
+  <!-- Link new stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  overflow-x: hidden; /* Ensure no horizontal scrollbar appears */
+}
+
+/* Fade-in animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.6s ease-in-out;
+}
+
+.fade-in-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive adjustment for smaller screens */
+@media screen and (max-width: 640px) {
+  .fade-in {
+    transform: translateY(5px);
+  }
+}
+
+/* Form Section */
+.form-section {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header */
+.header {
+  background-color: #3b82f6;
+  color: white;
+  text-align: center;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+.footer {
+  background-color: #3b82f6;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+
+/* Input field styles */
+.input-field {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.input-field:focus {
+  border-color: #3b82f6;
+  outline: none;
+}
+
+/* Button styles */
+.button {
+  width: 100%;
+  padding: 15px;
+  background-color: #3b82f6;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #2563eb;
+}
+
+/* Logo */
+.logo {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+/* Tagline */
+.tagline {
+  font-style: italic;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+/* Section Header */
+.section-header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 30px;
+  text-align: center;
+  color: #333;
+}
+
+/* Content text styles */
+.content-text {
+  font-size: 16px;
+  margin: 10px 0;
+  color: #666;
+}
+
+/* Content Link */
+.content-link {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.content-link:hover {
+  text-decoration: underline;
+}
+
+/* Enhanced popup and icons */
+#close-popup {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+#minimize-popup-btn,
+#close-popup-btn {
+  transition: transform 0.3s ease;
+}
+
+#minimize-popup-btn:hover,
+#close-popup-btn:hover {
+  transform: scale(1.05);
+}
+
+#countdown-timer {
+  font-weight: bold;
+  color: red;
+}
+
+  /* Typography Enhancements */
+  body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: #333;
+  }
+  h1, h2, h3 {
+    font-weight: 700;
+    color: #222;
+  }
+  
+  /* Button and Card Enhancements */
+  button, .card {
+    transition: all 0.3s ease;
+  }
+  button:hover, .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Responsive Design Enhancements */
+  @media (max-width: 768px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Accessibility Improvements */
+  .text-blue-600 {
+    color: #1D4ED8;
+  }
+  .bg-gradient-to-r {
+    background: linear-gradient(to right, #3B82F6, #9333EA);
+  }
+  </style>
+</head>
+<body class="bg-gray-100">
+
+  <!-- Header -->
+<header class="bg-gradient-to-r from-blue-600 to-purple-500 shadow-lg py-4 px-6">
+  <div class="flex items-center justify-between">
+    <!-- Logo and Title -->
+    <div class="flex items-center space-x-4">
+      <!-- Logo -->
+      <img src="logo.png" alt="fitIN Logo" class="h-12 w-12 rounded-full hover:scale-110 transform transition-all duration-300 ease-in-out">
+      <!-- Title -->
+      <div>
+        <h1 class="text-2xl md:text-3xl font-bold text-white hover:text-gray-200 transition-all duration-300 ease-in-out">
+          fitIN BMI Calculator
+        </h1>
+        <p class="text-xs md:text-sm text-gray-200 italic">Your Pathway to a Healthier You</p>
+      </div>
+    </div>
+
+    <!-- Hamburger Icon -->
+    <button id="nav-toggle" class="md:hidden text-white hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-white" aria-label="Toggle navigation menu" title="Toggle Menu">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+      </svg>
+    </button>
+
+    <!-- Navigation Links -->
+    <nav id="nav-menu" class="hidden md:flex items-center space-x-6">
+      <a href="index.html" class="text-white hover:text-gray-300 transition-all duration-300 ease-in-out">Home</a>
+
+      <!-- About Dropdown -->
+      <div class="relative group">
+        <button class="text-white hover:text-gray-300 transition-all duration-300 ease-in-out">About</button>
+        <ul class="absolute hidden group-hover:block bg-gray-800 text-white p-4 rounded shadow-lg space-y-2 mt-2 w-64">
+          <li>FitIN is a health and fitness app made by Aditya.</li>
+          <li>It focuses on BMI tracking, progress tracking, and personalized health tips.</li>
+        </ul>
+      </div>
+
+      <!-- Contact Dropdown -->
+      <div class="relative group">
+        <button class="text-white hover:text-gray-300 transition-all duration-300 ease-in-out">Contact</button>
+        <ul class="absolute hidden group-hover:block bg-gray-800 text-white p-4 rounded shadow-lg space-y-2 mt-2 w-64">
+          <li>
+            <a href="https://www.instagram.com/i__aditya7/profilecard/?igsh=c2JzeHl2a2J6NGU%3D" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-200">Instagram</a>
+          </li>
+          <li>
+            Email: <a href="mailto:itisaddy7@gmail.com" class="text-indigo-400 hover:text-indigo-200">itisaddy7@gmail.com</a>
+          </li>
+        </ul>
+      </div>
+
+      <a href="#" class="text-white hover:text-gray-300 transition-all duration-300 ease-in-out">Support</a>
+    </nav>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+    <a href="index.html" class="block text-white hover:text-gray-300 transition-all duration-300 ease-in-out">Home</a>
+    <div class="space-y-2">
+      <button id="about-toggle" class="block text-white hover:text-gray-300 transition-all duration-300 ease-in-out">About</button>
+      <ul id="about-mobile" class="hidden bg-gray-800 text-white p-4 rounded shadow-lg space-y-2">
+        <li>FitIN is a health and fitness app made by Aditya.</li>
+        <li>It focuses on BMI tracking, progress tracking, and personalized health tips.</li>
+      </ul>
+    </div>
+    <div class="space-y-2">
+      <button id="contact-toggle" class="block text-white hover:text-gray-300 transition-all duration-300 ease-in-out">Contact</button>
+      <ul id="contact-mobile" class="hidden bg-gray-800 text-white p-4 rounded shadow-lg space-y-2">
+        <li>
+          <a href="https://www.instagram.com/i__aditya7/profilecard/?igsh=c2JzeHl2a2J6NGU%3D" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-200">Instagram</a>
+        </li>
+        <li>
+          Email: <a href="mailto:itisaddy7@gmail.com" class="text-indigo-400 hover:text-indigo-200">itisaddy7@gmail.com</a>
+        </li>
+      </ul>
+    </div>
+    <a href="#" class="block text-white hover:text-gray-300 transition-all duration-300 ease-in-out">Support</a>
+  </div>
+</header>
+
+<!-- User Consent Modal -->
+<div id="consent-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm">
+    <h2 class="text-xl font-bold text-center mb-4">Privacy Policy and Consent</h2>
+    <p class="text-sm text-center mb-4">
+      We use cookies and collect personal data to provide a better user experience. 
+      By continuing to use our site, you agree to our <a href="/privacy-policy" class="text-indigo-500 hover:underline">Privacy Policy</a>.
+    </p>
+    <div class="flex justify-center space-x-4">
+      <button id="consent-accept" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Accept</button>
+      <button id="consent-decline" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400">Decline</button>
+    </div>
+  </div>
+</div>
+
+<!-- Enhanced Popup HTML -->
+<div id="greeting-popup" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 transition-all duration-500">
+  <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md relative transform transition-all duration-500 scale-95 hover:scale-100">
+    <!-- Popup Header with Gradient -->
+    <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-t-2xl p-6 relative">
+      <button id="close-popup" class="absolute top-4 right-4 text-white hover:text-gray-200 transition-colors">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      <h2 id="greeting-message" class="text-2xl font-bold text-white text-center"></h2>
+    </div>
+
+    <!-- Popup Content -->
+    <div class="p-6">
+      <!-- Welcome Message -->
+      <div class="text-center mb-6">
+        <div class="inline-block p-3 bg-blue-100 rounded-full mb-4">
+          <svg class="h-12 w-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <p class="text-gray-600">
+          Welcome to <span class="font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">fitIN</span>, 
+          your ultimate fitness companion!
+        </p>
+        <p class="text-sm text-gray-500 mt-2">
+          Stay on track and reach your fitness goals with personalized recommendations.
+        </p>
+      </div>
+
+      <!-- Features List -->
+      <div class="space-y-3 mb-6">
+        <div class="flex items-center space-x-3 text-gray-600">
+          <svg class="h-5 w-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          <span>Calculate BMI instantly</span>
+        </div>
+        <div class="flex items-center space-x-3 text-gray-600">
+          <svg class="h-5 w-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          <span>Get personalized health tips</span>
+        </div>
+        <div class="flex items-center space-x-3 text-gray-600">
+          <svg class="h-5 w-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          <span>Track your progress</span>
+        </div>
+      </div>
+
+      <!-- Social Media Links -->
+      <div class="flex justify-center space-x-6 mb-6">
+        <a href="https://github.com/Xenonesis" target="_blank" rel="noopener noreferrer" 
+           class="text-gray-600 hover:text-gray-800 transform hover:scale-110 transition-all duration-300">
+          <i class="fab fa-github fa-2x"></i>
+        </a>
+        <a href="https://www.instagram.com/i__aditya7/" target="_blank" rel="noopener noreferrer"
+           class="text-pink-400 hover:text-pink-600 transform hover:scale-110 transition-all duration-300">
+          <i class="fab fa-instagram fa-2x"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/itisaddy/" target="_blank" rel="noopener noreferrer"
+           class="text-blue-400 hover:text-blue-600 transform hover:scale-110 transition-all duration-300">
+          <i class="fab fa-linkedin fa-2x"></i>
+        </a>
+      </div>
+
+      <!-- Timer -->
+      <div class="text-center text-sm text-gray-500 mb-4">
+        This popup will close in <span id="countdown-timer" class="font-bold text-blue-600">10</span> seconds
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex space-x-4">
+        <button id="close-popup-btn" 
+                class="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg font-semibold 
+                       transform hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg">
+          Get Started
+        </button>
+        <button id="minimize-popup-btn"
+                class="flex-1 bg-gray-100 text-gray-700 px-6 py-2 rounded-lg font-semibold
+                       transform hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg">
+          Minimize
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Main Content -->
+<main class="max-w-5xl mx-auto p-6">
+  <!-- Hero Section -->
+  <section class="mb-12 relative overflow-hidden">
+  <!-- Background Pattern -->
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 transform -skew-y-6"></div>
+  </div>
+  
+  <div class="relative z-10 text-center py-16 px-4">
+    <div class="animate-float">
+      <span class="inline-block text-sm font-semibold text-blue-600 tracking-wider mb-2 bg-blue-100 px-3 py-1 rounded-full">
+        Quick & Easy BMI Calculator
+      </span>
+    </div>
+    
+    <h1 class="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-title">
+      Calculate Your BMI
+    </h1>
+    
+    <div class="max-w-3xl mx-auto">
+      <p class="text-gray-600 text-lg md:text-xl mb-8 animate-fade-in">
+        Get instant insights about your body mass index and personalized health recommendations
+      </p>
+      
+      <!-- Feature Highlights -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="feature-card bg-white p-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+          <div class="text-blue-500 mb-2">
+            <i class="fas fa-calculator text-2xl"></i>
+          </div>
+          <h3 class="font-semibold text-gray-800">Instant Results</h3>
+          <p class="text-sm text-gray-600">Get your BMI calculated instantly</p>
+        </div>
+        
+        <div class="feature-card bg-white p-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+          <div class="text-purple-500 mb-2">
+            <i class="fas fa-chart-line text-2xl"></i>
+          </div>
+          <h3 class="font-semibold text-gray-800">Track Progress</h3>
+          <p class="text-sm text-gray-600">Monitor your health journey</p>
+        </div>
+        
+        <div class="feature-card bg-white p-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+          <div class="text-green-500 mb-2">
+            <i class="fas fa-heartbeat text-2xl"></i>
+          </div>
+          <h3 class="font-semibold text-gray-800">Health Insights</h3>
+          <p class="text-sm text-gray-600">Get personalized recommendations</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <i class="fas fa-chevron-down text-blue-500"></i>
+    </div>
+  </div>
+</section>
+
+  <!-- Two Column Layout for Form and Info -->
+  <div class="grid md:grid-cols-2 gap-8">
+    <!-- Left Column - BMI Calculator -->
+    <section class="form-section bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-8">
+      <!-- Form Header -->
+      <div class="text-center mb-8">
+        <span class="inline-block text-sm font-semibold text-blue-600 tracking-wider mb-2 bg-blue-100 px-3 py-1 rounded-full animate-float">
+          Quick & Easy BMI Calculator
+        </span>
+        <h3 class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          Calculate Your BMI
+        </h3>
+        <p class="text-gray-600 text-sm mt-2">Get instant insights about your body mass index</p>
+      </div>
+
+      <form id="bmi-form" class="space-y-6">
+        <!-- Personal Info Card -->
+        <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6 space-y-6">
+          <div class="form-group transform transition-all duration-300 hover:scale-[1.01]">
+            <div class="relative">
+              <input type="text" id="username" 
+                     class="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 
+                            bg-white/50 backdrop-blur-md transition-all duration-300"
+                     placeholder="Enter your name" required>
+              <i class="fas fa-user absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div class="form-group transform transition-all duration-300 hover:scale-[1.01]">
+              <div class="relative">
+                <input type="number" id="age" 
+                       class="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 
+                              bg-white/50 backdrop-blur-md transition-all duration-300"
+                       placeholder="Age" required min="1">
+                <i class="fas fa-birthday-cake absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+              </div>
+            </div>
+
+            <div class="form-group transform transition-all duration-300 hover:scale-[1.01]">
+              <div class="relative">
+                <select id="gender" 
+                        class="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 
+                               bg-white/50 backdrop-blur-md transition-all duration-300 appearance-none"
+                        required>
+                  <option value="" disabled selected>Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+                <i class="fas fa-venus-mars absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Measurements Card -->
+        <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6 space-y-6">
+          <h4 class="text-lg font-semibold text-gray-800 flex items-center">
+            <i class="fas fa-ruler-combined mr-2 text-blue-500"></i>
+            Body Measurements
+          </h4>
+
+          <div class="form-group transform transition-all duration-300 hover:scale-[1.01]">
+            <div class="relative">
+              <input type="number" id="weight" 
+                     class="w-full pl-12 pr-16 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 
+                            bg-white/50 backdrop-blur-md transition-all duration-300"
+                     placeholder="Weight" required min="1" step="0.1">
+              <i class="fas fa-weight absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500">kg</span>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <div class="flex justify-center space-x-4">
+              <label class="relative">
+                <input type="radio" name="height-unit" value="cm" checked class="hidden peer">
+                <span class="block px-4 py-2 rounded-lg cursor-pointer bg-white/50 hover:bg-white
+                           peer-checked:bg-gradient-to-r peer-checked:from-blue-500 peer-checked:to-purple-500 
+                           peer-checked:text-white transition-all duration-300">
+                  <i class="fas fa-ruler-vertical mr-2"></i>
+                  Centimeters
+                </span>
+              </label>
+              <label class="relative">
+                <input type="radio" name="height-unit" value="ft_in" class="hidden peer">
+                <span class="block px-4 py-2 rounded-lg cursor-pointer bg-white/50 hover:bg-white
+                           peer-checked:bg-gradient-to-r peer-checked:from-blue-500 peer-checked:to-purple-500 
+                           peer-checked:text-white transition-all duration-300">
+                  <i class="fas fa-ruler mr-2"></i>
+                  Feet & Inches
+                </span>
+              </label>
+            </div>
+
+            <!-- Height inputs remain unchanged -->
+            <div id="height-cm-group" class="relative">
+    <input type="number" id="height-cm" 
+           class="w-full pr-16 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+           placeholder="Height in cm" required>
+    <span class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500">cm</span>
+  </div>
+
+  <!-- Feet and Inches input -->
+  <div id="height-ftin-group" class="hidden grid grid-cols-2 gap-4">
+    <div class="relative">
+      <input type="number" id="height-feet" 
+             class="w-full pr-14 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+             placeholder="Feet" min="0">
+      <span class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500">ft</span>
+    </div>
+    <div class="relative">
+      <input type="number" id="height-inches" 
+             class="w-full pr-14 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+             placeholder="Inches" min="0" max="11">
+      <span class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500">in</span>
+    </div>
+  </div>
+          </div>
+        </div>
+
+        <!-- Insert period tracking form section before the submit button in BMI form -->
+        <div id="period-tracking" class="hidden mt-6 p-6 bg-pink-50 rounded-lg">
+            <h3 class="text-lg font-semibold text-pink-800 mb-4">Period Tracking</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Last Period Date</label>
+                    <input type="date" id="last-period" class="mt-1 block w-full rounded-md border-gray-300 focus:border-pink-500 focus:ring-pink-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Cycle Length</label>
+                    <select id="cycle-length" class="mt-1 block w-full rounded-md border-gray-300 focus:border-pink-500 focus:ring-pink-500">
+                        <option value="28">28 days (Average)</option>
+                        <option value="21">21 days (Short)</option>
+                        <option value="35">35 days (Long)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mt-4">
+                <label class="block text-sm font-medium text-gray-700">Cycle Regularity</label>
+                <select id="cycle-regularity" class="mt-1 block w-full rounded-md border-gray-300 focus:border-pink-500 focus:ring-pink-500">
+                    <option value="regular">Regular (±1-2 days)</option>
+                    <option value="somewhat">Somewhat Regular (±3-5 days)</option>
+                    <option value="irregular">Irregular (>5 days variation)</option>
+                </select>
+            </div>
+            <div class="mt-4">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Common Symptoms</label>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" name="period-symptoms" value="cramps" class="rounded border-pink-300 text-pink-600 focus:ring-pink-500">
+                        <span class="ml-2">Cramps</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" name="period-symptoms" value="headache" class="rounded border-pink-300 text-pink-600 focus:ring-pink-500">
+                        <span class="ml-2">Headache</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" name="period-symptoms" value="bloating" class="rounded border-pink-300 text-pink-600 focus:ring-pink-500">
+                        <span class="ml-2">Bloating</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" name="period-symptoms" value="fatigue" class="rounded border-pink-300 text-pink-600 focus:ring-pink-500">
+                        <span class="ml-2">Fatigue</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" name="period-symptoms" value="moodSwings" class="rounded border-pink-300 text-pink-600 focus:ring-pink-500">
+                        <span class="ml-2">Mood Swings</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" 
+                class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-xl 
+                       font-semibold shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all 
+                       duration-300 relative overflow-hidden group">
+          <div class="absolute inset-0 bg-white/20 transform -translate-x-full group-hover:translate-x-full 
+                      transition-transform duration-700 ease-out"></div>
+          <span class="relative flex items-center justify-center space-x-2">
+            <i class="fas fa-calculator"></i>
+            <span>Calculate BMI</span>
+          </span>
+        </button>
+      </form>
+    </section>
+
+    <!-- Right Column - Results Section -->
+    <section id="result-section" class="hidden fade-in bg-white rounded-2xl shadow-xl p-8">
+  <div class="text-center mb-8">
+    <h2 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
+      Your Health Profile
+    </h2>
+    
+    <!-- BMI Result Card -->
+    <div class="result-card rounded-2xl p-6 mb-6">
+      <div class="flex items-center justify-center space-x-4">
+        <div class="result-chart">
+          <!-- Circle progress will be inserted here by JS -->
+        </div>
+        <div class="text-left">
+          <p id="bmi-result" class="text-4xl font-bold text-blue-600 mb-2 result-value"></p>
+          <div id="bmi-category" class="category-badge result-value"></div>
+        </div>
+      </div>
+      <div class="mt-4 text-gray-600 text-sm">
+        Your BMI indicates your weight status and potential health risks
+      </div>
+    </div>
+    
+    <!-- Biological Age Card -->
+    <div class="biological-age-indicator result-value">
+      <h3 class="text-xl font-semibold text-gray-800 mb-4">Biological Age Analysis</h3>
+      <div class="text-center">
+        <p id="biological-age" class="text-4xl font-bold text-green-600 mb-2"></p>
+        <div class="age-comparison text-sm">
+          <span class="text-gray-600">Chronological Age:</span>
+          <span id="chronological-age" class="font-semibold"></span>
+        </div>
+        <div class="age-comparison text-sm">
+          <span class="text-gray-600">Biological Age:</span>
+          <span id="bio-age" class="font-semibold"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Health Recommendations -->
+  <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6 mt-6">
+    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+      <svg class="h-6 w-6 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+              d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+      Personalized Health Insights
+    </h3>
+    <ul id="recommendation-list" class="space-y-3"></ul>
+  </div>
+  
+  <!-- Action Buttons -->
+  <div class="grid grid-cols-2 gap-4 mt-6">
+    <button id="download-pdf" 
+            class="bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-3 rounded-lg 
+                   font-semibold shadow-lg hover:shadow-xl transform hover:scale-[1.02] 
+                   transition-all duration-300 flex items-center justify-center space-x-2">
+      <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+              d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      </svg>
+      <span>Download Report</span>
+    </button>
+    <button id="share-results" 
+            class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg 
+                   font-semibold shadow-lg hover:shadow-xl transform hover:scale-[1.02] 
+                   transition-all duration-300 flex items-center justify-center space-x-2">
+      <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+              d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+      </svg>
+      <span>Share Results</span>
+    </button>
+  </div>
+</section>
+
+  </div>
+
+  <!-- Add this section after the BMI results section -->
+<div id="period-predictions" class="hidden mt-8 bg-pink-50 rounded-xl p-6">
+    <div class="text-center mb-6">
+        <h3 class="text-2xl font-bold text-pink-800">Period Predictions</h3>
+        <p class="text-gray-600">Based on your last period date and cycle length</p>
+    </div>
+    <div id="period-timeline" class="space-y-4">
+        <!-- Predictions will be inserted here -->
+    </div>
+    <p class="mt-4 text-sm text-gray-500 italic">
+        * Predictions are estimates based on your cycle information. Actual dates may vary.
+    </p>
+</div>
+
+  <!-- Add this section before the BMI Categories Card -->
+  <section class="mt-12 bg-white rounded-2xl shadow-xl p-8">
+  <!-- Section Header with Animated Background -->
+  <div class="text-center mb-12 relative overflow-hidden">
+    <!-- Animated background gradient -->
+    <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 animate-gradient-x"></div>
+    
+    <div class="relative">
+      <span class="inline-block text-sm font-semibold text-blue-600 tracking-wider mb-2 bg-blue-100 px-3 py-1 rounded-full animate-pulse">
+        Essential Knowledge
+      </span>
+      <h2 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+        Understanding BMI
+      </h2>
+      <div class="flex items-center justify-center mt-4 space-x-2 text-gray-600">
+        <span class="inline-block w-12 h-0.5 bg-gradient-to-r from-blue-500 to-transparent"></span>
+        <p class="text-sm md:text-base">Learn about Body Mass Index and its significance</p>
+        <span class="inline-block w-12 h-0.5 bg-gradient-to-l from-blue-500 to-transparent"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Content Grid -->
+  <div class="grid md:grid-cols-2 gap-8">
+    <!-- Left Column -->
+    <div class="space-y-6 transform transition-all duration-500">
+      <!-- What is BMI Card -->
+      <div class="group bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 hover:shadow-xl transition-all duration-500 hover:scale-[1.02]">
+        <div class="flex items-start space-x-4">
+          <div class="bg-white p-4 rounded-xl shadow-md group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+            <i class="fas fa-calculator text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-2xl"></i>
+          </div>
+          <div class="space-y-3 transform transition-all duration-500">
+            <h3 class="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+              What is BMI?
+            </h3>
+            <p class="text-gray-600 leading-relaxed group-hover:text-gray-800 transition-colors duration-300">
+              Body Mass Index (BMI) is a numerical value derived from your weight and height. Healthcare professionals use it to quickly assess whether someone is underweight, normal weight, overweight, or obese.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Formula Card -->
+      <div class="relative group bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-500">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-2xl transform scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-bottom"></div>
+        <div class="relative">
+          <h4 class="text-lg font-semibold text-blue-800 mb-4 flex items-center">
+            <i class="fas fa-square-root-alt mr-2 animate-bounce"></i>
+            BMI Formula
+          </h4>
+          <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-xl text-center transform transition-all duration-500 hover:scale-[1.02]">
+            <div class="inline-block">
+              <div class="text-2xl font-mono font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
+                BMI = weight (kg) / height² (m)
+              </div>
+              <div class="flex items-center justify-center space-x-4 text-sm text-gray-600">
+                <span class="flex items-center hover:text-blue-600 transition-colors duration-300">
+                  <i class="fas fa-weight-scale mr-1"></i>
+                  Weight in kilograms
+                </span>
+                <span class="flex items-center hover:text-purple-600 transition-colors duration-300">
+                  <i class="fas fa-ruler-vertical mr-1"></i>
+                  Height in meters
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="space-y-6">
+      <!-- Limitations Card with Hover Effects -->
+      <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 transform transition-all duration-500 hover:scale-[1.02] hover:shadow-xl">
+        <div class="flex items-start space-x-4">
+          <div class="bg-white p-4 rounded-xl shadow-md transform transition-all duration-500 hover:rotate-12">
+            <i class="fas fa-exclamation-circle text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-2xl"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+              BMI Limitations
+            </h3>
+            <ul class="space-y-3">
+              <li class="flex items-center space-x-3 bg-white/50 p-3 rounded-lg transform transition-all duration-300 hover:translate-x-2 hover:shadow-md">
+                <i class="fas fa-dumbbell text-blue-500"></i>
+                <span class="text-gray-600">Doesn't distinguish muscle from fat</span>
+              </li>
+              <li class="flex items-center space-x-3 bg-white/50 p-3 rounded-lg transform transition-all duration-300 hover:translate-x-2 hover:shadow-md">
+                <i class="fas fa-running text-green-500"></i>
+                <span class="text-gray-600">May misclassify athletes</span>
+              </li>
+              <li class="flex items-center space-x-3 bg-white/50 p-3 rounded-lg transform transition-all duration-300 hover:translate-x-2 hover:shadow-md">
+                <i class="fas fa-user-clock text-yellow-500"></i>
+                <span class="text-gray-600">Different considerations for elderly</span>
+              </li>
+              <li class="flex items-center space-x-3 bg-white/50 p-3 rounded-lg transform transition-all duration-300 hover:translate-x-2 hover:shadow-md">
+                <i class="fas fa-globe-asia text-purple-500"></i>
+                <span class="text-gray-600">Varies across ethnic groups</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Medical Advice Note with Animation -->
+      <div class="relative overflow-hidden bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-6 border border-yellow-100 group">
+        <div class="absolute inset-0 bg-gradient-to-r from-yellow-500/5 to-orange-500/5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+        <div class="relative flex items-start space-x-4">
+          <div class="bg-white p-4 rounded-xl shadow-md group-hover:scale-110 transition-transform duration-500">
+            <i class="fas fa-stethoscope text-yellow-600 text-2xl group-hover:text-yellow-500 transition-colors duration-300"></i>
+          </div>
+          <div class="space-y-2">
+            <h4 class="font-semibold text-yellow-800">Medical Advice</h4>
+            <p class="text-gray-700 group-hover:text-gray-900 transition-colors duration-300">
+              Always consult healthcare professionals for personalized advice. BMI is one of many health indicators and should not be used as the sole measure of health.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Health Tips Section -->
+  <section class="mt-8 bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-8">
+  <!-- Section Header -->
+  <div class="text-center mb-8">
+    <span class="inline-block text-sm font-semibold text-blue-600 tracking-wider mb-2 bg-blue-100 px-3 py-1 rounded-full">
+      Expert Advice
+    </span>
+    <h2 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+      Health & Wellness Tips
+    </h2>
+    <p class="text-gray-600 max-w-2xl mx-auto">
+      Comprehensive guidance for maintaining a healthy lifestyle and achieving your fitness goals
+    </p>
+  </div>
+
+  <!-- Tips Grid -->
+  <div class="grid md:grid-cols-3 gap-6">
+    <!-- Diet Card -->
+    <div class="group bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
+      <div class="bg-white rounded-xl p-4 shadow-md inline-block group-hover:scale-110 transition-transform duration-300">
+        <i class="fas fa-utensils text-2xl text-green-600"></i>
+      </div>
+      <h3 class="font-semibold text-green-800 text-xl mt-4 mb-3">Balanced Diet</h3>
+      <ul class="space-y-2 text-green-700">
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-check text-green-500"></i>
+          <span>Include diverse fruits and vegetables</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-check text-green-500"></i>
+          <span>Choose whole grains over refined</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-check text-green-500"></i>
+          <span>Incorporate lean proteins</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-check text-green-500"></i>
+          <span>Monitor portion sizes</span>
+        </li>
+      </ul>
+      <div class="mt-4 pt-4 border-t border-green-100">
+        <p class="text-sm text-green-600 italic">
+          Recommended: 5 portions of fruits/vegetables daily
+        </p>
+      </div>
+    </div>
+
+    <!-- Exercise Card -->
+    <div class="group bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-6 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
+      <div class="bg-white rounded-xl p-4 shadow-md inline-block group-hover:scale-110 transition-transform duration-300">
+        <i class="fas fa-running text-2xl text-blue-600"></i>
+      </div>
+      <h3 class="font-semibold text-blue-800 text-xl mt-4 mb-3">Physical Activity</h3>
+      <ul class="space-y-2 text-blue-700">
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-check text-blue-500"></i>
+          <span>150 minutes moderate activity/week</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-check text-blue-500"></i>
+          <span>Mix cardio and strength training</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-check text-blue-500"></i>
+          <span>Include flexibility exercises</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-check text-blue-500"></i>
+          <span>Take regular movement breaks</span>
+        </li>
+      </ul>
+      <div class="mt-4 pt-4 border-t border-blue-100">
+        <p class="text-sm text-blue-600 italic">
+          Aim for: 10,000 steps daily
+        </p>
+      </div>
+    </div>
+
+    <!-- Lifestyle Card -->
+    <div class="group bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl p-6 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
+      <div class="bg-white rounded-xl p-4 shadow-md inline-block group-hover:scale-110 transition-transform duration-300">
+        <i class="fas fa-heart text-2xl text-purple-600"></i>
+      </div>
+      <h3 class="font-semibold text-purple-800 text-xl mt-4 mb-3">Healthy Lifestyle</h3>
+      <ul class="space-y-2 text-purple-700">
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-check text-purple-500"></i>
+          <span>7-9 hours of quality sleep</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-check text-purple-500"></i>
+          <span>Stay hydrated (8 glasses/day)</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-check text-purple-500"></i>
+          <span>Practice stress management</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-check text-purple-500"></i>
+          <span>Maintain work-life balance</span>
+        </li>
+      </ul>
+      <div class="mt-4 pt-4 border-t border-purple-100">
+        <p class="text-sm text-purple-600 italic">
+          Practice: Daily meditation/mindfulness
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Additional Tips -->
+  <div class="mt-8 grid md:grid-cols-2 gap-6">
+    <!-- Mental Wellness -->
+    <div class="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-6">
+      <div class="flex items-center space-x-3 mb-4">
+        <div class="bg-white p-3 rounded-lg shadow-md">
+          <i class="fas fa-brain text-yellow-600 text-xl"></i>
+        </div>
+        <h4 class="text-lg font-semibold text-yellow-800">Mental Wellness</h4>
+      </div>
+      <ul class="space-y-2 text-yellow-700">
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-star text-yellow-500 text-sm"></i>
+          <span>Practice mindfulness meditation</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-star text-yellow-500 text-sm"></i>
+          <span>Maintain social connections</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-star text-yellow-500 text-sm"></i>
+          <span>Set realistic goals</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Sleep Hygiene -->
+    <div class="bg-gradient-to-r from-teal-50 to-green-50 rounded-2xl p-6">
+      <div class="flex items-center space-x-3 mb-4">
+        <div class="bg-white p-3 rounded-lg shadow-md">
+          <i class="fas fa-moon text-teal-600 text-xl"></i>
+        </div>
+        <h4 class="text-lg font-semibold text-teal-800">Sleep Hygiene</h4>
+      </div>
+      <ul class="space-y-2 text-teal-700">
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-star text-teal-500 text-sm"></i>
+          <span>Maintain consistent sleep schedule</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-star text-teal-500 text-sm"></i>
+          <span>Create a relaxing bedtime routine</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-star text-teal-500 text-sm"></i>
+          <span>Limit screen time before bed</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Quick Tips Carousel -->
+  <section id="quick-tips-section" class="mt-8 p-4 bg-gray-50 rounded-xl animate-in" data-animation="fadeInUp">
+    <div class="text-center mb-6">
+      <h4 class="text-2xl font-bold text-gray-800">Quick Health Tips</h4>
+      <p class="text-gray-600 mt-2">Daily insights for a healthier lifestyle</p>
+      
+      <!-- Category Filters -->
+      <div class="flex justify-center space-x-4 mt-4">
+        <button class="tip-filter active px-3 py-1 rounded-full text-sm transition-all duration-300 bg-blue-100 text-blue-600 hover:bg-blue-200" data-category="all">
+          All Tips
+        </button>
+        <button class="tip-filter px-3 py-1 rounded-full text-sm transition-all duration-300 bg-green-100 text-green-600 hover:bg-green-200" data-category="nutrition">
+          Nutrition
+        </button>
+        <button class="tip-filter px-3 py-1 rounded-full text-sm transition-all duration-300 bg-purple-100 text-purple-600 hover:bg-purple-200" data-category="fitness">
+          Fitness
+        </button>
+        <button class="tip-filter px-3 py-1 rounded-full text-sm transition-all duration-300 bg-yellow-100 text-yellow-600 hover:bg-yellow-200" data-category="wellness">
+          Wellness
+        </button>
+      </div>
+    </div>
+
+    <div class="relative">
+      <div class="quick-tips-container overflow-hidden">
+        <div class="quick-tips-slider flex transition-transform duration-500">
+          <!-- Tips will be populated by JavaScript -->
+        </div>
+      </div>
+      
+      <!-- Navigation Controls -->
+      <button class="prev-tip absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all duration-300">
+        <i class="fas fa-chevron-left text-gray-600"></i>
+      </button>
+      <button class="next-tip absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all duration-300">
+        <i class="fas fa-chevron-right text-gray-600"></i>
+      </button>
+    </div>
+
+    <!-- Progress Indicators -->
+    <div class="progress-dots flex justify-center space-x-2 mt-4">
+      <!-- Dots will be populated by JavaScript -->
+    </div>
+  </section>
+
+  </div>
+</section>
+
+  <!-- Add an explanation section for biological age -->
+<section class="mt-8 bg-white rounded-2xl shadow-xl p-8">
+  <h2 class="text-2xl font-bold bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent mb-6">Understanding Biological Age</h2>
+  <div class="grid md:grid-cols-2 gap-8">
+    <div class="space-y-4">
+      <h3 class="text-xl font-semibold text-gray-800">What is Biological Age?</h3>
+      <p class="text-gray-600">
+        Biological age is an estimate of how well your body is functioning compared to your chronological age. It takes into account various factors including BMI, lifestyle, and other health metrics.
+      </p>
+      <p class="text-gray-600">
+        Unlike chronological age, which is the number of years you've been alive, biological age reflects the condition of your body and how well it is aging. A lower biological age compared to your chronological age indicates better overall health.
+      </p>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-xl font-semibold text-gray-800">Factors Affecting Biological Age</h3>
+      <ul class="list-disc list-inside text-gray-600 space-y-2">
+        <li>BMI and body composition</li>
+        <li>Physical activity level</li>
+        <li>Dietary habits</li>
+        <li>Lifestyle choices</li>
+        <li>Genetic factors</li>
+        <li>Stress levels</li>
+        <li>Sleep quality</li>
+      </ul>
+    </div>
+  </div>
+  <div class="mt-8">
+    <h3 class="text-xl font-semibold text-gray-800 mb-4">How to Improve Your Biological Age</h3>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
+        <div class="bg-white rounded-xl p-4 shadow-md inline-block group-hover:scale-110 transition-transform duration-300">
+          <i class="fas fa-utensils text-2xl text-green-600"></i>
+        </div>
+        <h4 class="font-semibold text-green-800 text-xl mt-4 mb-3">Healthy Diet</h4>
+        <p class="text-gray-600">
+          Eat a balanced diet rich in fruits, vegetables, lean proteins, and whole grains. Avoid processed foods and excessive sugar.
+        </p>
+      </div>
+      <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-6 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
+        <div class="bg-white rounded-xl p-4 shadow-md inline-block group-hover:scale-110 transition-transform duration-300">
+          <i class="fas fa-running text-2xl text-blue-600"></i>
+        </div>
+        <h4 class="font-semibold text-blue-800 text-xl mt-4 mb-3">Regular Exercise</h4>
+        <p class="text-gray-600">
+          Engage in regular physical activity, including both cardio and strength training exercises. Aim for at least 150 minutes of moderate activity per week.
+        </p>
+      </div>
+      <div class="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl p-6 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
+        <div class="bg-white rounded-xl p-4 shadow-md inline-block group-hover:scale-110 transition-transform duration-300">
+          <i class="fas fa-heart text-2xl text-purple-600"></i>
+        </div>
+        <h4 class="font-semibold text-purple-800 text-xl mt-4 mb-3">Stress Management</h4>
+        <p class="text-gray-600">
+          Practice stress-reducing techniques such as mindfulness, meditation, and deep breathing exercises. Maintain a healthy work-life balance.
+        </p>
+      </div>
+      <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-6 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
+        <div class="bg-white rounded-xl p-4 shadow-md inline-block group-hover:scale-110 transition-transform duration-300">
+          <i class="fas fa-moon text-2xl text-yellow-600"></i>
+        </div>
+        <h4 class="font-semibold text-yellow-800 text-xl mt-4 mb-3">Quality Sleep</h4>
+        <p class="text-gray-600">
+          Ensure you get 7-9 hours of quality sleep each night. Maintain a consistent sleep schedule and create a relaxing bedtime routine.
+        </p>
+      </div>
+      <div class="bg-gradient-to-br from-teal-50 to-green-50 rounded-2xl p-6 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
+        <div class="bg-white rounded-xl p-4 shadow-md inline-block group-hover:scale-110 transition-transform duration-300">
+          <i class="fas fa-water text-2xl text-teal-600"></i>
+        </div>
+        <h4 class="font-semibold text-teal-800 text-xl mt-4 mb-3">Stay Hydrated</h4>
+        <p class="text-gray-600">
+          Drink plenty of water throughout the day to stay hydrated. Aim for at least 8 glasses of water daily.
+        </p>
+      </div>
+      <div class="bg-gradient-to-br from-pink-50 to-red-50 rounded-2xl p-6 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
+        <div class="bg-white rounded-xl p-4 shadow-md inline-block group-hover:scale-110 transition-transform duration-300">
+          <i class="fas fa-smile text-2xl text-pink-600"></i>
+        </div>
+        <h4 class="font-semibold text-pink-800 text-xl mt-4 mb-3">Positive Mindset</h4>
+        <p class="text-gray-600">
+          Cultivate a positive mindset and practice gratitude. Surround yourself with supportive and positive people.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="mt-8">
+    <h3 class="text-xl font-semibold text-gray-800 mb-4">Uses of Biological Age</h3>
+    <div class="space-y-4">
+      <p class="text-gray-600">
+        Understanding your biological age can provide valuable insights into your overall health and help you make informed decisions about your lifestyle. Here are some practical uses of biological age:
+      </p>
+      <ul class="list-disc list-inside text-gray-600 space-y-2">
+        <li><strong>Health Assessment:</strong> Biological age can be used as a comprehensive health assessment tool to identify potential health risks and areas for improvement.</li>
+        <li><strong>Personalized Health Plans:</strong> By knowing your biological age, healthcare providers can create personalized health plans tailored to your specific needs and goals.</li>
+        <li><strong>Motivation for Healthy Living:</strong> Tracking changes in your biological age over time can serve as motivation to maintain healthy habits and make positive lifestyle changes.</li>
+        <li><strong>Early Detection of Health Issues:</strong> A higher biological age compared to your chronological age may indicate underlying health issues that need to be addressed early.</li>
+        <li><strong>Monitoring Aging Process:</strong> Regularly monitoring your biological age can help you understand how well you are aging and take proactive steps to slow down the aging process.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+  <!-- BMI Categories Card -->
+  <section class="mt-12 bg-white rounded-2xl shadow-xl p-8 animate-fadeIn">
+    <h2 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">BMI Categories Guide</h2>
+    <div class="space-y-6" id="bmi-categories">
+      <!-- Category items will be populated by JavaScript -->
+    </div>
+  </section>
+  <script>
+    // BMI Categories Data
+    const bmiCategories = [
+      {
+        category: "Severe Underweight",
+        range: "Less than 16.0",
+        description: "Indicates severely low body weight that requires immediate medical attention. High risk of nutritional deficiencies and health complications.",
+        tips: "Seek medical help, focus on nutrient-rich foods, and consider working with a dietitian.",
+        icon: "fas fa-exclamation-triangle"
+      },
+      {
+        category: "Moderate Underweight",
+        range: "16.0 - 16.9",
+        description: "Shows moderately low body weight. May indicate inadequate nutrition or underlying health issues.",
+        tips: "Increase caloric intake with healthy foods, include protein-rich foods in diet.",
+        icon: "fas fa-arrow-down"
+      },
+      {
+        category: "Mild Underweight",
+        range: "17.0 - 18.4",
+        description: "Slightly below healthy weight range. May need to focus on healthy weight gain.",
+        tips: "Add healthy snacks between meals, incorporate strength training.",
+        icon: "fas fa-minus"
+      },
+      {
+        category: "Normal Weight",
+        range: "18.5 - 22.9",
+        description: "Healthy weight range for Asian body types. Associated with lowest health risks.",
+        tips: "Maintain balanced diet and regular physical activity.",
+        icon: "fas fa-check-circle"
+      },
+      {
+        category: "Overweight",
+        range: "23.0 - 24.9",
+        description: "Above healthy weight range. Moderate risk of weight-related health issues.",
+        tips: "Focus on portion control and increase physical activity.",
+        icon: "fas fa-plus"
+      },
+      {
+        category: "Obese Class I",
+        range: "25.0 - 29.9",
+        description: "Moderately high BMI. Increased risk of heart disease, diabetes, and other health issues.",
+        tips: "Consult healthcare provider, create structured diet and exercise plan.",
+        icon: "fas fa-weight"
+      },
+      {
+        category: "Obese Class II",
+        range: "30.0 and above",
+        description: "Significantly high BMI. High risk of serious health complications.",
+        tips: "Seek medical guidance, consider professional weight management program.",
+        icon: "fas fa-exclamation-circle"
+      }
+    ];
+
+    // Function to create and animate BMI category cards
+    function createBMICategoryCards() {
+      const container = document.getElementById('bmi-categories');
+      
+      bmiCategories.forEach((category, index) => {
+        const delay = index * 200; // Stagger the animations
+        
+        const card = document.createElement('div');
+        card.className = 'opacity-0 transform translate-y-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6 hover:shadow-lg transition-all duration-300';
+        card.style.animationDelay = `${delay}ms`;
+        
+        card.innerHTML = `
+          <div class="flex items-start space-x-4">
+            <div class="bg-white p-3 rounded-lg shadow-md">
+              <i class="${category.icon} text-2xl text-blue-600"></i>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-semibold text-gray-800 mb-2">${category.category}</h3>
+              <div class="text-sm text-blue-600 font-medium mb-2">BMI Range: ${category.range}</div>
+              <p class="text-gray-600 mb-3">${category.description}</p>
+              <div class="bg-white rounded-lg p-3 mt-2">
+                <p class="text-sm text-gray-700"><i class="fas fa-lightbulb text-yellow-500 mr-2"></i>${category.tips}</p>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        container.appendChild(card);
+        
+        // Animate the card
+        setTimeout(() => {
+          card.classList.remove('opacity-0', 'translate-y-4');
+          card.classList.add('opacity-100', 'translate-y-0');
+        }, delay);
+      });
+    }
+
+    // Initialize the BMI category cards with animation
+    document.addEventListener('DOMContentLoaded', () => {
+      createBMICategoryCards();
+    });
+  </script>
+
+  <!-- Add section to display period predictions -->
+  <div id="period-predictions" class="hidden mt-8">
+    <h3 class="text-xl font-bold text-pink-800 mb-4">Period & Fertility Predictions</h3>
+    <div id="period-timeline" class="space-y-4"></div>
+    <div class="mt-6 bg-pink-50 rounded-lg p-6">
+        <h4 class="text-lg font-semibold text-pink-800 mb-3">Symptom Management Tips</h4>
+        <ul id="symptom-recommendations" class="space-y-2"></ul>
+    </div>
+  </div>
+</main>
+
+<!-- Enhanced Footer -->
+<footer class="mt-12 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+  <div class="max-w-7xl mx-auto px-4 py-12">
+    <div class="grid md:grid-cols-4 gap-8">
+      <!-- About Section -->
+      <div class="space-y-4">
+        <h3 class="text-xl font-bold">About fitIN</h3>
+        <p class="text-gray-200">
+          Your trusted companion for health and fitness tracking. We help you maintain a healthy lifestyle through personalized recommendations.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="space-y-4">
+        <h3 class="text-xl font-bold">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-gray-200 hover:text-white transition-colors">Home</a></li>
+          <li><a href="#" class="text-gray-200 hover:text-white transition-colors">About Us</a></li>
+          <li><a href="#" class="text-gray-200 hover:text-white transition-colors">Privacy Policy</a></li>
+          <li><a href="#" class="text-gray-200 hover:text-white transition-colors">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="space-y-4">
+        <h3 class="text-xl font-bold">Contact Us</h3>
+        <ul class="space-y-2">
+          <li class="flex items-center space-x-2">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            <a href="mailto:itisaddy7@gmail.com" class="text-gray-200 hover:text-white transition-colors">itisaddy7@gmail.com</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Social Links -->
+      <div class="space-y-4">
+        <h3 class="text-xl font-bold">Follow Us</h3>
+        <div class="flex space-x-6">
+          <!-- GitHub -->
+          <a href="https://github.com/Xenonesis" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="text-white hover:text-gray-200 transform hover:scale-110 transition-all duration-300">
+            <i class="fab fa-github fa-2x"></i>
+          </a>
+          
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/i__aditya7/" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="text-white hover:text-pink-300 transform hover:scale-110 transition-all duration-300">
+            <i class="fab fa-instagram fa-2x"></i>
+          </a>
+          
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/itisaddy/" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="text-white hover:text-blue-300 transform hover:scale-110 transition-all duration-300">
+            <i class="fab fa-linkedin fa-2x"></i>
+          </a>
+          
+          <!-- Twitter -->
+          <a href="https://twitter.com" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="text-white hover:text-blue-400 transform hover:scale-110 transition-all duration-300">
+            <i class="fab fa-twitter fa-2x"></i>
+          </a>
+          
+          <!-- YouTube -->
+          <a href="https://youtube.com" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="text-white hover:text-red-400 transform hover:scale-110 transition-all duration-300">
+            <i class="fab fa-youtube fa-2x"></i>
+          </a>
+        </div>
+        
+        <!-- Add social stats -->
+        <div class="grid grid-cols-3 gap-4 mt-4 text-center">
+          <div class="bg-white bg-opacity-10 rounded-lg p-2">
+            <p class="text-sm text-gray-200">Followers</p>
+            <p class="text-lg font-bold">10.5K</p>
+          </div>
+          <div class="bg-white bg-opacity-10 rounded-lg p-2">
+            <p class="text-sm text-gray-200">Following</p>
+            <p class="text-lg font-bold">8.2K</p>
+          </div>
+          <div class="bg-white bg-opacity-10 rounded-lg p-2">
+            <p class="text-sm text-gray-200">Posts</p>
+            <p class="text-lg font-bold">1.2K</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="mt-8 pt-8 border-t border-gray-300">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-200">&copy; 2025 fitIN. All Rights Reserved.</p>
+        <div class="flex space-x-4 mt-4 md:mt-0">
+          <a href="#" class="text-gray-200 hover:text-white transition-colors">Privacy Policy</a>
+          <span class="text-gray-400">|</span>
+          <a href="#" class="text-gray-200 hover:text-white transition-colors">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="script.js"></script>
+<script src="popup.js"></script>
+<script src="period-tracker.js"></script>
+<script src="health-tips.js"></script>
+</body>
+</html>

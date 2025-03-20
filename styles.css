@@ -1,0 +1,299 @@
+/* Base Variables and Utilities */
+:root {
+  --primary-gradient: linear-gradient(to right, #3b82f6, #8b5cf6);
+  --transition-base: all 0.3s ease;
+  --font-base: 'Arial', sans-serif;
+}
+body {
+  font-family: var(--font-base);
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Animations */
+@keyframes slideInUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulseScale {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Floating Labels & Tooltips */
+.floating-label {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  font-size: 0.9rem;
+  color: #6b7280;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+.input-group { position: relative; }
+.input-group .form-input:focus + .floating-label,
+.input-group .form-input:not(:placeholder-shown) + .floating-label {
+  top: -10px;
+  font-size: 0.75rem;
+  color: #2563eb;
+}
+.tooltip {
+  position: absolute;
+  top: -30px;
+  left: 0;
+  background-color: #1f2937;
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.has-tooltip:hover .tooltip {
+  opacity: 1;
+}
+
+/* Cards and Buttons */
+.enhanced-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.enhanced-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+.btn-primary {
+  background: var(--primary-gradient);
+  border: none;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.btn-primary:hover { transform: scale(1.02); box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
+
+/* Responsive Grid */
+.grid-responsive {
+  display: grid;
+  gap: 1rem;
+}
+@media (min-width: 768px) {
+  .grid-responsive { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .grid-responsive { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Intersection Observer animated class */
+.animate-in {
+  animation: slideInUp 0.6s ease forwards;
+}
+
+/* Health Chart Container */
+.chart-container {
+  position: relative;
+  width: 200px;
+  margin: 0 auto;
+}
+
+/* Recommendation Cards */
+.recommendation-card {
+  background: white;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.recommendation-header {
+  padding: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.recommendation-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.recommendation-content.expanded {
+  max-height: 500px;
+}
+
+/* Tooltip Theme */
+.tippy-box[data-theme~='custom'] {
+  background-color: #1f2937;
+  color: white;
+}
+
+.tippy-box[data-theme~='custom'][data-placement^='top'] > .tippy-arrow::before {
+  border-top-color: #1f2937;
+}
+
+/* Pulse Animation */
+.pulse-animation {
+  animation: pulseScale 2s infinite;
+}
+
+/* Transitions */
+.smooth-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Interactive Elements */
+.interactive-element {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.interactive-element:hover {
+  transform: scale(1.05);
+}
+
+/* Health Score Ring */
+.health-score-ring {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+
+.score-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* Notification */
+.notification {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.notification.hide {
+  transform: translateY(1rem);
+  opacity: 0;
+}
+
+/* Footer Styles */
+footer {
+  background: linear-gradient(to right, #3b82f6, #8b5cf6);
+  color: white;
+  padding: 3rem 1rem;
+}
+
+footer .grid {
+  display: grid;
+  gap: 2rem;
+}
+
+footer h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+footer p, footer a {
+  color: #d1d5db;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: white;
+}
+
+footer .social-links a {
+  transition: transform 0.3s ease;
+}
+
+footer .social-links a:hover {
+  transform: scale(1.1);
+}
+
+footer .social-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  text-align: center;
+}
+
+footer .social-stats div {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+footer .social-stats p {
+  margin: 0;
+}
+
+footer .social-stats .text-sm {
+  font-size: 0.875rem;
+}
+
+footer .social-stats .text-lg {
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+footer .copyright {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 1rem;
+  margin-top: 2rem;
+}
+
+footer .copyright p {
+  margin: 0;
+}
+
+footer .footer-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+footer .footer-links a {
+  color: #d1d5db;
+  transition: color 0.3s ease;
+}
+
+footer .footer-links a:hover {
+  color: white;
+}
+
+@media (min-width: 768px) {
+  footer .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  footer .copyright {
+    flex-direction: row;
+  }
+
+  footer .footer-links {
+    margin-top: 0;
+  }
+}
