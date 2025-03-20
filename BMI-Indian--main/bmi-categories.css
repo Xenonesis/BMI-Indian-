@@ -1,0 +1,170 @@
+/* BMI Categories Guide Styles */
+
+/* Card animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Enhanced card hover effects */
+.bmi-category-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-width: 1px;
+  border-style: solid;
+  position: relative;
+  overflow: hidden;
+}  
+
+.bmi-category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Icon container animations */
+.icon-container {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bmi-category-card:hover .icon-container {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .bmi-categories-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .bmi-category-card {
+    padding: 1rem !important;
+  }
+  
+  .bmi-category-card h3 {
+    font-size: 1.1rem !important;
+  }
+}
+
+/* Category-specific styles */
+.category-underweight .icon-container {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+}
+
+.category-normal .icon-container {
+  background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+}
+
+.category-overweight .icon-container {
+  background: linear-gradient(135deg, #fef9c3, #fef08a);
+}
+
+.category-obese .icon-container {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+}
+
+/* Enhanced BMI range badge */
+.bmi-range-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Tips section enhancement */
+.tips-container {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border-radius: 0.5rem;
+}
+
+.tips-container:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.tips-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  border-radius: 4px 0 0 4px;
+  transition: width 0.3s ease;
+}
+
+.tips-container:hover::before {
+  width: 6px;
+}
+
+.category-underweight .tips-container::before {
+  background-color: #3b82f6;
+}
+
+.category-normal .tips-container::before {
+  background-color: #10b981;
+}
+
+.category-overweight .tips-container::before {
+  background-color: #f59e0b;
+}
+
+.category-obese .tips-container::before {
+  background-color: #ef4444;
+}
+
+/* Health implications section */
+.health-implications {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+}
+
+.health-implications:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.health-implications h4 {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.health-implications h4 i {
+  margin-right: 0.5rem;
+}
+
+.health-implications ul {
+  padding-left: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.health-implications li {
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
