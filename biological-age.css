@@ -5,11 +5,25 @@
   position: relative;
   height: 40px;
   width: 100%;
-  background-color: #f3f4f6;
   border-radius: 999px;
   overflow: hidden;
   margin: 1.5rem 0;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.age-comparison-chart::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+  border-radius: inherit;
+  z-index: -1;
+  box-shadow: inset 0 4px 15px -5px rgba(0, 0, 0, 0.1);
+}
+
+.age-comparison-chart:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.15);
 }
 
 .chronological-bar, .biological-bar {

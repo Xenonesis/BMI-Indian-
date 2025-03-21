@@ -867,8 +867,28 @@
         </div>
     </div>
 
-    <!-- Biological Age Card -->
-    <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
+    <!-- Biological Age Section -->
+    <div class="biological-age-card enhanced-card">
+      <div class="bio-accordion active">
+        <div class="bio-accordion-header" onclick="toggleAccordion(this)">
+          <h3 class="text-xl font-semibold">Biological Age Analysis</h3>
+          <span class="accordion-icon transform transition-transform">▼</span>
+        </div>
+        <div class="bio-accordion-content">
+          <div class="age-timeline">
+            <div class="timeline-marker"></div>
+            <div class="timeline-item visible">
+              <h4 class="font-medium text-blue-600">Chronological Age</h4>
+              <p class="text-gray-600">Your actual age based on birth date</p>
+            </div>
+            <div class="timeline-item visible">
+              <h4 class="font-medium text-purple-600">Biological Age</h4>
+              <p class="text-gray-600">Calculated through advanced health metrics analysis</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
       <div class="flex items-center justify-between mb-6">
         <h3 class="text-xl font-semibold text-gray-800">Biological Age</h3>
         <div class="bg-white p-3 rounded-xl shadow-md">
@@ -916,10 +936,10 @@
   <!-- Health Metrics Dashboard -->
   <div class="mt-8 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6">
     <div class="flex items-center justify-between mb-6">
-      <h3 class="text-xl font-semibold text-gray-800">Health Metrics Dashboard</h3>
-      <div class="bg-white p-3 rounded-xl shadow-md">
-        <i class="fas fa-chart-line text-2xl text-blue-600"></i>
-      </div>
+      <button class="accordion-toggle flex items-center justify-between w-full group" aria-expanded="false" aria-controls="health-metrics-container">
+        <h3 class="text-xl font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">Health Metrics Dashboard</h3>
+        <i class="fas fa-chevron-down transition-transform duration-300 text-gray-500 group-hover:text-blue-600"></i>
+      </button>
     </div>
     
     <div class="grid md:grid-cols-2 gap-6">
@@ -2288,13 +2308,33 @@
       <p class="text-gray-600">
         Understanding your biological age can provide valuable insights into your overall health and help you make informed decisions about your lifestyle. Here are some practical uses of biological age:
       </p>
-      <ul class="list-disc list-inside text-gray-600 space-y-2">
-        <li><strong>Health Assessment:</strong> Biological age can be used as a comprehensive health assessment tool to identify potential health risks and areas for improvement.</li>
-        <li><strong>Personalized Health Plans:</strong> By knowing your biological age, healthcare providers can create personalized health plans tailored to your specific needs and goals.</li>
-        <li><strong>Motivation for Healthy Living:</strong> Tracking changes in your biological age over time can serve as motivation to maintain healthy habits and make positive lifestyle changes.</li>
-        <li><strong>Early Detection of Health Issues:</strong> A higher biological age compared to your chronological age may indicate underlying health issues that need to be addressed early.</li>
-        <li><strong>Monitoring Aging Process:</strong> Regularly monitoring your biological age can help you understand how well you are aging and take proactive steps to slow down the aging process.</li>
-      </ul>
+      <div class="metric-comparison grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div class="metric-badge bg-white p-4 rounded-xl border border-gray-100 hover:border-purple-100 transition-colors group relative">
+          <div class="flex items-center gap-3 mb-3">
+            <i class="fas fa-heartbeat text-xl text-purple-600"></i>
+            <h3 class="font-semibold text-gray-800">Health Assessment</h3>
+          </div>
+          <p class="text-gray-600 text-sm mb-4">Comprehensive evaluation of potential health risks and improvement areas.</p>
+          <button class="learn-more text-purple-600 text-sm font-medium flex items-center gap-1">
+            Learn more
+            <i class="fas fa-chevron-right text-xs transition-transform group-hover:translate-x-1"></i>
+          </button>
+          <div class="absolute inset-0 border-2 border-transparent group-hover:border-purple-200 rounded-xl pointer-events-none transition-all"></div>
+        </div>
+        
+        <div class="metric-badge bg-white p-4 rounded-xl border border-gray-100 hover:border-purple-100 transition-colors group relative">
+          <div class="flex items-center gap-3 mb-3">
+            <i class="fas fa-file-medical text-xl text-purple-600"></i>
+            <h3 class="font-semibold text-gray-800">Personalized Plans</h3>
+          </div>
+          <p class="text-gray-600 text-sm mb-4">Custom health strategies tailored to your biological profile.</p>
+          <button class="learn-more text-purple-600 text-sm font-medium flex items-center gap-1">
+            Learn more
+            <i class="fas fa-chevron-right text-xs transition-transform group-hover:translate-x-1"></i>
+          </button>
+          <div class="absolute inset-0 border-2 border-transparent group-hover:border-purple-200 rounded-xl pointer-events-none transition-all"></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

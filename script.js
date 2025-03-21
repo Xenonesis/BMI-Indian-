@@ -206,6 +206,41 @@ function getRecommendations(bmi, age, gender) {
     return recommendations;
 }
 
+// Biological Age Accordion Functionality
+function toggleAccordion(header) {
+  const accordion = header.parentElement;
+  const content = accordion.querySelector('.bio-accordion-content');
+  const icon = header.querySelector('.accordion-icon');
+  
+  accordion.classList.toggle('active');
+  icon.style.transform = accordion.classList.contains('active') 
+    ? 'rotate(90deg)' 
+    : 'rotate(0deg)';
+}
+
+// Timeline Animation Trigger
+function animateTimeline() {
+  const timelineItems = document.querySelectorAll('.timeline-item');
+  timelineItems.forEach((item, index) => {
+    setTimeout(() => {
+      item.classList.add('visible');
+    }, index * 300);
+  });
+}
+
+// Close Accordion When Clicking Outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.bio-accordion')) {
+    document.querySelectorAll('.bio-accordion').forEach(accordion => {
+      accordion.classList.remove('active');
+      accordion.querySelector('.accordion-icon').style.transform = 'rotate(0deg)';
+    });
+  }
+});
+
+// Initialize Timeline Animations
+window.addEventListener('DOMContentLoaded', animateTimeline);
+
 // Function to predict biological age based on BMI, age, gender, weight, and height
 function predictBiologicalAge(bmi, age, gender, weight, height) {
     // Enhanced predictive model based on BMI deviation from normal range

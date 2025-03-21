@@ -1,5 +1,39 @@
 /* Mobile First Approach */
 @media screen and (max-width: 640px) {
+    .metric-comparison {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .metric-badge {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .biological-age-card {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .biological-age-card::before {
+        opacity: 0.2 !important;
+    }
+    
+    .metric-comparison {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    
+    .metric-badge {
+        flex-direction: column;
+        padding: 0.75rem;
+        text-align: center;
+    }
+    
+    .biological-age-card::before {
+        opacity: 0.3 !important;
+    }
+    
     .main-container {
         padding: 1rem;
     }
@@ -39,15 +73,25 @@
 /* Tablet Styles */
 @media screen and (min-width: 641px) and (max-width: 1024px) {
     .main-container {
-        padding: 1.5rem;
+        padding: 2rem;
     }
 
     .grid-cols-3 {
         grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.5rem;
     }
 
     .results-card {
-        padding: 1.25rem !important;
+        padding: 1.5rem !important;
+    }
+
+    h2 {
+        font-size: 1.75rem !important;
+    }
+
+    .metric-item {
+        padding: 1rem;
+        margin-bottom: 1.2rem;
     }
 }
 

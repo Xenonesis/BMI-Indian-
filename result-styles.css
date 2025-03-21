@@ -61,3 +61,25 @@
   0%, 100% { opacity: 1; }
   50% { opacity: .5; }
 }
+
+/* Accordion Transitions */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion-content.active {
+  max-height: 500px;
+  opacity: 1;
+  padding-top: 1rem;
+}
+
+.accordion-toggle {
+  transition: transform 0.3s ease;
+}
+
+.accordion-toggle.active {
+  transform: rotate(180deg);
+}

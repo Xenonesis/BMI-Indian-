@@ -22,6 +22,23 @@ function initHealthInsights() {
     
     // Make health tips more interactive
     enhanceHealthTips();
+
+    // Initialize accordion toggle functionality
+    initAccordionToggle();
+}
+
+function initAccordionToggle() {
+    const toggleButton = document.querySelector('.accordion-toggle');
+    const content = document.getElementById('health-metrics-container');
+    
+    if (toggleButton && content) {
+        toggleButton.addEventListener('click', () => {
+            const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
+            toggleButton.setAttribute('aria-expanded', !isExpanded);
+            content.classList.toggle('active');
+            toggleButton.querySelector('i').classList.toggle('active');
+        });
+    }
 }
 
 /**
