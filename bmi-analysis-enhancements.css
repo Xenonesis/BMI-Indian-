@@ -206,3 +206,66 @@
   color: #991b1b; 
   border: 1px solid rgba(239, 68, 68, 0.3);
 }
+
+/* Enhanced Form Interactions */
+.form-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.form-group input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-group input:not(:placeholder-shown):valid {
+  border-color: #10b981;
+}
+
+.form-group input:not(:placeholder-shown):invalid {
+  border-color: #ef4444;
+}
+
+/* Animation Utilities */
+.animate-title {
+  animation: fadeInUp 1s ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Enhanced Input Focus States */
+.form-group:focus-within i {
+  transform: scale(1.1);
+  color: #3b82f6;
+}
+
+/* Hover Effects */
+.form-group:hover input {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.form-group:hover i {
+  transform: scale(1.05);
+}
