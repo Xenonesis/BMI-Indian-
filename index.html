@@ -549,62 +549,190 @@
 <!-- Add margin-top to main content to account for fixed header -->
 <main class="mt-16 md:mt-20">
   <!-- Hero Section -->
-  <section class="mb-12 relative overflow-hidden">
-  <!-- Background Pattern -->
-  <div class="absolute inset-0 opacity-10">
-    <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 transform -skew-y-6"></div>
+  <section id="hero-section" class="mb-12 relative min-h-[70vh] flex items-center overflow-hidden">
+  <!-- Enhanced Background Effects -->
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10"></div>
+    <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
+    <div class="absolute -top-24 -right-24 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-5xl opacity-10 animate-blob"></div>
+    <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-5xl opacity-10 animate-blob animation-delay-2000"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-5xl opacity-10 animate-blob animation-delay-4000"></div>
   </div>
   
-  <div class="relative z-10 text-center py-16 px-4">
-    <div class="animate-float">
-      <span class="inline-block text-sm font-semibold text-blue-600 tracking-wider mb-2 bg-blue-100 px-3 py-1 rounded-full">
-        Quick & Easy BMI Calculator
-      </span>
-    </div>
-    
-    <h1 class="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-title">
-      Calculate Your BMI
-    </h1>
-    
-    <div class="max-w-3xl mx-auto">
-      <p class="text-gray-600 text-lg md:text-xl mb-8 animate-fade-in">
-        Get instant insights about your body mass index and personalized health recommendations
-      </p>
+  <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 py-16 md:py-24">
+    <div class="text-center">
+      <!-- Badge -->
+      <div class="animate-float inline-block">
+        <span class="inline-block text-sm font-semibold text-blue-600 tracking-wider mb-4 bg-blue-100 px-4 py-2 rounded-full shadow-sm">
+          <i class="fas fa-calculator mr-2"></i>Quick & Easy BMI Calculator
+        </span>
+      </div>
       
-      <!-- Feature Highlights -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div class="feature-card bg-white p-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-          <div class="text-blue-500 mb-2">
-            <i class="fas fa-calculator text-2xl"></i>
-          </div>
-          <h3 class="font-semibold text-gray-800">Instant Results</h3>
-          <p class="text-sm text-gray-600">Get your BMI calculated instantly</p>
+      <!-- Main Heading with enhanced animation -->
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-title">
+        Calculate Your BMI
+      </h1>
+      
+      <div class="max-w-3xl mx-auto">
+        <!-- Subheading with better animation -->
+        <p class="text-gray-600 text-lg md:text-xl mb-10 animate-fade-in">
+          Get instant insights about your body mass index and personalized health recommendations tailored to your unique profile
+        </p>
+        
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mb-12 animate-fade-in animation-delay-300">
+          <a href="#bmi-form" class="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transform transition-all duration-300 hover:-translate-y-1 flex items-center justify-center space-x-2 group">
+            <span>Calculate Now</span>
+            <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
+          </a>
+          <a href="#understanding-bmi" class="px-8 py-4 bg-white/80 backdrop-blur-sm text-gray-700 rounded-xl font-semibold shadow-md hover:shadow-lg transform transition-all duration-300 hover:-translate-y-1 border border-gray-200 flex items-center justify-center space-x-2">
+            <span>Learn More</span>
+            <i class="fas fa-info-circle"></i>
+          </a>
         </div>
         
-        <div class="feature-card bg-white p-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-          <div class="text-purple-500 mb-2">
-            <i class="fas fa-chart-line text-2xl"></i>
+        <!-- Enhanced Feature Highlights -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <div class="feature-card bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transform transition-all duration-500 hover:-translate-y-2 group">
+            <div class="text-blue-500 mb-4 transform transition-all duration-500 group-hover:scale-110">
+              <div class="bg-blue-100/70 w-16 h-16 rounded-full mx-auto flex items-center justify-center">
+                <i class="fas fa-calculator text-2xl"></i>
+              </div>
+            </div>
+            <h3 class="font-semibold text-gray-800 text-lg mb-2 text-center">Instant Results</h3>
+            <p class="text-gray-600 text-center">Get your BMI calculated instantly with personalized insights</p>
           </div>
-          <h3 class="font-semibold text-gray-800">Track Progress</h3>
-          <p class="text-sm text-gray-600">Monitor your health journey</p>
+          
+          <div class="feature-card bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transform transition-all duration-500 hover:-translate-y-2 group">
+            <div class="text-purple-500 mb-4 transform transition-all duration-500 group-hover:scale-110">
+              <div class="bg-purple-100/70 w-16 h-16 rounded-full mx-auto flex items-center justify-center">
+                <i class="fas fa-chart-line text-2xl"></i>
+              </div>
+            </div>
+            <h3 class="font-semibold text-gray-800 text-lg mb-2 text-center">Track Progress</h3>
+            <p class="text-gray-600 text-center">Monitor your health journey with comprehensive analytics</p>
+          </div>
+          
+          <div class="feature-card bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transform transition-all duration-500 hover:-translate-y-2 group">
+            <div class="text-green-500 mb-4 transform transition-all duration-500 group-hover:scale-110">
+              <div class="bg-green-100/70 w-16 h-16 rounded-full mx-auto flex items-center justify-center">
+                <i class="fas fa-heartbeat text-2xl"></i>
+              </div>
+            </div>
+            <h3 class="font-semibold text-gray-800 text-lg mb-2 text-center">Health Insights</h3>
+            <p class="text-gray-600 text-center">Get personalized recommendations for better health</p>
+          </div>
         </div>
         
-        <div class="feature-card bg-white p-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-          <div class="text-green-500 mb-2">
-            <i class="fas fa-heartbeat text-2xl"></i>
-          </div>
-          <h3 class="font-semibold text-gray-800">Health Insights</h3>
-          <p class="text-sm text-gray-600">Get personalized recommendations</p>
-        </div>
       </div>
     </div>
     
-    <!-- Scroll Indicator -->
-    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce">
-      <i class="fas fa-chevron-down text-blue-500"></i>
+    <!-- Enhanced Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-slow">
+      <a href="#bmi-form" class="flex flex-col items-center text-blue-500 hover:text-blue-600 transition-colors">
+        <span class="text-sm font-medium mb-2 text-gray-500">Scroll Down</span>
+        <div class="w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm shadow-md flex items-center justify-center">
+          <i class="fas fa-chevron-down"></i>
+        </div>
+      </a>
     </div>
   </div>
 </section>
+
+<!-- Add necessary keyframe animations -->
+<style>
+  /* Enhanced animation keyframes */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes title-gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes bounce-slow {
+    0%, 100% {
+      transform: translateY(0) translateX(-50%);
+    }
+    50% {
+      transform: translateY(-15px) translateX(-50%);
+    }
+  }
+
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+  }
+
+  /* Animation classes */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-title {
+    background-size: 200% 200%;
+    animation: title-gradient 8s ease infinite;
+  }
+
+  .animate-fade-in {
+    opacity: 0;
+    animation: fade-in 1s ease-out forwards;
+  }
+
+  .animation-delay-300 {
+    animation-delay: 0.3s;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+
+  .animate-blob {
+    animation: blob 10s infinite ease-in-out;
+  }
+
+  .animate-bounce-slow {
+    animation: bounce-slow 2s infinite ease-in-out;
+  }
+</style>
 
   <!-- Two Column Layout for Form and Info -->
   <div class="grid md:grid-cols-2 gap-8">
@@ -635,32 +763,32 @@
           </div>
 
           <div class="grid grid-cols-2 gap-4">
-            <div class="form-group transform transition-all duration-300 hover:scale-[1.01]">
-              <div class="relative">
-                <input type="number" id="age" 
-                       class="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 
-                              bg-white/50 backdrop-blur-md transition-all duration-300"
-                       placeholder="Age" required min="1">
-                <i class="fas fa-birthday-cake absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+              <div class="form-group transform transition-all duration-300 hover:scale-[1.01]">
+                <div class="relative">
+                  <input type="number" id="age" 
+                         class="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 
+                                bg-white/50 backdrop-blur-md transition-all duration-300"
+                         placeholder="Age" required min="1">
+                  <i class="fas fa-birthday-cake absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                </div>
               </div>
-            </div>
 
-            <div class="form-group transform transition-all duration-300 hover:scale-[1.01]">
-              <div class="relative">
-                <select id="gender" 
-                        class="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 
-                               bg-white/50 backdrop-blur-md transition-all duration-300 appearance-none"
-                        title="Select your gender"
-                        required>
-                  <option value="" disabled selected>Select Gender</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
-                </select>
-                <i class="fas fa-venus-mars absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+              <div class="form-group transform transition-all duration-300 hover:scale-[1.01]">
+                <div class="relative">
+                  <select id="gender" 
+                          class="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 
+                                 bg-white/50 backdrop-blur-md transition-all duration-300 appearance-none"
+                          title="Select your gender"
+                          required>
+                    <option value="" disabled selected>Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  <i class="fas fa-venus-mars absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                </div>
               </div>
             </div>
-          </div>
         </div>
 
         <!-- Measurements Card -->
@@ -702,30 +830,42 @@
                 </span>
               </label>
             </div>
-
-            <!-- Height inputs remain unchanged -->
-            <div id="height-cm-group" class="relative">
-    <input type="number" id="height-cm" 
-           class="w-full pr-16 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-           placeholder="Height in cm" required>
-    <span class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500">cm</span>
-  </div>
-
-  <!-- Feet and Inches input -->
-  <div id="height-ftin-group" class="hidden grid grid-cols-2 gap-4">
-    <div class="relative">
-      <input type="number" id="height-feet" 
-             class="w-full pr-14 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-             placeholder="Feet" min="0">
-      <span class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500">ft</span>
-    </div>
-    <div class="relative">
-      <input type="number" id="height-inches" 
-             class="w-full pr-14 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-             placeholder="Inches" min="0" max="11">
-      <span class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500">in</span>
-    </div>
-  </div>
+            
+            <!-- Height inputs with improved styling -->
+            <div id="height-cm-group" class="relative transform transition-all duration-300 hover:scale-[1.01]">
+              <div class="relative">
+                <input type="number" id="height-cm" 
+                       class="w-full pl-12 pr-16 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 
+                              bg-white/50 backdrop-blur-md transition-all duration-300"
+                       placeholder="Height in cm" required min="50" max="250">
+                <i class="fas fa-ruler-vertical absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500">cm</span>
+              </div>
+            </div>
+            
+            <!-- Feet and Inches input with improved styling -->
+            <div id="height-ftin-group" class="hidden grid grid-cols-2 gap-4">
+              <div class="relative transform transition-all duration-300 hover:scale-[1.01]">
+                <div class="relative">
+                  <input type="number" id="height-feet" 
+                         class="w-full pl-12 pr-16 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 
+                                bg-white/50 backdrop-blur-md transition-all duration-300"
+                         placeholder="Feet" min="1" max="8">
+                  <i class="fas fa-ruler-horizontal absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                  <span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500">ft</span>
+                </div>
+              </div>
+              <div class="relative transform transition-all duration-300 hover:scale-[1.01]">
+                <div class="relative">
+                  <input type="number" id="height-inches" 
+                         class="w-full pl-12 pr-16 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 
+                                bg-white/50 backdrop-blur-md transition-all duration-300"
+                         placeholder="Inches" min="0" max="11">
+                  <i class="fas fa-ruler absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                  <span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500">in</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 

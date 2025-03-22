@@ -2,12 +2,21 @@
 @media screen and (max-width: 640px) {
     .metric-comparison {
         grid-template-columns: 1fr;
-        gap: 1rem;
+        gap: 1.25rem;
     }
     
     .metric-badge {
-        padding: 1rem;
-        margin-bottom: 1rem;
+        padding: 1.25rem;
+        margin-bottom: 1.25rem;
+        border-radius: 1rem;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+    }
+
+    .metric-badge:active {
+        transform: scale(0.98);
     }
 
     .biological-age-card {

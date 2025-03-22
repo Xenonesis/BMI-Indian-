@@ -1,7 +1,26 @@
 .result-card {
-  background: linear-gradient(145deg, #ffffff, #f5f7fa);
-  box-shadow: 20px 20px 60px #d1d9e6, -20px -20px 60px #ffffff;
-  transition: all 0.4s ease;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(245, 247, 250, 0.85));
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  position: relative;
+  overflow: hidden;
+}
+
+.result-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 80%);
+  transform: rotate(45deg);
+  pointer-events: none;
 }
 
 .result-card:hover {
